@@ -1321,6 +1321,23 @@ h6 {
   font-weight: 600;
 }
 
+.btn-ol-violet {
+  background-color: #fff;
+  color: #8B5CF6;
+  border: 1px solid #8B5CF6;
+  font-weight: 600;
+}
+.btn-ol-violet:hover {
+  background-color: #f5f3ff;
+  border: 1px solid #8B5CF6;
+  color: #8B5CF6;
+}
+.btn-ol-violet:active {
+  background-color: #f5f3ff;
+  color: #8B5CF6;
+  font-weight: 600;
+}
+
 .btn-outline-navy {
   background-color: #fff;
   color: #5C7CFA;
@@ -1617,4 +1634,9 @@ h6 {
   min-height: calc(1.9em + 0.5rem + 2px);
   padding: 0.25rem 0.9rem;
   font-size: 0.925rem;
+}
+
+.add {
+  position: relative;
+  bottom: 6px;
 }
