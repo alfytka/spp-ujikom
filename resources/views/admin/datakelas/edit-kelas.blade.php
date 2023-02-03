@@ -72,7 +72,7 @@
                 </thead>
                 <tbody>
                   @foreach ($previewkelas as $kelas)
-                    <tr>
+                    <tr class="{{ $kelas->id == $datakelas->id ? 'table-blue' : '' }}">
                       <th scope="row">{{ $loop->iteration }}</th>
                       <td>{{ $kelas->kelas }}</td>
                       <td>{{ $kelas->kompetensiKeahlian->name }}</td>
