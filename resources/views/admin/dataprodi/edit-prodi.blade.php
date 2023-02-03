@@ -55,24 +55,26 @@
                 </div>
 
               <!-- Default Table -->
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama Jurusan</th>
-                    <th scope="col">Keterangan</th>
-                  </tr>
-                </thead>
-                <tbody class="align-middle">
-                  @foreach ($prodidata as $prodi)
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
                     <tr>
-                      <th scope="row">{{ $loop->iteration }}</th>
-                      <td>{{ $prodi->name }}</td>
-                      <td>{{ $prodi->keterangan }}</td>
+                      <th scope="col">#</th>
+                      <th scope="col">Nama Jurusan</th>
+                      <th scope="col">Keterangan</th>
                     </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody class="align-middle">
+                    @foreach ($prodidata as $prodi)
+                      <tr class="{{ $prodi->id == $dataprodi->id ? 'table-blue' : '' }}">
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $prodi->name }}</td>
+                        <td>{{ $prodi->keterangan }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
               <!-- End Default Table Example -->
             </div>
           </div>
