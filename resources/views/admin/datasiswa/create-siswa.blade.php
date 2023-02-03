@@ -62,9 +62,15 @@
               <div class="row">
                 <div class="col-6">
                   <div class="form-group mb-3">
-                    <label for="spp_id" class="form-label mb-1">Tahun SPP</label>
-                    <input type="text" name="spp_id" class="form-control form-control-smx roundedx @error('spp_id') is-invalid @enderror" value="{{ old('spp_id') }}" placeholder="Tahun spp" id="spp_id" autocomplete="off">
-                    @error('spp_id')
+                    <label for="tahun" class="form-label mb-1">Tahun SPP</label>
+                    <select name="tahun" class="form-select form-select-smx roundedx @error('tahun') is-invalid @enderror" id="tahun">
+                      <option disabled value>- Pilih tahun spp -</option>
+                      @foreach ($dataspp as $spp)
+                        <option disabled selected hidden>- Pilih spp -</option>
+                        <option value="{{ $spp->id }}">{{ $spp->tahun }}</option>
+                      @endforeach
+                    </select>
+                    @error('tahun')
                       <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                   </div>
