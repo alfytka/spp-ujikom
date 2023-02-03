@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Spp;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,10 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.datasiswa.create-siswa', [
+            'datakelas' => Kelas::all(),
+            'dataspp' => Spp::all()
+        ]);
     }
 
     /**
@@ -66,7 +70,10 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.datasiswa.edit-siswa', [
+            'datasiswa' => User::where('id', $id)->first(),
+            'datakelas' => Kelas::all()
+        ]);
     }
 
     /**
