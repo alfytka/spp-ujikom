@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KompetensiKeahlianController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SppController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +36,4 @@ Route::get('/dashboard', [AdminController::class, 'dashboard']);
 Route::resource('/dataprodi', KompetensiKeahlianController::class);
 Route::resource('/datakelas', KelasController::class);
 Route::resource('/datasiswa', SiswaController::class);
+Route::resource('/dataspp', SppController::class);
