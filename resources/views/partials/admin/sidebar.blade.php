@@ -46,7 +46,7 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ Request::is('xx*')?'fw-bold':'collapsed' }}">
+      <a href="{{ route('dataspp.index') }}" class="nav-link {{ Request::is('dataspp*')?'fw-bold':'collapsed' }}">
         <i class="bi bi-book-half"></i>
         <span>Data SPP</span>
       </a>
