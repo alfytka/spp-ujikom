@@ -87,19 +87,9 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(KelasRequest $request, $id)
     {
-        $upKelas = [
-            'kelas' => $request->kelas,
-            'kompetensikeahlian_id' => $request->kompetensikeahlian_id
-        ];
-
-        $this->validate($request, [
-            'kelas' => 'required|string|max:255',
-            'kompetensikeahlian_id' => 'required|string'
-        ]);
-
-        Kelas::where('id', $id)->update($upKelas);
+        Kelas::find($id)->update($request->all());
         return redirect(route('datakelas.index'))->with('informasi', 'data kelas berhasil diubah.');
     }
 
