@@ -38,6 +38,7 @@
 
               <!-- Default Table -->
               <div class="table-responsive">
+                @if ($datapetugas->count() > 0)
                 <table class="table table-sm mt-lg-2">
                   <thead>
                     <tr>
@@ -68,6 +69,16 @@
                     @endforeach
                   </tbody>
                 </table>
+                @else
+                <div class="text-center mt-4 mb-5">
+                  <i class="text-danger fs-1 bi bi-backspace"></i>
+                  <h5 class="mt-2">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
+                  <div class="mt-5">
+                    <a href="{{ route('datapetugas.index') }}" class="fw-semibold"><i class="bi bi-arrow-return-left pe-1"></i> Tampilan awal</a>
+                  </div>
+                </div>
+                @endif
+                
               </div>
               <!-- End Default Table Example -->
             </div>

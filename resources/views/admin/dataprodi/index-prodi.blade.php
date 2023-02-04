@@ -56,34 +56,47 @@
                 </div>
 
               <!-- Default Table -->
-              <table class="table table-sm mt-lg-2">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama Jurusan</th>
-                    <th scope="col">Keterangan</th>
-                    <th scope="col">Opsi</th>
-                  </tr>
-                </thead>
-                <tbody class="align-middle">
-                  @foreach ($dataprodi as $prodi)
-                  <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $prodi->name }}</td>
-                    <td>{{ $prodi->keterangan }}</td>
-                    <td>
-                      <a href="/dataprodi/{{ $prodi->id }}/edit" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
-                      <form action="/dataprodi/{{ $prodi->id }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
-                        {{-- <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red" data-bs-toggle="modal" data-bs-target="#konfirmasi"><i class="bi bi-x-lg"></i></button> --}}
-                      </form>
-                    </td>
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                @if ($dataprodi->count() > 0)
+                <table class="table table-sm mt-lg-2">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nama Jurusan</th>
+                      <th scope="col">Keterangan</th>
+                      <th scope="col">Opsi</th>
+                    </tr>
+                  </thead>
+                  <tbody class="align-middle">
+                    @foreach ($dataprodi as $prodi)
+                    <tr>
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <td>{{ $prodi->name }}</td>
+                      <td>{{ $prodi->keterangan }}</td>
+                      <td>
+                        <a href="/dataprodi/{{ $prodi->id }}/edit" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
+                        <form action="/dataprodi/{{ $prodi->id }}" method="POST" class="d-inline">
+                          @csrf
+                          @method('DELETE')
+                          <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
+                          {{-- <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red" data-bs-toggle="modal" data-bs-target="#konfirmasi"><i class="bi bi-x-lg"></i></button> --}}
+                        </form>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+                @else
+                <div class="text-center mt-4 mb-5">
+                  <i class="text-danger fs-1 bi bi-backspace"></i>
+                  <h5 class="mt-2">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
+                  <div class="mt-5">
+                    <a href="{{ route('dataprodi.index') }}" class="fw-semibold"><i class="bi bi-arrow-return-left pe-1"></i> Tampilan awal</a>
+                  </div>
+              </div>
+                @endif
+              </div>
+              
               <!-- End Default Table Example -->
             </div>
           </div>
