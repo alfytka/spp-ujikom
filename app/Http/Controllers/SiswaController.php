@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SiswaRequest;
+use App\Http\Requests\UpSiswaRequest;
 use App\Models\Kelas;
 use App\Models\Spp;
 use App\Models\User;
@@ -16,9 +18,12 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $search = User::orderBy('created_at')->latest();
+        $search = User::where('level','siswa');
         if (request('search')) {
-            $search->where('name', 'like', '%' . request('search') . '%');
+            $search->where('nisn', 'like', '%' . request('search') . '%')
+            ->orWhere('nis', 'like', '%' . request('search') . '%')
+            ->orWhere('name', 'like', '%' . request('search') . '%')
+            ->orWhere('email', 'like', '%' . request('search') . '%');
         }
 
         return view('admin.datasiswa.index-siswa', [
@@ -46,9 +51,24 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SiswaRequest $request)
     {
-        //
+        $addSiswa = [
+            'nisn' => $request->nisn,
+            'nis' => $request->nis,
+            'name' => $request->name,
+            'kelas_id' => $request->kelas_id,
+            'spp_id' => $request->spp_id,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+            'level' => $request->level
+        ];
+        
+        User::create($addSiswa);
+        return redirect(route('datasiswa.index'))->with('informasi' , 'Data siswa berhasil ditambah.');
     }
 
     /**
@@ -72,7 +92,8 @@ class SiswaController extends Controller
     {
         return view('admin.datasiswa.edit-siswa', [
             'datasiswa' => User::where('id', $id)->first(),
-            'datakelas' => Kelas::all()
+            'datakelas' => Kelas::all(),
+            'dataspp' => Spp::all()
         ]);
     }
 
@@ -83,9 +104,40 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpSiswaRequest $request, $id)
     {
-        //
+        if (!$request->password) {
+            $upSiswa = [
+                'nisn' => $request->nisn,
+                'nis' => $request->nis,
+                'name' => $request->name,
+                'kelas_id' => $request->kelas_id,
+                'spp_id' => $request->spp_id,
+                'email' => $request->email,
+                'username' => $request->username,
+                'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+                'level' => $request->level
+            ];
+            User::find($id)->update($upSiswa);
+        } else {
+            $upSiswaWithPassword = [
+                'nisn' => $request->nisn,
+                'nis' => $request->nis,
+                'name' => $request->name,
+                'kelas_id' => $request->kelas_id,
+                'spp_id' => $request->spp_id,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' => bcrypt($request->password),
+                'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+                'level' => $request->level
+            ];
+            User::find($id)->update($upSiswaWithPassword);
+        }
+
+        return redirect(route('datasiswa.index'))->with('informasi', 'Data siswa berhasil diubah.');
     }
 
     /**
@@ -96,6 +148,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id', $id)->delete();
+        return redirect(route('datasiswa.index'))->with('informasi', 'Data siswa berhasil dihapus.');
     }
 }
