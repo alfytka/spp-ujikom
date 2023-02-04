@@ -22,7 +22,7 @@
       @if (session()->has('informasi'))
       <div class="alert alert-light border-zinc roundeds alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle-fill ms-1 py-0 my-0 me-2"></i>
-        <span><b>Berhasil. </b>{{ session('informasi') }}</span>
+        <span><b>Berhasil - </b>{{ session('informasi') }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif 
@@ -48,6 +48,7 @@
 
               <div class="table-responsive">
                 <!-- Default Table -->
+                @if ($datasiswa->count() > 0)
                 <table class="table table-sm mt-lg-2">
                   <thead>
                     <tr>
@@ -55,106 +56,42 @@
                       <th scope="col">NISN</th>
                       <th scope="col">Nama Siswa</th>
                       <th scope="col">Kelas</th>
-                      <th scope="col">Tahun SPP</th>
-                      <th scope="col">Nominal SPP</th>
+                      <th scope="col">Email</th>
                       <th scope="col">Aksi</th>
                     </tr>
                   </thead>
                   <tbody class="align-middle">
-                    {{-- @foreach ($dataprodi as $prodi) --}}
+                    @foreach ($datasiswa as $siswa)
                     <tr>
-                      <th scope="row">1</th>
-                      <td>3157839204</td>
-                      <td>Alfitka Haerul Kurniawan</td>
-                      <td>XII RPL 1</td>
-                      <td>2023</td>
-                      <td>Rp800.000</td>
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <td>{{ $siswa->nisn }}</td>
+                      <td>{{ $siswa->name }}</td>
+                      <td>{{ $siswa->kelas->kelas }}</td>
+                      <td>{{ $siswa->email }}</td>
                       <td>
-                        <a href="#" class="btnxs btn-view"><i class="bi bi-view-list"></i></a>
-                        <a href="#" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
-                        <form action="$" method="POST" class="d-inline">
+                        <a href="/" class="btnxs btn-view"><i class="bi bi-view-list"></i></a>
+                        <a href="/datasiswa/{{ $siswa->id }}/edit" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
+                        <form action="/datasiswa/{{ $siswa->id }}" method="POST" class="d-inline">
                           @csrf
                           @method('DELETE')
-                          <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
+                          <button onclick="return confirm('Hapus data siswa?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
                           {{-- <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red" data-bs-toggle="modal" data-bs-target="#konfirmasi"><i class="bi bi-x-lg"></i></button> --}}
                         </form>
                       </td>
                     </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>3157839204</td>
-                      <td>Alfitka Haerul Kurniawan</td>
-                      <td>XII RPL 1</td>
-                      <td>2023</td>
-                      <td>Rp800.000</td>
-                      <td>
-                        <a href="#" class="btnxs btn-view"><i class="bi bi-view-list"></i></a>
-                        <a href="#" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
-                        <form action="$" method="POST" class="d-inline">
-                          @csrf
-                          @method('DELETE')
-                          <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
-                          {{-- <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red" data-bs-toggle="modal" data-bs-target="#konfirmasi"><i class="bi bi-x-lg"></i></button> --}}
-                        </form>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>3157839204</td>
-                      <td>Alfitka Haerul Kurniawan</td>
-                      <td>XII RPL 1</td>
-                      <td>2023</td>
-                      <td>Rp800.000</td>
-                      <td>
-                        <a href="#" class="btnxs btn-view"><i class="bi bi-view-list"></i></a>
-                        <a href="#" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
-                        <form action="$" method="POST" class="d-inline">
-                          @csrf
-                          @method('DELETE')
-                          <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
-                          {{-- <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red" data-bs-toggle="modal" data-bs-target="#konfirmasi"><i class="bi bi-x-lg"></i></button> --}}
-                        </form>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>3157839204</td>
-                      <td>Alfitka Haerul Kurniawan</td>
-                      <td>XII RPL 1</td>
-                      <td>2023</td>
-                      <td>Rp800.000</td>
-                      <td>
-                        <a href="#" class="btnxs btn-view"><i class="bi bi-view-list"></i></a>
-                        <a href="#" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
-                        <form action="$" method="POST" class="d-inline">
-                          @csrf
-                          @method('DELETE')
-                          <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
-                          {{-- <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red" data-bs-toggle="modal" data-bs-target="#konfirmasi"><i class="bi bi-x-lg"></i></button> --}}
-                        </form>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>3157839204</td>
-                      <td>Alfitka Haerul Kurniawan</td>
-                      <td>XII RPL 1</td>
-                      <td>2023</td>
-                      <td>Rp800.000</td>
-                      <td>
-                        <a href="#" class="btnxs btn-view"><i class="bi bi-view-list"></i></a>
-                        <a href="#" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
-                        <form action="$" method="POST" class="d-inline">
-                          @csrf
-                          @method('DELETE')
-                          <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
-                          {{-- <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red" data-bs-toggle="modal" data-bs-target="#konfirmasi"><i class="bi bi-x-lg"></i></button> --}}
-                        </form>
-                      </td>
-                    </tr>
-                    {{-- @endforeach --}}
+                    @endforeach
                   </tbody>
                 </table>
+                @else
+                  <div class="text-center mt-4 mb-5">
+                      <i class="text-danger fs-1 bi bi-backspace"></i>
+                      <h5 class="mt-2">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
+                      <div class="mt-5">
+                        <a href="{{ route('datasiswa.index') }}" class="fw-semibold"><i class="bi bi-arrow-return-left pe-1"></i> Tampilan awal</a>
+                      </div>
+                  </div>
+                @endif
+                
                 <!-- End Default Table Example -->
               </div>
             </div>
