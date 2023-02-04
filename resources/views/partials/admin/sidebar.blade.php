@@ -32,14 +32,14 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ Request::is('xx*')?'fw-bold':'collapsed' }}">
+      <a href="{{ route('datapetugas.index') }}" class="nav-link {{ Request::is('datapetugas*')?'fw-bold':'collapsed' }}">
         <i class="bi bi-person-workspace"></i>
         <span>Data Petugas</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ Request::is('xx*')?'fw-bold':'collapsed' }}">
+      <a href="{{ route('dataadmin.index') }}" class="nav-link {{ Request::is('dataadmin*')?'fw-bold':'collapsed' }}">
         <i class="bi bi-person-workspace"></i>
         <span>Data Admin</span>
       </a>
