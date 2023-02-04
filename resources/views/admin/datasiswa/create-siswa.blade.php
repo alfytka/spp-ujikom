@@ -6,7 +6,7 @@
   <h5 class="fw-semibold"><a href="{{ route('datasiswa.index') }}" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Data Siswa</span></h5>
 </div><!-- End Page Title -->
 
-<section class="section dashboard">
+<section class="section dashboard mb-5">
   <div class="row">
 
     <!-- Right side columns -->
@@ -17,7 +17,7 @@
           <h5 class="card-title"><i class="bi bi-plus-lg"></i> Tambah Data Siswa</h5>
 
           <!-- Vertical Form -->
-          <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="/dataprodi" method="POST">
+          <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="{{ route('datasiswa.store') }}" method="POST">
             @csrf
             <div class="col-12 col-md-6 col-lg-6 pe-2 pe-md-3 pe-lg-3">
 
@@ -62,15 +62,15 @@
               <div class="row">
                 <div class="col-6">
                   <div class="form-group mb-3">
-                    <label for="tahun" class="form-label mb-1">Tahun SPP</label>
-                    <select name="tahun" class="form-select form-select-smx roundedx @error('tahun') is-invalid @enderror" id="tahun">
+                    <label for="spp_id" class="form-label mb-1">Tahun SPP</label>
+                    <select name="spp_id" class="form-select form-select-smx roundedx @error('spp_id') is-invalid @enderror" id="spp_id">
                       <option disabled value>- Pilih tahun spp -</option>
                       @foreach ($dataspp as $spp)
                         <option disabled selected hidden>- Pilih spp -</option>
                         <option value="{{ $spp->id }}">{{ $spp->tahun }}</option>
                       @endforeach
                     </select>
-                    @error('tahun')
+                    @error('spp_id')
                       <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                   </div>
@@ -129,7 +129,6 @@
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
               </div>
-
               
               <div class="text-end ">
                 <button type="submit" class="btnn btn-violet py-2 px-4 mt-1 mb-3">Simpan <i class="bi bi-chevron-right ps-1"></i></button>
