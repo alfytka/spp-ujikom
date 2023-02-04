@@ -18,7 +18,10 @@ class PetugasController extends Controller
     {
         $search = User::where('level', 'petugas');
         if (request('search')) {
-            $search->where('name', 'like', '%' . request('search') . '%');
+            $search->where('name', 'like', '%' . request('search') . '%')
+            ->orWhere('username', 'like', '%' . request('search') . '%')
+            ->orWhere('email', 'like', '%' . request('search') . '%')
+            ->orWhere('telepon', 'like', '%' . request('search') . '%');
         }
 
         return view('admin.datapetugas.index-petugas', [
