@@ -1635,6 +1635,11 @@ h6 {
   padding: 0.25rem 0.9rem;
   font-size: 0.925rem;
 }
+.form-select-smx {
+  min-height: calc(1.9em + 0.5rem + 2px);
+  padding: 0.25rem 0.9rem;
+  font-size: 0.925rem;
+}
 
 .add {
   position: relative;
