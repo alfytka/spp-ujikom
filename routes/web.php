@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KompetensiKeahlianController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SppController;
@@ -32,7 +34,6 @@ Route::get('/profile', function () {
     return view('admin.profile');
 })->name('profile');
 
-// Route::view('/datasiswa', 'admin.datasiswa.index-siswa');
 
 Route::get('/dashboard', [FeatureController::class, 'dashboard']);
 Route::resource('/dataprodi', KompetensiKeahlianController::class);
@@ -41,3 +42,5 @@ Route::resource('/datasiswa', SiswaController::class);
 Route::resource('/dataspp', SppController::class);
 Route::resource('/datapetugas', PetugasController::class);
 Route::resource('/dataadmin', AdminController::class);
+Route::resource('/datapembayaran', PembayaranController::class);
+Route::resource('/history', HistoryController::class);
