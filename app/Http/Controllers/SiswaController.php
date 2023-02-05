@@ -69,7 +69,7 @@ class SiswaController extends Controller
         ];
         
         User::create($addSiswa);
-        return redirect(route('datasiswa.index'))->with('informasi' , 'Data siswa berhasil ditambah.');
+        return redirect(route('datasiswa.index'))->with('informasi' , 'Data siswa berhasil ditambahkan.');
     }
 
     /**
@@ -80,7 +80,9 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.datasiswa.detail-siswa', [
+            'datasiswa' => User::where('id', $id)->first()
+        ]);
     }
 
     /**

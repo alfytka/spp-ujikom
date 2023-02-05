@@ -59,7 +59,9 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.datapetugas.detail-petugas', [
+            'datapetugas' => User::where('id', $id)->first()
+        ]);
     }
 
     /**

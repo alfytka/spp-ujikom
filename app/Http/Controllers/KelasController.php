@@ -51,7 +51,7 @@ class KelasController extends Controller
     public function store(KelasRequest $request)
     {
         Kelas::create($request->all());
-        return redirect(route('datakelas.index'))->with('informasi', 'data kelas berhasil ditambahkan.');
+        return redirect(route('datakelas.index'))->with('informasi', 'Data kelas berhasil ditambahkan.');
     }
 
     /**
@@ -90,7 +90,7 @@ class KelasController extends Controller
     public function update(KelasRequest $request, $id)
     {
         Kelas::find($id)->update($request->all());
-        return redirect(route('datakelas.index'))->with('informasi', 'data kelas berhasil diubah.');
+        return redirect(route('datakelas.index'))->with('informasi', 'Data kelas berhasil diubah.');
     }
 
     /**
@@ -102,6 +102,6 @@ class KelasController extends Controller
     public function destroy($id)
     {
         Kelas::where('id', $id)->delete();
-        return redirect(route('datakelas.index'))->with('informasi', 'data kelas berhasil dihapus.');
+        return redirect(route('datakelas.index'))->with('informasi', 'Data kelas berhasil dihapus.');
     }
 }

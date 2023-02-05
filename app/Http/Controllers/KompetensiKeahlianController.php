@@ -43,7 +43,7 @@ class KompetensiKeahlianController extends Controller
     public function store(KompetensiKeahlianRequest $request)
     {
         Kompetensikeahlian::create($request->all());
-        return redirect(route('dataprodi.index'))->with('informasi', 'data kompetensi keahlian berhasil ditambahkan.');
+        return redirect(route('dataprodi.index'))->with('informasi', 'Data kompetensi keahlian berhasil ditambahkan.');
     }
 
     /**
@@ -78,20 +78,10 @@ class KompetensiKeahlianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(KompetensiKeahlianRequest $request, $id)
     {
-        $upProdi = [
-            'name' => $request->name,
-            'keterangan' => $request->keterangan
-        ];
-
-        $this->validate($request,[
-            'name' => 'required|max:255',
-            'keterangan' => 'required|max:50'
-        ]);
-        
-        Kompetensikeahlian::where('id', $id)->update($upProdi);
-        return redirect('/dataprodi')->with('informasi', 'data kompetensi keahlian berhasil diubah.');
+        Kompetensikeahlian::find($id)->update($request->all());
+        return redirect(route('dataprodi.index'))->with('informasi', 'Data kompetensi keahlian berhasil diubah.');
     }
 
     /**
@@ -103,6 +93,6 @@ class KompetensiKeahlianController extends Controller
     public function destroy($id)
     {
         Kompetensikeahlian::where('id', $id)->delete();
-        return redirect('/dataprodi')->with('informasi', 'data kompetensi keahlian berhasil dihapus.');
+        return redirect(route('dataprodi.index'))->with('informasi', 'Data kompetensi keahlian berhasil dihapus.');
     }
 }

@@ -59,7 +59,9 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.dataadmin.detail-admin', [
+            'dataadmin' => User::where('id', $id)->first()
+        ]);
     }
 
     /**
