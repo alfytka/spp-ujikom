@@ -23,8 +23,6 @@
     <!-- Left side columns -->
     <div class="col-lg-8">
 
-      
-
       <div class="row">
 
         <!-- Data Kelas Card -->
@@ -89,7 +87,7 @@
 
               <div class="align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <span>33</span>
+                  <span>{{ $countSpp }}</span>
                 </div>
                 <div class="fiturname">
                   <span class="fitur-name">Data SPP</span> <br>
@@ -114,7 +112,7 @@
 
               <div class="align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <span>33</span>
+                  <span>{{ $countSiswa }}</span>
                 </div>
                 <div class="fiturname">
                   <span class="fitur-name">Data Siswa</span> <br>
@@ -139,7 +137,7 @@
 
               <div class="align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <span>33</span>
+                  <span>{{ $countPetugas }}</span>
                 </div>
                 <div class="fiturname">
                   <span class="fitur-name">Data Petugas</span> <br>
@@ -164,7 +162,7 @@
 
               <div class="align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <span>33</span>
+                  <span>{{ $countPembayaran }}</span>
                 </div>
                 <div class="fiturname">
                   <span class="fitur-name">Pembayaran SPP</span> <br>

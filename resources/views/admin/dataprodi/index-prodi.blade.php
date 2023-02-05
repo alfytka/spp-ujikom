@@ -34,7 +34,7 @@
       @if (session()->has('informasi'))
         <div class="alert alert-light border-zinc roundeds alert-dismissible fade show" role="alert">
           <i class="bi bi-check-circle-fill ms-1 py-0 my-0 me-2"></i>
-          <span><b>Berhasil. </b>{{ session('informasi') }}</span>
+          <span><b>Berhasil - </b>{{ session('informasi') }}</span>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       @endif 
@@ -87,13 +87,13 @@
                   </tbody>
                 </table>
                 @else
-                <div class="text-center mt-4 mb-5">
+                <div class="text-center mt-4 mb-4">
                   <i class="text-danger fs-1 bi bi-backspace"></i>
-                  <h5 class="mt-2">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
-                  <div class="mt-5">
+                  <h5 class="mt-1">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
+                  <div class="mt-4">
                     <a href="{{ route('dataprodi.index') }}" class="fw-semibold"><i class="bi bi-arrow-return-left pe-1"></i> Tampilan awal</a>
                   </div>
-              </div>
+                </div>
                 @endif
               </div>
               

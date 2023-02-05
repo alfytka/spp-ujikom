@@ -68,13 +68,13 @@
                   </tbody>
                 </table>
                 @else
-                <div class="text-center mt-4 mb-5">
+                <div class="text-center mt-4 mb-4">
                   <i class="text-danger fs-1 bi bi-backspace"></i>
-                  <h5 class="mt-2">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
-                  <div class="mt-5">
+                  <h5 class="mt-1">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
+                  <div class="mt-4">
                     <a href="{{ route('dataspp.index') }}" class="fw-semibold"><i class="bi bi-arrow-return-left pe-1"></i> Tampilan awal</a>
                   </div>
-              </div>
+                </div>
                 @endif
                 
               </div>
@@ -105,14 +105,13 @@
               @enderror
             </div>
             <div class="col-12">
-              <label for="nominal" class="form-label mb-">Nominal</label>
+              <label for="nominal" class="form-label">Nominal</label>
               <div class="input-group">
                 <span class="input-group-text">Rp</span>
                 <input type="text" name="nominal" class="form-control form-control-smx @error('nominal') is-invalid @enderror" value="{{ old('nominal') }}" placeholder="1000000" id="nominal" autocomplete="off">
                 @error('nominal')
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
-
               </div>
             </div>
             <div class="text-end">

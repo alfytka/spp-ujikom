@@ -62,7 +62,7 @@
                         <form action="/datapetugas/{{ $petugas->id }}" method="POST" class="d-inline">
                           @csrf
                           @method('DELETE')
-                          <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
+                          <button onclick="return confirm('Hapus data petugas?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
                         </form>
                       </td>
                     </tr>
@@ -70,10 +70,10 @@
                   </tbody>
                 </table>
                 @else
-                <div class="text-center mt-4 mb-5">
+                <div class="text-center mt-4 mb-4">
                   <i class="text-danger fs-1 bi bi-backspace"></i>
-                  <h5 class="mt-2">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
-                  <div class="mt-5">
+                  <h5 class="mt-1">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
+                  <div class="mt-4">
                     <a href="{{ route('datapetugas.index') }}" class="fw-semibold"><i class="bi bi-arrow-return-left pe-1"></i> Tampilan awal</a>
                   </div>
                 </div>

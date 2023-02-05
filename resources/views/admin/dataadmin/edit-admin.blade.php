@@ -17,7 +17,7 @@
           <h5 class="card-title"><i class="bi bi-chevron-right"></i> Ubah Data Admin</h5>
 
           <!-- Vertical Form -->
-          <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="{{ route('dataadmin.update') }}" method="POST">
+          <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="/dataadmin/{{ $dataadmin->id }}" method="POST">
             @csrf
             @method('PUT')
             <div class="col-12 col-md-6 col-lg-6 pe-2 pe-md-3 pe-lg-3">
@@ -53,7 +53,7 @@
               <div class="form-group mb-2">
                 <label for="password" class="form-label mb-1">Password Baru</label>
                 <input type="password" name="password" class="form-control form-control-smx roundedx @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Masukkan password baru" id="password" autocomplete="off" id="liveToastBtn">
-                <small class="ms-2 fst-italic text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Kosongkan untuk tidak mengubah password."><i class="bi bi-info-circle-fill pe-1"></i>Info password</small>
+                <small class="ms-2 fst-italic text-sky" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Kosongkan untuk tidak mengubah password."><i class="bi bi-info-circle pe-1"></i>Info password</small>
                 @error('password')
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -74,7 +74,7 @@
                     <label for="level" class="form-label mb-1 mb-">Level</label>
                     <select name="level" class="form-select form-select-smx roundedx" id="level">
                       <option disabled value>- Level user -</option>
-                      <option value="petugas">Petugas</option>
+                      <option value="admin">Admin</option>
                     </select>
                   </div>
                 </div>

@@ -62,24 +62,26 @@
                 </div>
 
               <!-- Default Table -->
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama Kelas</th>
-                    <th scope="col">Kompetensi Keahlian</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($previewkelas as $kelas)
-                    <tr class="{{ $kelas->id == $datakelas->id ? 'table-blue' : '' }}">
-                      <th scope="row">{{ $loop->iteration }}</th>
-                      <td>{{ $kelas->kelas }}</td>
-                      <td>{{ $kelas->kompetensiKeahlian->name }}</td>
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nama Kelas</th>
+                      <th scope="col">Kompetensi Keahlian</th>
                     </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    @foreach ($previewkelas as $kelas)
+                      <tr class="{{ $kelas->id == $datakelas->id ? 'table-blue' : '' }}">
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $kelas->kelas }}</td>
+                        <td>{{ $kelas->kompetensiKeahlian->name }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
               <!-- End Default Table Example -->
             </div>
           </div>

@@ -107,7 +107,8 @@
 
               <div class="form-group mb-3">
                 <label for="password" class="form-label mb-1">Password</label>
-                <input type="password" name="password" class="form-control form-control-smx roundedx @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Masukkan password baru" id="password" autocomplete="off" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Kosongkan untuk tidak mengubah password.">
+                <input type="password" name="password" class="form-control form-control-smx roundedx @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Masukkan password baru" id="password" autocomplete="off">
+                <small class="ms-2 fst-italic text-sky" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Kosongkan untuk tidak mengubah password."><i class="bi bi-info-circle pe-1"></i>Info password</small>
                 @error('password')
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror

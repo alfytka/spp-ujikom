@@ -3,7 +3,7 @@
 @section('content')
   
 <div class="pagetitle">
-  <h5 class="fw-semibold"><a href="{{ route('datasiswa.index') }}" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Data Petugas</span></h5>
+  <h5 class="fw-semibold"><a href="{{ route('datapetugas.index') }}" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Data Petugas</span></h5>
 </div><!-- End Page Title -->
 
 <section class="section dashboard mb-5">
@@ -17,7 +17,7 @@
           <h5 class="card-title"><i class="bi bi-chevron-right"></i> Ubah Data Petugas</h5>
 
           <!-- Vertical Form -->
-          <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="{{ route('datapetugas.update') }}" method="POST">
+          <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="/datapetugas/{{ $datapetugas->id }}" method="POST">
             @csrf
             @method('PUT')
             <div class="col-12 col-md-6 col-lg-6 pe-2 pe-md-3 pe-lg-3">
@@ -52,8 +52,8 @@
 
               <div class="form-group mb-2">
                 <label for="password" class="form-label mb-1">Password Baru</label>
-                <input type="password" name="password" class="form-control form-control-smx roundedx @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Masukkan password baru" id="password" autocomplete="off" id="liveToastBtn">
-                <small class="ms-2 fst-italic text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Kosongkan untuk tidak mengubah password."><i class="bi bi-info-circle-fill pe-1"></i>Info password</small>
+                <input type="password" name="password" class="form-control form-control-smx roundedx @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Masukkan password baru" id="password" autocomplete="off">
+                <small class="ms-2 fst-italic text-sky" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Kosongkan untuk tidak mengubah password."><i class="bi bi-info-circle pe-1"></i>Info password</small>
                 @error('password')
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
