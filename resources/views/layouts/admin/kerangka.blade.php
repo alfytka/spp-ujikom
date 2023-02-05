@@ -21,9 +21,6 @@
   <!-- Vendor CSS Files -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="/css/style.css" rel="stylesheet">
@@ -32,15 +29,15 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
+  {{-- Header --}}
   <header id="header" class="header fixed-top d-flex align-items-center">
     @include('partials.admin.navbar')
-  </header><!-- End Header -->
+  </header>
 
-  <!-- ======= Sidebar ======= -->
+  {{-- Sidebar --}}
   <aside id="sidebar" class="sidebar">
     @include('partials.admin.sidebar')
-  </aside><!-- End Sidebar-->
+  </aside>
 
   <main id="main" class="main">
 
@@ -61,11 +58,11 @@
           </div>
         </div>
       </div>
-    </div><!-- End Disabled Backdrop Modal-->
+    </div>
 
     @yield('content')
 
-  </main><!-- End #main -->
+  </main>
 
   {{-- ======= Footer =======  
   <footer id="footer" class="footer">
@@ -79,10 +76,7 @@
 
   <!-- Vendor JS Files -->
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/vendor/quill/quill.min.js"></script>
-  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="/vendor/tinymce/tinymce.min.js"></script>
-  <script src="/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="/js/main.js"></script>

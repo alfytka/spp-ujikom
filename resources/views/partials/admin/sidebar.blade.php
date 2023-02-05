@@ -53,7 +53,7 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ Request::is('xx*')?'fw-bold':'collapsed' }}">
+      <a href="{{ route('datapembayaran.index') }}" class="nav-link {{ Request::is('datapembayaran')?'fw-bold':'collapsed' }}">
         <i class="bi bi-palette2"></i>
         <span>Data Pembayaran</span>
       </a>
@@ -62,14 +62,14 @@
     <li class="nav-heading">Transaksi</li>
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ Request::is('xx*')?'fw-bold':'collapsed' }}">
+      <a href="{{ route('datapembayaran.create') }}" class="nav-link {{ Request::is('datapembayaran/create*')?'fw-bold':'collapsed' }}">
         <i style="margin-right: 10px;">Rp</i>
         <span>Entri Pembayaran</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a href="#" class="nav-link {{ Request::is('xx*')?'fw-bold':'collapsed' }}">
+      <a href="{{ route('history.index') }}" class="nav-link {{ Request::is('history*')?'fw-bold':'collapsed' }}">
         <i class="bi bi-clock-history"></i>
         <span>History Pembayaran</span>
       </a>
