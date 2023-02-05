@@ -27,7 +27,6 @@ class UpPetugasRequest extends FormRequest
             'name' => ['required', 'string'],
             'email' => ['required', 'string'],
             'username' => ['required', 'string'],
-            'password' => ['string'],
             'telepon' => ['required', 'numeric'],
             'alamat' => ['required', 'string'],
             'level' => ['required']
