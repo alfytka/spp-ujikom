@@ -17,19 +17,19 @@ class SppSeeder extends Seeder
         collect([
             [
                 'tahun' => '2020',
-                'nominal' => '700000'
+                'nominal' => '100000'
             ],
             [
                 'tahun' => '2021',
-                'nominal' => '800000'
+                'nominal' => '120000'
             ],
             [
                 'tahun' => '2022',
-                'nominal' => '850000'
+                'nominal' => '100000'
             ],
             [
                 'tahun' => '2023',
-                'nominal' => '800000'
+                'nominal' => '100000'
             ]
         ])->each(function($dataspp){
             Spp::create($dataspp);

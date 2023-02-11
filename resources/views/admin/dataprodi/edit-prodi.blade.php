@@ -21,14 +21,14 @@
             @csrf
             @method('PUT')
             <div class="col-12 form-group">
-              <label for="namaJurusan" class="form-label">Nama Jurusan</label>
+              <label for="namaJurusan" class="form-label mb-1">Nama Jurusan</label>
               <input type="text" name="name" value="{{ $dataprodi->name, old('name') }}" class="form-control form-control-smx roundedx @error('name') is-invalid @enderror" placeholder="Nama jurusan" id="namaJurusan" autocomplete="off">
               @error('name')
                 <span class="invalid-feedback">{{ $message }}</span>
               @enderror
             </div>
             <div class="col-12">
-              <label for="keterangan" class="form-label">Keterangan</label>
+              <label for="keterangan" class="form-label mb-1">Keterangan</label>
               <input type="text" name="keterangan" value="{{ $dataprodi->keterangan }}" class="form-control form-control-smx roundedx @error('keterangan') is-invalid @enderror" placeholder="Singkatan: RPL" id="keterangan" autocomplete="off">
               @error('keterangan')
                 <div class="invalid-feedback">{{ $message }}</div>

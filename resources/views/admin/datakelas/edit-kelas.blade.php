@@ -22,7 +22,7 @@
             @method('PUT')
             <div class="col-12">
               <div class="col-12">
-                <label for="namaKelas" class="form-label">Nama Kelas</label>
+                <label for="namaKelas" class="form-label mb-1">Nama Kelas</label>
                 <input type="text" name="kelas" class="form-control form-control-smx roundedx @error('kelas') is-invalid @enderror" placeholder="ex: XII RPL 1" id="namaKelas" autocomplete="off" value="{{ $datakelas->kelas, old('kelas') }}">
                 @error('kelas')
                   <span class="invalid-feedback">{{ $message }}</span>
@@ -30,7 +30,7 @@
               </div>
             </div>
               <div class="col-12">
-                <label for="dataProdi" class="form-label">Kompetensi Keahlian</label>
+                <label for="dataProdi" class="form-label mb-1">Kompetensi Keahlian</label>
                 <select name="kompetensikeahlian_id" id="dataProdi" class="form-select form-select-smx roundedx @error('kompetensikeahlian_id') is-invalid @enderror">
                   <option disabled value>- Pilih kompetensi keahlian -</option>
                   @foreach ($dataprodi as $prodi)

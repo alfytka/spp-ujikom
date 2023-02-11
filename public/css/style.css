@@ -272,7 +272,7 @@ h6 {
 }
 
 .fitur-name {
-  color: #000000;
+  color: #000;
   font-weight: 700;
   font-size: 16px;
 }
@@ -781,19 +781,28 @@ h6 {
 .yellow-card {
   background-color: #FDE047;
 }
-.slate-card {
-  background-color: #CBD5E1;
-}
-.green-card {
-  background-color: #4ADE80;
-}
+
+
 .violet-card {
   background-color: #D8B4FE;
 }
 .orange-card {
-  background-color: #FED5B0;
+  background-color: #fff7ed;
 }
 
+
+.white-card {
+  background-color: #fafafa;
+}
+.slate-card {
+  background-color: #f8fafc;
+}
+.danger-card {
+  background-color: #fef2f2;
+}
+.green-card {
+  background-color: #f0fdf4;
+}
 
 
 /* Filter dropdown */
@@ -859,30 +868,41 @@ h6 {
 }
 
 .dashboard .sales-card .card-icon {
-  color: #000000;
-  background: #BFDBFE;
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #f4f4f5;
 }
 
 .dashboard .revenue-card .card-icon {
-  color: #000000;
-  background: #FEF08A;
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #f1f5f9;
 }
 
 .dashboard .revenue1-card .card-icon {
-  color: #000000;
-  background: #E2E8F0;
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #fee2e2;
 }
 .dashboard .revenue2-card .card-icon {
-  color: #000000;
-  background: #86EFAC;
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #dcfce7;
+}
+.dashboard .revenuex.card .card-icon {
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #fecaca;
 }
 .dashboard .revenue3-card .card-icon {
-  color: #000000;
-  background: #C084FC;
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #f4f4f5;
 }
 .dashboard .revenue4-card .card-icon {
-  color: #000000;
-  background: #FFB169;
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #ffedd5;
 }
 
 /* Activity */
@@ -1325,6 +1345,11 @@ h6 {
   font-weight: 600;
 }
 
+.relative-me {
+  position: relative;
+  bottom: 9px;
+}
+
 .btn-ol-violet {
   background-color: #fff;
   color: #8B5CF6;
@@ -1701,6 +1726,12 @@ h6 {
   .profile-img {
     width: 90px;
   }
+  .card-sm-left {
+    padding-right: 8px;
+  }
+  .card-sm-right {
+    padding-left: 8px;
+  }
   .name {
     font-size: 16px;
   }
@@ -1714,4 +1745,10 @@ h6 {
   position: relative;
   top: 1px;
   font-size: 13px;
+}
+
+.nav-item .nav-link .bi-active {
+  font-size: 10px;
+  /* position: relative; */
+  /* left: 100px; */
 }

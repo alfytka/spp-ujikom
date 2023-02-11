@@ -28,8 +28,8 @@ class KompetensikeahlianSeeder extends Seeder
                 'keterangan' => 'APHP'
             ],
             [
-                'name' => 'Teknik Sepeda Motor',
-                'keterangan' => 'TSM'
+                'name' => 'Teknik Bisnis Sepeda Motor',
+                'keterangan' => 'TBSM'
             ],
             [
                 'name' => 'Agribisnis Perikanan Air Tawar',

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EntriRequest;
+use App\Http\Requests\UpPembayaranRequest;
+use App\Models\Kelas;
 use App\Models\Pembayaran;
+use App\Models\Spp;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -33,7 +37,35 @@ class PembayaranController extends Controller
     public function create()
     {
         return view('admin.datapembayaran.entri-pembayaran', [
-            'datasiswa' => User::where('level', 'siswa')->get()
+            'datakelas' => Kelas::all(),
+            // 'datasiswa' => User::where('level', 'siswa')->get()
+        ]);
+    }
+
+    public function getKelas(Request $request)
+    {
+        $getKelas = $request->kelas;
+        $getSiswa = $request->name;
+
+        return view('admin.datapembayaran.get-kelas', [
+            'datasiswa' => User::where('kelas_id', $getKelas)->get(),
+            'datakelas' => Kelas::all(),
+            'getsiswa' => $getSiswa,
+            'kelasx' => $getKelas
+        ]);
+    }
+
+    public function getSiswa(Request $request)
+    {
+        $getSiswa = $request->name;
+        $getKelas = $request->kelas;
+
+        return view('admin.datapembayaran.get-siswa', [
+            'datasiswa' => User::where('kelas_id', $getKelas)->get(),
+            'datakelas' => Kelas::all(),
+            'detailsiswa' => User::where('kelas_id', $getSiswa),
+            'getsiswa' => $getSiswa,
+            'kelasx' => $getKelas
         ]);
     }
 
@@ -43,9 +75,10 @@ class PembayaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EntriRequest $request)
     {
-        //
+        Pembayaran::create($request->all());
+        return redirect(route('datapembayaran.index'))->with('informasi', 'Pembayaran berhasil.');
     }
 
     /**
@@ -67,7 +100,10 @@ class PembayaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.datapembayaran.edit-pembayaran', [
+            'datapembayaran' => Pembayaran::where('id', $id)->first(),
+            'datasiswa' => User::where('level', 'siswa')->get()
+        ]);
     }
 
     /**
@@ -77,9 +113,10 @@ class PembayaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpPembayaranRequest $request, $id)
     {
-        //
+        Pembayaran::find($id)->update($request->all());
+        return redirect(route('datapembayaran.index'))->with('informasi', 'Data pembayaran berhasil diubah.');
     }
 
     /**

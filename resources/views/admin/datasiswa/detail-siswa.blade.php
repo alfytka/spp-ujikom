@@ -107,6 +107,7 @@
                   </div>
                   <div class="col-4 my-auto text-end">
                     <i class="fs-5 bi bi-telephone text-blue me-3"></i>
+                    <i class="fs-5 bi bi-chat text-blue me-3"></i>
                   </div>
                 </div>
               </div>

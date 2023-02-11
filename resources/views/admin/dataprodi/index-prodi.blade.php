@@ -41,30 +41,16 @@
 
         <div class="cardxy shadow-sm">
             <div class="card-body">
-                <div class="row">
-                  <div class="col-12 col-md-8 col-lg-8">
-                    <h6 class="card-title">Data Kompetensi Keahlian</h6>
-                  </div>
-                  <div class="col-12 col-md-4 col-lg-4 my-auto">
-                    <form action="{{ url()->current() }}" method="GET">
-                      <div class="input-group">
-                        <input type="text" name="search" value="{{ request('search') }}" class="mt-1 mb-3 mb-lg-0 mt-lg-3 mt-md-3 roundedx form-control form-control-sm" placeholder="Cari..." autocomplete="off">
-                        <button class="btnxs btn-outline-navy rounded-r mt-1 mb-3 mb-lg-0 mt-lg-3 mt-md-3" type="submit"><i class="bi bi-search px-2 px-md-2 px-lg-1"></i></button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
 
               <!-- Default Table -->
-              <div class="table-responsive">
-                @if ($dataprodi->count() > 0)
-                <table class="table table-sm mt-lg-2">
+              <div class="table-responsive mt-4 mt-md-3 mt-lg-3">
+                <table class="table table-sm" id="table1">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Nama Jurusan</th>
                       <th scope="col">Keterangan</th>
-                      <th scope="col">Opsi</th>
+                      <th scope="col">Aksi</th>
                     </tr>
                   </thead>
                   <tbody class="align-middle">
@@ -74,27 +60,24 @@
                       <td>{{ $prodi->name }}</td>
                       <td>{{ $prodi->keterangan }}</td>
                       <td>
-                        <a href="/dataprodi/{{ $prodi->id }}/edit" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
-                        <form action="/dataprodi/{{ $prodi->id }}" method="POST" class="d-inline">
-                          @csrf
-                          @method('DELETE')
-                          <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
-                          {{-- <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="btnxs btn-red" data-bs-toggle="modal" data-bs-target="#konfirmasi"><i class="bi bi-x-lg"></i></button> --}}
-                        </form>
+                        <div class="dropdown">
+                          <button type="button" class="btnxs btn-view" data-bs-toggle="dropdown"><i class="bi bi-view-list"></i></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="/dataprodi/{{ $prodi->id }}/edit" class="dropdown-item">Edit <i class="bi bi-pen float-end"></i></a></li>
+                            <li>
+                              <form action="/dataprodi/{{ $prodi->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button onclick="return confirm('Hapus data kompetensi keahlian?')" class="dropdown-item">Hapus <i class="bi bi-x-lg float-end"></i></button>
+                              </form>
+                            </li>
+                          </ul>
+                        </div>
                       </td>
                     </tr>
                     @endforeach
                   </tbody>
                 </table>
-                @else
-                <div class="text-center mt-4 mb-4">
-                  <i class="text-danger fs-1 bi bi-backspace"></i>
-                  <h5 class="mt-1">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
-                  <div class="mt-4">
-                    <a href="{{ route('dataprodi.index') }}" class="fw-semibold"><i class="bi bi-arrow-return-left pe-1"></i> Tampilan awal</a>
-                  </div>
-                </div>
-                @endif
               </div>
               
               <!-- End Default Table Example -->
@@ -117,14 +100,14 @@
           <form class="row g-3" action="/dataprodi" method="POST">
             @csrf
             <div class="col-12">
-              <label for="name" class="form-label">Nama Jurusan</label>
+              <label for="name" class="form-label mb-1">Nama Jurusan</label>
               <input type="text" name="name" class="form-control form-control-smx roundedx @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Masukkan nama jurusan" id="name" autocomplete="off">
               @error('name')
                 <span class="invalid-feedback">{{ $message }}</span>
               @enderror
             </div>
             <div class="col-12">
-              <label for="keterangan" class="form-label mb-">Keterangan</label>
+              <label for="keterangan" class="form-label mb-1">Keterangan</label>
               <input type="text" name="keterangan" class="form-control form-control-smx roundedx @error('keterangan') is-invalid @enderror" value="{{ old('keterangan') }}" placeholder="Singkatan: RPL" id="keterangan" autocomplete="off">
               @error('keterangan')
                 <span class="invalid-feedback">{{ $message }}</span>

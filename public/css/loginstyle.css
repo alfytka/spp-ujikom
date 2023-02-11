@@ -14,9 +14,9 @@ body {
 }
 
 .login-container {
-    height: 35rem;
-    width: 55em;
-    margin: 3em auto;
+    height: 32rem;
+    width: 50em;
+    margin: 4em auto;
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
@@ -24,27 +24,31 @@ body {
 }
 
 .login-info-container {
-    width: 55%;
+    width: 57%;
     display: flex;
     flex-direction: column;
     align-items: center;
     /* text-align: center; */
     padding-top: 1rem;
     background-color: var(--login-bg);
-    border: 1px solid #C084FC;
+    border: 1px solid #c9c9c9;
     border-radius: 1px 20px 20px 1px;
 }
+/* .login-container .login-info-container h4 .fw-semibold {
+    position: relative;
+    left: 10px;
+} */
 
 .image-container {
     padding: 2rem;
-    width: 45%;
+    width: 43%;
     background-color: var(--image-bg);
     box-sizing: border-box;
 }
 
 .inputs-container {
     /* height: 55%; */
-    width: 72%;
+    width: 76%;
     /* display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -53,7 +57,6 @@ body {
 
 .btn {
     width: 100%;
-    letter-spacing: 1px;
     color: white;
     border: none;
     border-radius: 10px;
@@ -119,12 +122,12 @@ body {
 }
 
 .input-label {
-    font: 500 1rem/1.5rem poppins, sans-serif;
+    font: 500 1rem/1.5rem Poppins, sans-serif;
     /* color: #39465b; */
   }
 
   .div-input {
-    font: 300 1rem/1.5rem poppins, sans-serif;
+    font: 300 1rem/1.5rem Poppins, sans-serif;
     padding: 0.55rem 1.25rem;
     margin-top: 0.5rem;
     border-radius: 0.75rem;
@@ -158,7 +161,7 @@ body {
   }
 
   .input-field {
-    font: 300 1rem/1.5rem poppins, sans-serif;
+    font: 400 1rem/1.5rem Poppins, sans-serif;
     width: 100%;
     /* background-color: #fcfdff; */
     transition: 0.3s;
@@ -169,7 +172,7 @@ body {
     transition: 0.3s;
   }
   .btn-fill {
-    font: 400 1rem/1.5rem poppins, sans-serif;
+    font: 400 1rem/1.5rem Poppins, sans-serif;
     background-color: #8B5CF6;
     padding: 0.70rem 1rem;
     margin-top: 2.4rem;

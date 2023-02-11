@@ -21,14 +21,14 @@
             @csrf
             @method('PUT')
             <div class="col-12 form-group">
-              <label for="tahun" class="form-label">Tahun SPP</label>
+              <label for="tahun" class="form-label mb-1">Tahun SPP</label>
               <input type="text" name="tahun" class="form-control form-control-smx roundedx @error('tahun') is-invalid @enderror" value="{{ $dataspp->tahun, old('tahun') }}" placeholder="ex: 2023" id="tahun" autocomplete="off">
               @error('tahun')
                 <span class="invalid-feedback">{{ $message }}</span>
               @enderror
             </div>
             <div class="col-12">
-              <label for="nominal" class="form-label mb-">Nominal</label>
+              <label for="nominal" class="form-label mb-1">Nominal</label>
               <div class="input-group">
                 <span class="input-group-text">Rp</span>
                 <input type="text" name="nominal" class="form-control form-control-smx @error('nominal') is-invalid @enderror" value="{{ $dataspp->nominal, old('nominal') }}" placeholder="1000000" id="nominal" autocomplete="off">

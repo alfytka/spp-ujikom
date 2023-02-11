@@ -22,6 +22,9 @@
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="/vendor/extensions/simple-datatables/style.css">
+  <link rel="stylesheet" href="/vendor/extensions/simple-datatables.css">
+
   <!-- Template Main CSS File -->
   <link href="/css/style.css" rel="stylesheet">
 
@@ -52,9 +55,12 @@
           <div class="modal-body py-0 mb-1">
             Keluar dari Aplikasi Pembayaran SPP?
           </div>
-          <div class="modal-footer flex-column border-top-0">
-            <button type="button" class="button-9 w-100 mx-0 mb-2 roundedx">Ya, keluar!</button>
-            <button type="button" class="btn-y w-100 mx-0" data-bs-dismiss="modal">Batal</button>
+          <div class="modal-footer border-top-0 ">
+            <form action="/logout" method="POST" class="w-100">
+              @csrf
+              <button type="submit" class="button-9 w-100 mx-0 mb-2 roundedx">Ya, keluar!</button>
+            </form>
+            <button type="button" class="btn-y w-100 mx-1" data-bs-dismiss="modal">Batal</button>
           </div>
         </div>
       </div>
@@ -77,6 +83,8 @@
   <!-- Vendor JS Files -->
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/extensions/simple-datatables/umd/simple-datatables.js"></script>
+  <script src="/vendor/extensions/simple-datatables.js"></script>
 
   <!-- Template Main JS File -->
   <script src="/js/main.js"></script>

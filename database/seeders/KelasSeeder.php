@@ -28,17 +28,13 @@ class KelasSeeder extends Seeder
                 'kompetensikeahlian_id' => '3'
             ],
             [
-                'kelas' => 'XII TSM 1',
+                'kelas' => 'XII TBSM 1',
                 'kompetensikeahlian_id' => '4'
             ],
             [
                 'kelas' => 'XII APAT 1',
                 'kompetensikeahlian_id' => '5'
             ],
-            [
-                'kelas' => 'XI RPL 2',
-                'kompetensikeahlian_id' => '1'
-            ]
         ])->each(function($kelas){
             Kelas::create($kelas);
         });

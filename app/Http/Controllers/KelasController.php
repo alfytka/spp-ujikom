@@ -21,14 +21,9 @@ class KelasController extends Controller
             $search->where('kelas', 'like', '%' . request('search') . '%');
         } 
 
-        $filter = Kompetensikeahlian::orderBy('created_at')->latest();
-        if (request('filter')) {
-            $filter->where('keterangan', 'like', '%' . request('filter') . '%');
-        }
-
         return view('admin.datakelas.index-kelas', [
-            'datakelas' => $search->paginate(10),
-            'dataprodi' => $filter->paginate(5)
+            'datakelas' => $search->get(),
+            'dataprodi' => Kompetensikeahlian::all()
         ]);
     }
 

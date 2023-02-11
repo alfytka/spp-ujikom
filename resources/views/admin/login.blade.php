@@ -16,11 +16,6 @@
     <!-- Vendor CSS Files -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
   
     <!-- Template Main CSS File -->
     <link href="/css/loginstyle.css" rel="stylesheet">
@@ -28,18 +23,30 @@
   </head>
 <body>
   
+  @if (session()->has('loginError'))
+  <div class="alert alert-light border-zinc roundeds alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle-fill ms-1 py-0 my-0 me-2"></i>
+    <span><b>Berhasil - </b>{{ session('loginError') }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif 
+
   <div class="login-container">
     <img class="image-container" src="/img/login.svg" alt="">
     <div class="login-info-container">
-
-      <h3 class="fw-semibold my-5 py-2">Login Administrator</h3>
       
-      <form class="inputs-container" action="#">
-        <div style="margin-bottom: 1.3rem">
+      <form class="inputs-container" action="/login" method="POST">
+        @csrf
+        <div style="margin-bottom: 1.3rem" class="mt-5">
+          <h4 class="fw-bold">Login Pengguna</h4>
+          <label for="" class="mb-4">Isi data pribadi Anda</label>
           <label for="username" class="d-block input-label text-start">Username</label>
           <div class="d-flex w-100 div-input">
             <input class="input-field border-0" type="text" name="username" id="username" placeholder="Masukkan username"
               autocomplete="off"/>
+            @error('username')
+              <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
           </div>
         </div>
         <div>
@@ -86,10 +93,7 @@
     }
   </script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/vendor/quill/quill.min.js"></script>
-  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="/vendor/tinymce/tinymce.min.js"></script>
-  <script src="/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="/js/main.js"></script>

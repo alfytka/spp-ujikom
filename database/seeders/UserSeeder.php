@@ -17,89 +17,289 @@ class UserSeeder extends Seeder
         collect([
             [
                 // siswa
-                'nisn' => '3157839204',
-                'nis' => '10.2021.321',
-                'name' => 'Khikmal Kurniawan',
+                'nisn' => '1007750010',
+                'nis' => '10.2020.323',
+                'name' => 'Alfitka Haerul Kurniawan',
                 'kelas_id' => '1',
                 'spp_id' => '1',
-                'email' => 'khikmal@gmail.com',
-                'username' => 'khikmale',
+                'email' => 'alfitka@gmail.com',
+                'username' => 'Alfitka',
                 'password' => bcrypt('siswa'),
-                'telepon' => '08131247821',
+                'telepon' => '081213423429',
                 'alamat' => 'Langensari, Kota Banjar, Jawa Barat',
                 'level' => 'siswa'
             ],
             [
                 // siswa
-                'nisn' => '3117335209',
-                'nis' => '10.2021.322',
-                'name' => 'Teguh Afriansyah',
-                'kelas_id' => '2',
-                'spp_id' => '2',
-                'email' => 'teguh@gmail.com',
-                'username' => 'teguhe',
-                'password' => bcrypt('siswa'),
-                'telepon' => '08356981457',
-                'alamat' => 'Lakbok, Kab. Ciamis, Jawa Barat',
-                'level' => 'siswa'
-            ],
-            [
-                // siswa
-                'nisn' => '3850656435',
-                'nis' => '10.2021.323',
-                'name' => 'Elfan Hari Saputra',
+                'nisn' => '1007750011',
+                'nis' => '10.2020.324',
+                'name' => 'Andre Daniswara Putra',
                 'kelas_id' => '1',
                 'spp_id' => '1',
-                'email' => 'elfan@gmail.com',
-                'username' => 'elfane',
+                'email' => 'andre@gmail.com',
+                'username' => 'Andre',
                 'password' => bcrypt('siswa'),
-                'telepon' => '0843660466',
+                'telepon' => '082313423429',
                 'alamat' => 'Lakbok, Kab. Ciamis, Jawa Barat',
                 'level' => 'siswa'
             ],
             [
                 // siswa
-                'nisn' => '3183258954',
-                'nis' => '10.2021.324',
-                'name' => 'Andre Daniswara Putra',
+                'nisn' => '1007750099',
+                'nis' => '10.2020.388',
+                'name' => 'Amelia',
                 'kelas_id' => '3',
                 'spp_id' => '3',
-                'email' => 'andre@gmail.com',
-                'username' => 'andrek',
+                'email' => 'amel@gmail.com',
+                'username' => 'Amel',
                 'password' => bcrypt('siswa'),
-                'telepon' => '08977336551',
+                'telepon' => '087713423429',
+                'alamat' => 'langensari, Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750012',
+                'nis' => '10.2020.325',
+                'name' => 'Atyla Azfa Al Harits',
+                'kelas_id' => '1',
+                'spp_id' => '1',
+                'email' => 'atyle@gmail.com',
+                'username' => 'Atyla',
+                'password' => bcrypt('siswa'),
+                'telepon' => '082413423429',
                 'alamat' => 'Lakbok, Kab. Ciamis, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750013',
+                'nis' => '10.2020.326',
+                'name' => 'Dimas Adirawijaya',
+                'kelas_id' => '2',
+                'spp_id' => '1',
+                'email' => 'dimas@gmail.com',
+                'username' => 'Dimas',
+                'password' => bcrypt('siswa'),
+                'telepon' => '082513433429',
+                'alamat' => 'Lakbok, Kab. Ciamis, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750014',
+                'nis' => '10.2020.327',
+                'name' => 'Dwi Utami',
+                'kelas_id' => '2',
+                'spp_id' => '1',
+                'email' => 'dwi@gmail.com',
+                'username' => 'Tami',
+                'password' => bcrypt('siswa'),
+                'telepon' => '083613433429',
+                'alamat' => 'Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750024',
+                'nis' => '10.2020.391',
+                'name' => 'Sasika',
+                'kelas_id' => '2',
+                'spp_id' => '1',
+                'email' => 'sasika@gmail.com',
+                'username' => 'Sasika',
+                'password' => bcrypt('siswa'),
+                'telepon' => '089913433429',
+                'alamat' => 'Langensari, Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750015',
+                'nis' => '10.2020.328',
+                'name' => 'Elfan Hari Saputra',
+                'kelas_id' => '2',
+                'spp_id' => '1',
+                'email' => 'elfan@gmail.com',
+                'username' => 'Elfan',
+                'password' => bcrypt('siswa'),
+                'telepon' => '0838134334129',
+                'alamat' => 'Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750016',
+                'nis' => '10.2020.329',
+                'name' => 'Irfan Maulana',
+                'kelas_id' => '2',
+                'spp_id' => '1',
+                'email' => 'irfan@gmail.com',
+                'username' => 'Irfan',
+                'password' => bcrypt('siswa'),
+                'telepon' => '083934334129',
+                'alamat' => 'Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750017',
+                'nis' => '10.2020.330',
+                'name' => 'Khikmal Kurniawan',
+                'kelas_id' => '2',
+                'spp_id' => '1',
+                'email' => 'khikmal@gmail.com',
+                'username' => 'Khikmal',
+                'password' => bcrypt('siswa'),
+                'telepon' => '084034334129',
+                'alamat' => 'Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750018',
+                'nis' => '10.2020.331',
+                'name' => 'Rafli Al-Musyafa',
+                'kelas_id' => '2',
+                'spp_id' => '1',
+                'email' => 'rafli@gmail.com',
+                'username' => 'Rafli',
+                'password' => bcrypt('siswa'),
+                'telepon' => '084134334129',
+                'alamat' => 'Langensari, Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750019',
+                'nis' => '10.2020.332',
+                'name' => 'Renal Ajrun Adhim Ramadhan',
+                'kelas_id' => '2',
+                'spp_id' => '1',
+                'email' => 'renal@gmail.com',
+                'username' => 'Renal',
+                'password' => bcrypt('siswa'),
+                'telepon' => '084234334129',
+                'alamat' => 'Langensari, Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750020',
+                'nis' => '10.2020.333',
+                'name' => 'Teguh Afriansyah',
+                'kelas_id' => '3',
+                'spp_id' => '2',
+                'email' => 'teguh@gmail.com',
+                'username' => 'Teguh',
+                'password' => bcrypt('siswa'),
+                'telepon' => '085534334129',
+                'alamat' => 'Langensari, Kota Banjar, Jawa Barat',
+                'level' => 'siswa'
+            ],
+            [
+                // siswa
+                'nisn' => '1007750021',
+                'nis' => '10.2020.334',
+                'name' => 'Trio Adi Permana',
+                'kelas_id' => '3',
+                'spp_id' => '2',
+                'email' => 'trio@gmail.com',
+                'username' => 'Trio',
+                'password' => bcrypt('siswa'),
+                'telepon' => '085634334129',
+                'alamat' => 'Kota Banjar, Jawa Barat',
                 'level' => 'siswa'
             ],
             [
                 // petugas
-                'name' => 'Ade Hidayat',
-                'email' => 'ade@gmail.com',
-                'username' => 'ade',
+                'name' => 'Maman Suparman',
+                'email' => 'maman@gmail.com',
+                'username' => 'Maman',
                 'password' => bcrypt('petugas'),
-                'telepon' => '0828178173',
+                'telepon' => '082885178173',
                 'alamat' => 'Lakbok, Kab. Ciamis, Jawa Barat',
                 'level' => 'petugas'
             ],
             [
                 // petugas
-                'name' => 'Badrul',
-                'email' => 'badrul@gmail.com',
-                'username' => 'badrul',
+                'name' => 'Hermes',
+                'email' => 'hermes@gmail.com',
+                'username' => 'Hermes',
                 'password' => bcrypt('petugas'),
-                'telepon' => '0828178173',
-                'alamat' => 'Lakbok, Kab. Ciamis, Jawa Barat',
+                'telepon' => '082819718173',
+                'alamat' => 'Kota Banjar, Jawa Barat',
+                'level' => 'petugas'
+            ],
+            [
+                // petugas
+                'name' => 'Ahmad Dahlan',
+                'email' => 'ahmad@gmail.com',
+                'username' => 'Ahmad',
+                'password' => bcrypt('petugas'),
+                'telepon' => '080019718173',
+                'alamat' => 'Kota Banjar, Jawa Barat',
+                'level' => 'petugas'
+            ],
+            [
+                // petugas
+                'name' => 'Muhammad Nasirudin',
+                'email' => 'nasir@gmail.com',
+                'username' => 'Nasirudin',
+                'password' => bcrypt('petugas'),
+                'telepon' => '084319718173',
+                'alamat' => 'Kota Banjar, Jawa Barat',
                 'level' => 'petugas'
             ],
             [
                 // admin
-                'name' => 'Rose',
-                'email' => 'rose@gmail.com',
-                'username' => 'rose',
-                'password' => bcrypt('petugas'),
-                'telepon' => '0828178782',
+                'name' => 'Indra Sihombing',
+                'email' => 'indra@gmail.com',
+                'username' => 'Indra',
+                'password' => bcrypt('admin'),
+                'telepon' => '082811783782',
+                'alamat' => 'Kota Bandung, Jawa Barat',
+                'level' => 'admin'
+            ],
+            [
+                // admin
+                'name' => 'Wahyu Nurdiansyah',
+                'email' => 'wahyu@gmail.com',
+                'username' => 'Waeng',
+                'password' => bcrypt('admin'),
+                'telepon' => '081281787382',
+                'alamat' => 'Langensari, Kota Banjar, Jawa Barat',
+                'level' => 'admin'
+            ],
+            [
+                // admin
+                'name' => 'Farhan',
+                'email' => 'farhan@gmail.com',
+                'username' => 'Farhan',
+                'password' => bcrypt('admin'),
+                'telepon' => '082819787820',
+                'alamat' => 'Kota Bandung, Jawa Barat',
+                'level' => 'admin'
+            ],
+            [
+                // admin
+                'name' => 'Agus Fahmi',
+                'email' => 'agus@gmail.com',
+                'username' => 'Agus',
+                'password' => bcrypt('admin'),
+                'telepon' => '082881787682',
                 'alamat' => 'Lakbok, Kab. Ciamis, Jawa Barat',
-                'level' => 'petugas'
+                'level' => 'admin'
+            ],
+            [
+                // admin
+                'name' => 'Kemal',
+                'email' => 'kemal@gmail.com',
+                'username' => 'Kemal',
+                'password' => bcrypt('admin'),
+                'telepon' => '082081780782',
+                'alamat' => 'DKI Jakarta',
+                'level' => 'admin'
             ],
         ])->each(function($siswa){
             User::create($siswa);

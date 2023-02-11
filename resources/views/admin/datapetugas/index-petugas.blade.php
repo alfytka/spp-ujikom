@@ -22,28 +22,14 @@
 
         <div class="cardxy shadow-sm">
             <div class="card-body">
-                <div class="row">
-                  <div class="col-12 col-md-8 col-lg-8">
-                    <h6 class="card-title">Data Petugas</h6>
-                  </div>
-                  <div class="col-12 col-md-4 col-lg-4 my-auto">
-                    <form action="{{ url()->current() }}" method="GET">
-                      <div class="input-group">
-                        <input type="text" name="search" value="{{ request('search') }}" class="mt-1 mb-3 mb-lg-0 mt-lg-3 mt-md-3 roundedx form-control form-control-sm" placeholder="Cari..." autocomplete="off">
-                        <button class="btnxs btn-outline-navy rounded-r mt-1 mb-3 mb-lg-0 mt-lg-3 mt-md-3" type="submit"><i class="bi bi-search px-2 px-md-2 px-lg-1"></i></button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
 
               <!-- Default Table -->
-              <div class="table-responsive">
-                @if ($datapetugas->count() > 0)
-                <table class="table table-sm mt-lg-2">
+              <div class="table-responsive mt-4 mt-md-3 mt-lg-3">
+                <table class="table table-sm" id="table1">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Nama Petugas</th>
+                      <th scope="col">Nama <span class="d-none d-md-inline d-lg-inline">Petugas</span></th>
                       <th scope="col">Username</th>
                       <th scope="col">Email</th>
                       <th scope="col">Opsi</th>
@@ -57,27 +43,25 @@
                       <td>{{ $petugas->username }}</td>
                       <td>{{ $petugas->email }}</td>
                       <td>
-                        <a href="/datapetugas/{{ $petugas->id }}" class="btnxs btn-view"><i class="bi bi-view-list"></i></a>
-                        <a href="/datapetugas/{{ $petugas->id }}/edit" class="btnxs btn-zinc"><i class="bi bi-pen"></i></a>
-                        <form action="/datapetugas/{{ $petugas->id }}" method="POST" class="d-inline">
-                          @csrf
-                          @method('DELETE')
-                          <button onclick="return confirm('Hapus data petugas?')" class="btnxs btn-red"><i class="bi bi-x-lg"></i></button>
-                        </form>
+                        <div class="dropdown">
+                          <button type="button" class="btnxs btn-view" data-bs-toggle="dropdown"><i class="bi bi-view-list"></i></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="/datapetugas/{{ $petugas->id }}/edit" class="dropdown-item">Edit <i class="bi bi-pen float-end"></i></a></li>
+                            <li><a href="/datapetugas/{{ $petugas->id }}" class="dropdown-item">Detail <i class="bi bi-eye float-end"></i></a></li>
+                            <li>
+                              <form action="/datapetugas/{{ $petugas->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button onclick="return confirm('Hapus data petugas?')" class="dropdown-item">Hapus <i class="bi bi-x-lg float-end"></i></button>
+                              </form>
+                            </li>
+                          </ul>
+                        </div>
                       </td>
                     </tr>
                     @endforeach
                   </tbody>
                 </table>
-                @else
-                <div class="text-center mt-4 mb-4">
-                  <i class="text-danger fs-1 bi bi-backspace"></i>
-                  <h5 class="mt-1">Maaf, data tidak (<i class="bi bi-x"></i>) ditemukan.</h5>
-                  <div class="mt-4">
-                    <a href="{{ route('datapetugas.index') }}" class="fw-semibold"><i class="bi bi-arrow-return-left pe-1"></i> Tampilan awal</a>
-                  </div>
-                </div>
-                @endif
                 
               </div>
               <!-- End Default Table Example -->

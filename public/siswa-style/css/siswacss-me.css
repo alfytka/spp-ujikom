@@ -1,0 +1,60 @@
+
+.sidebar-item-me {
+    cursor: pointer;
+}
+.modal-content {
+    border-radius: 12px;
+}
+.modal-footer button, a {
+    border-radius: 10px;
+}
+.modal-dialog {
+    max-width: 400px;
+}
+
+.fc-blue !important{
+    color: #25396f;
+}
+.bg-zinc {
+    background-color: #F1F1F1;
+}
+.roundedx {
+    border-radius: 10px;
+}
+.kotak {
+    background-color: #F1F1F1;
+    width: 65px;
+    height: 60px;
+    border-radius: 10px;
+}
+.kotak i {
+    position: relative;
+    top: 5px;
+}
+.bg-zinc i {
+    position: relative;
+    top: 4px;
+}
+
+.pena {
+    position: relative;
+    left: 100px;
+    bottom: 40px;
+}
+
+@media (min-width: 600px) {
+    .profile-img {
+      width: 110px;
+    } 
+  }
+@media (max-width: 600px) {
+    .profile-img {
+        width: 90px;
+    }
+    #main {
+        padding: 15px;
+    }
+    .flex-row-reverse {
+        display: none;
+    }
+}

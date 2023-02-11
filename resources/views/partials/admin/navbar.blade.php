@@ -17,14 +17,14 @@
       <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-md-3 pe-lg-3" href="#" data-bs-toggle="dropdown">
-          <span class="d-none d-md-block pe-3">Alfitka</span>
+          <span class="d-none d-md-block pe-3">{{ auth()->user()->username }}</span>
           <img src="/img/profile-img.jpg" alt="Profile" class="rounded-circle">
         </a><!-- End Profile Image Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>Alfitka</h6>
-            <span>Administrator</span>
+            <h6>{{ auth()->user()->username }}</h6>
+            <span>{{ auth()->user()->level }}</span>
           </li>
 
           <li>

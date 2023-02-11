@@ -14,7 +14,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $search = Pembayaran::orderBy('created_at')->first();
+        $search = Pembayaran::orderBy('id', 'desc');
         if (request('search')) {
             $search->where('jumlah_bayar', 'like', '%' . request('search') . '%');
         }
