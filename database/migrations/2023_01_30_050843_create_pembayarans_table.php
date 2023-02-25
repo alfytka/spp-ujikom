@@ -15,12 +15,15 @@ class CreatePembayaransTable extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('petugas_id');
+            $table->foreignId('petugas_id')->nullable();
             $table->foreignId('siswa_id');
             $table->string('tgl_bayar');
             $table->string('bulan_bayar');
             $table->string('tahun_bayar');
             $table->bigInteger('jumlah_bayar');
+            $table->enum('jenis_pembayaran',['siswa','petugas'])->default('petugas');
+            $table->string('metode_pembayaran')->nullable();
+            $table->enum('status', ['diproses','sukses','gagal'])->default('sukses');
             $table->timestamps();
         });
     }
