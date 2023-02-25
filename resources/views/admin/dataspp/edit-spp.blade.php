@@ -1,5 +1,7 @@
-@extends('layouts.admin.kerangka')
-
+@extends('layouts.kerangka')
+@section('titles')
+  <title>SPP - Edit Data SPP</title>
+@endsection
 @section('content')
   
 <div class="pagetitle">
@@ -31,7 +33,7 @@
               <label for="nominal" class="form-label mb-1">Nominal</label>
               <div class="input-group">
                 <span class="input-group-text">Rp</span>
-                <input type="text" name="nominal" class="form-control form-control-smx @error('nominal') is-invalid @enderror" value="{{ $dataspp->nominal, old('nominal') }}" placeholder="1000000" id="nominal" autocomplete="off">
+                <input type="text" name="nominal" class="form-control form-control-smx @error('nominal') is-invalid @enderror" value="{{ $dataspp->nominal, old('nominal') }}" placeholder="1000000" id="nominal-edit" autocomplete="off">
                 @error('nominal')
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -39,7 +41,7 @@
               </div>
             </div>
             <div class="text-end">
-              <button type="submit" class="btnn btn-violet py-2 px-4 mt-1 mb-3">Ubah</button>
+              <button type="submit" class="btnn btn-violet py-2 px-4 mt-1 mb-3">Simpan</button>
             </div>
           </form><!-- Vertical Form -->
 
@@ -93,3 +95,36 @@
 
 @endsection
 
+@section('my-js')
+<script type="text/javascript">
+
+  /* Tanpa Rupiah */
+    var nominal = document.getElementById('nominal-edit');
+    // var nominal_edit = document.getElementById('nominal-edit');
+      nominal.addEventListener('keyup', function(e)
+      {
+          nominal.value = formatRupiah(this.value);
+      });
+      nominal.addEventListener('mouseover', function(e)
+      {
+          nominal.value = formatRupiah(this.value);
+      });
+
+    function formatRupiah(angka, prefix)
+    {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split    = number_string.split(','),
+            sisa     = split[0].length % 3,
+            rupiah     = split[0].substr(0, sisa),
+            ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+            
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+        
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+</script>
+@endsection

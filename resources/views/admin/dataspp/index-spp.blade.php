@@ -1,5 +1,7 @@
-@extends('layouts.admin.kerangka')
-
+@extends('layouts.kerangka')
+@section('titles')
+  <title>SPP - Data SPP</title>
+@endsection
 @section('content')
   
 <div class="pagetitle">
@@ -39,7 +41,7 @@
                     <tr>
                       <th scope="row">{{ $loop->iteration }}</th>
                       <td>{{ $spp->tahun }}</td>
-                      <td>{{ $spp->nominal }}</td>
+                      <td>Rp{{ number_format($spp->nominal, 0, '.', '.') }}</td>
                       <td>
                         <div class="dropdown">
                           <button type="button" class="btnxs btn-view" data-bs-toggle="dropdown"><i class="bi bi-view-list"></i></button>
@@ -91,7 +93,7 @@
               <label for="nominal" class="form-label mb-1">Nominal</label>
               <div class="input-group">
                 <span class="input-group-text">Rp</span>
-                <input type="text" name="nominal" class="form-control form-control-smx @error('nominal') is-invalid @enderror" value="{{ old('nominal') }}" placeholder="1000000" id="nominal" autocomplete="off">
+                <input type="text" name="nominal" class="form-control form-control-smx @error('nominal') is-invalid @enderror" value="{{ old('nominal') }}" placeholder="100.000" id="nominal" autocomplete="off">
                 @error('nominal')
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -112,5 +114,35 @@
 
 @endsection
 
+@section('my-js')
+<script src="/vendor/extensions/simple-datatables/umd/simple-datatables.js"></script>
+<script src="/vendor/extensions/simple-datatables.js"></script>
 
+<script type="text/javascript">
+
+  /* Tanpa Rupiah */
+    var nominal = document.getElementById('nominal');
+      nominal.addEventListener('keyup', function(e)
+      {
+          nominal.value = formatRupiah(this.value);
+      });
+
+    function formatRupiah(angka, prefix)
+    {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split    = number_string.split(','),
+            sisa     = split[0].length % 3,
+            rupiah     = split[0].substr(0, sisa),
+            ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+            
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+        
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+</script>
+@endsection
 
