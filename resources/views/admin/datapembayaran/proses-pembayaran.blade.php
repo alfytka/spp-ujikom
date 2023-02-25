@@ -1,11 +1,11 @@
 @extends('layouts.kerangka')
 @section('titles')
-  <title>SPP - Edit Pembayaran</title>
+  <title>SPP - Status Pembayaran</title>
 @endsection
 @section('content')
   
 <div class="pagetitle mb-0">
-  <h5 class="fw-semibold"><a href="{{ route('datapembayaran.index') }}" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Edit Pembayaran</span></h5> 
+  <h5 class="fw-semibold"><a href="{{ route('datapembayaran.index') }}" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Pembayaran Siswa</span></h5> 
 </div>
 
 <section class="section dashboard mb-5">
@@ -16,7 +16,7 @@
 
       <div class="cardxy shadow-sm">
         <div class="card-body">
-          <h5 class="card-title ms-1"> Ubah Data Pembayaran</h5>
+          <h5 class="card-title ms-1"> Status Pembayaran Siswa</h5>
 
           <div class="border-dash-zinc mx-2 mb-2"></div>
           <!-- Vertical Form -->
@@ -67,14 +67,13 @@
 
             </form><!-- Vertical Form -->
 
-            <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="/datapembayaran/{{ $datapembayaran->id }}" method="POST">
+            <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="/datapembayaran/{{ $datapembayaran->id }}/proses" method="POST">
               @csrf
               @method('PUT')
               <div class="col-12 col-md-12 col-lg-12 ">
-                  
-              {{-- <input type="hidden" name="petugas_id" class="form-control form-control-smx" value="{{ auth()->user()->id }}">
-              <input type="hidden" name="siswa_id" class="form-control form-control-smx" value="{{ $datapembayaran->userSiswa->id }}"> --}}
 
+              <input type="hidden" name="petugas_id" value="{{ auth()->user()->id }}">
+                  
               <div class="form-group mb-3">
                 <label for="tgl_bayar" class="form-label mb-1">Tanggal Bayar</label>
                 <input type="date" name="tgl_bayar" value="{{ $datapembayaran->tgl_bayar }}" class="form-control form-control-smx roundedx @error('tgl_bayar') is-invalid @enderror" id="tgl_bayar">
@@ -119,6 +118,24 @@
                     <span class="invalid-feedback">{{ $message }}</span>
                   @enderror
                 </div>
+              </div>
+
+              <div class="col-12 border roundedx mb-2 text-center overflow-hidden">
+                <img src="/img/photo-siswa/{{ $datapembayaran->buktiPembayaranSiswa[0]->foto_bukti }}" alt="buktitransfer" class="" style="height: 237px; max-width:330px; object-fit: contain;" id="output">
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="status" class="form-label mb-1">Status</label>
+                <select name="status" id="status" class="form-select form-select-smx roundedx @error('status') is-invalid @enderror">
+                  <option disabled value>- Pilih status siswa -</option>
+                  <option disabled selected hidden>- Pilih status siswa -</option>
+                    <option value="diproses" {{ $datapembayaran->status == 'diproses' ? 'selected' : '' }}> Diproses</option>
+                    <option value="sukses" {{ $datapembayaran->status == 'sukses' ? 'selected' : '' }}>Sukses</option>
+                    <option value="gagal" {{ $datapembayaran->status == 'gagal' ? 'selected' : '' }}>Gagal</option>
+                </select>
+                @error('status')
+                  <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
               </div>
 
               <div class="text-end ">
@@ -213,4 +230,3 @@
 </section>
 
 @endsection
-
