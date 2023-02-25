@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
   
-    <title>Login Page</title>
+    <title>SPP - Login Pengguna</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
   
@@ -18,18 +18,11 @@
     <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   
     <!-- Template Main CSS File -->
+    <link href="/css/style.css" rel="stylesheet">
     <link href="/css/loginstyle.css" rel="stylesheet">
 
   </head>
 <body>
-  
-  @if (session()->has('loginError'))
-  <div class="alert alert-light border-zinc roundeds alert-dismissible fade show" role="alert">
-    <i class="bi bi-check-circle-fill ms-1 py-0 my-0 me-2"></i>
-    <span><b>Berhasil - </b>{{ session('loginError') }}</span>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-@endif 
 
   <div class="login-container">
     <img class="image-container" src="/img/login.svg" alt="">
@@ -38,12 +31,17 @@
       <form class="inputs-container" action="/login" method="POST">
         @csrf
         <div style="margin-bottom: 1.3rem" class="mt-5">
-          <h4 class="fw-bold">Login Pengguna</h4>
-          <label for="" class="mb-4">Isi data pribadi Anda</label>
+          <h4 class="fw-semibold">Login Pengguna</h4>
+          <label class="mb-3 fw-light">Isi data pribadi Anda</label>
+          @if (session()->has('error'))
+          <div class="alert error-alert alert-light border-zinc roundeds alert-dismissible fade show" role="alert">
+            <i class="bi bi-info-circle-fill fs-6 ms-1 py-0 text-danger my-0 me-2"></i>
+            <small class="fw-normal py-0 my-0 text-danger">{{ session('error') }}</small>
+          </div>
+          @endif
           <label for="username" class="d-block input-label text-start">Username</label>
           <div class="d-flex w-100 div-input">
-            <input class="input-field border-0" type="text" name="username" id="username" placeholder="Masukkan username"
-              autocomplete="off"/>
+            <input class="input-field border-0" type="text" name="username" id="username" placeholder="Masukkan username" autocomplete="off" autofocus/>
             @error('username')
               <span class="invalid-feedback">{{ $message }}</span>
             @enderror
