@@ -6,6 +6,8 @@ use App\Http\Requests\PetugasRequest;
 use App\Http\Requests\UpPetugasRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class PetugasController extends Controller
 {
@@ -16,17 +18,21 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        $search = User::where('level', 'petugas');
-        if (request('search')) {
-            $search->where('name', 'like', '%' . request('search') . '%')
-            ->orWhere('username', 'like', '%' . request('search') . '%')
-            ->orWhere('email', 'like', '%' . request('search') . '%')
-            ->orWhere('telepon', 'like', '%' . request('search') . '%');
+        if (Gate::allows('admin'))
+        {
+            $search = User::where('level', 'petugas');
+            if (request('search')) {
+                $search->where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('username', 'like', '%' . request('search') . '%')
+                ->orWhere('email', 'like', '%' . request('search') . '%')
+                ->orWhere('telepon', 'like', '%' . request('search') . '%');
+            }
+    
+            return view('admin.datapetugas.index-petugas', [
+                'datapetugas' => $search->get()
+            ]);
         }
-
-        return view('admin.datapetugas.index-petugas', [
-            'datapetugas' => $search->paginate(10),
-        ]);
+        return back();
     }
 
     /**
@@ -59,9 +65,13 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        return view('admin.datapetugas.detail-petugas', [
-            'datapetugas' => User::where('id', $id)->first()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.datapetugas.detail-petugas', [
+                'datapetugas' => User::where('id', $id)->first()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -72,9 +82,13 @@ class PetugasController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.datapetugas.edit-petugas', [
-            'datapetugas' => User::where('id', $id)->first()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.datapetugas.edit-petugas', [
+                'datapetugas' => User::where('id', $id)->first()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -122,5 +136,35 @@ class PetugasController extends Controller
     {
         User::where('id', $id)->delete();
         return redirect(route('datapetugas.index'))->with('informasi', 'Data petugas berhasil dihapus.');
+    }
+
+    public function uploadPhoto($id)
+    {
+        if (Gate::allows('admin'))
+        {
+            return view('admin.datapetugas.upload-photo', [
+                'datapetugas' => User::where('id', $id)->first(),
+            ]);
+        }
+        return back();
+    }
+
+    public function sendPhoto(Request $request, $id)
+    {
+        $request->validate([
+            'foto' => 'required'
+        ]);
+
+        $foto = $request->file('foto');
+        $extension = $foto->getClientOriginalExtension();
+            $fileName = 'petugas-pic' . time(). '.' . $extension;
+            $foto->move(public_path('/img/photo-petugas'), $fileName);
+            $pic = public_path('/img/photo-petugas/' . $request->pic);
+            File::delete($pic);
+            User::where('id', $id)->update([
+                'foto' => $fileName
+            ]);
+        
+        return redirect('/datapetugas/' . $request->petugas_id)->with('informasi', 'Foto petugas berhasil diunggah.');
     }
 }

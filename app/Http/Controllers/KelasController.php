@@ -6,6 +6,7 @@ use App\Http\Requests\KelasRequest;
 use App\Models\Kelas;
 use App\Models\Kompetensikeahlian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class KelasController extends Controller
 {
@@ -16,15 +17,18 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $search = Kelas::orderBy('created_at')->latest();
-        if (request('search')) {
-            $search->where('kelas', 'like', '%' . request('search') . '%');
-        } 
-
-        return view('admin.datakelas.index-kelas', [
-            'datakelas' => $search->get(),
-            'dataprodi' => Kompetensikeahlian::all()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            $search = Kelas::orderBy('created_at')->latest();
+            if (request('search')) {
+                $search->where('kelas', 'like', '%' . request('search') . '%');
+            } 
+            return view('admin.datakelas.index-kelas', [
+                'datakelas' => $search->get(),
+                'dataprodi' => Kompetensikeahlian::all()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -57,11 +61,15 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        return view('admin.datakelas.edit-kelas', [
-            'datakelas' => Kelas::where('id', $id)->first(),
-            'previewkelas' => Kelas::all(),
-            'dataprodi' => Kompetensikeahlian::all()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.datakelas.edit-kelas', [
+                'datakelas' => Kelas::where('id', $id)->first(),
+                'previewkelas' => Kelas::all(),
+                'dataprodi' => Kompetensikeahlian::all()
+            ]);
+        }
+        return back();
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SppRequest;
 use App\Models\Spp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class SppController extends Controller
 {
@@ -15,14 +16,18 @@ class SppController extends Controller
      */
     public function index()
     {
-        $search = Spp::orderBy('created_at')->latest();
-        if (request('search')) {
-            $search->where('tahun', 'like', '%' . request('search') . '%')->orWhere('nominal', 'like', '%' . request('search') . '%');
+        if (Gate::allows('admin'))
+        {
+            $search = Spp::orderBy('created_at')->latest();
+            if (request('search')) {
+                $search->where('tahun', 'like', '%' . request('search') . '%')->orWhere('nominal', 'like', '%' . request('search') . '%');
+            }
+    
+            return view('admin.dataspp.index-spp', [
+                'dataspp' => $search->get()
+            ]);
         }
-
-        return view('admin.dataspp.index-spp', [
-            'dataspp' => $search->paginate(10)
-        ]);
+        return back();
     }
 
     /**
@@ -43,7 +48,12 @@ class SppController extends Controller
      */
     public function store(SppRequest $request)
     {
-        Spp::create($request->all());
+        $data = [
+            'tahun' => $request->tahun,
+            'nominal' => str_replace('.', '', $request->nominal)
+        ];
+        
+        Spp::create($data);
         return redirect(route('dataspp.index'))->with('informasi', 'Data SPP berhasil ditambahkan.');
     }
 
@@ -55,10 +65,14 @@ class SppController extends Controller
      */
     public function show($id)
     {
-        return view('admin.dataspp.edit-spp', [
-            'dataspp' => Spp::where('id', $id)->first(),
-            'previewspp' => Spp::all()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.dataspp.edit-spp', [
+                'dataspp' => Spp::where('id', $id)->first(),
+                'previewspp' => Spp::all()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -79,18 +93,14 @@ class SppController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SppRequest $request, $id)
     {
-        $upSpp = [
+        $data = [
             'tahun' => $request->tahun,
-            'nominal' => $request->nominal
+            'nominal' => str_replace('.', '', $request->nominal)
         ];
-        $this->validate($request, [
-            'tahun' => 'required|string',
-            'nominal' => 'required'
-        ]);
 
-        Spp::where('id', $id)->update($upSpp);
+        Spp::where('id', $id)->update($data);
         return redirect(route('dataspp.index'))->with('informasi', 'Data SPP berhasil diubah.');
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KompetensiKeahlianRequest;
 use App\Models\Kompetensikeahlian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class KompetensiKeahlianController extends Controller
 {
@@ -15,13 +16,17 @@ class KompetensiKeahlianController extends Controller
      */
     public function index()
     {
-        $search = Kompetensikeahlian::orderBy('created_at')->latest();
-        if(request('search')) {
-            $search->where('name', 'like', '%' . request('search') . '%')->orWhere('keterangan', 'like', '%' . request('search') . '%');
-        };
-        return view('admin.dataprodi.index-prodi', [
-            'dataprodi' => $search->paginate(10)
-        ]);
+        if (Gate::allows('admin'))
+        {
+            $search = Kompetensikeahlian::orderBy('created_at')->latest();
+            if(request('search')) {
+                $search->where('name', 'like', '%' . request('search') . '%')->orWhere('keterangan', 'like', '%' . request('search') . '%');
+            };
+            return view('admin.dataprodi.index-prodi', [
+                'dataprodi' => $search->get()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -65,10 +70,14 @@ class KompetensiKeahlianController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.dataprodi.edit-prodi', [
-            'dataprodi' => Kompetensikeahlian::where('id', $id)->first(),
-            'prodidata' => Kompetensikeahlian::all()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.dataprodi.edit-prodi', [
+                'dataprodi' => Kompetensikeahlian::where('id', $id)->first(),
+                'prodidata' => Kompetensikeahlian::all()
+            ]);
+        }
+        return back();
     }
 
     /**

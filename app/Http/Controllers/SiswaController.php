@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SiswaRequest;
 use App\Http\Requests\UpSiswaRequest;
 use App\Models\Kelas;
+use App\Models\Pembayaran;
 use App\Models\Spp;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class SiswaController extends Controller
 {
@@ -28,7 +31,7 @@ class SiswaController extends Controller
         }
 
         return view('admin.datasiswa.index-siswa', [
-            'datasiswa' => $search->paginate(10),
+            'datasiswa' => $search->get(),
             'datakelas' => Kelas::all()
         ]);
     }
@@ -40,10 +43,14 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.datasiswa.create-siswa', [
-            'datakelas' => Kelas::all(),
-            'dataspp' => Spp::all()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.datasiswa.create-siswa', [
+                'datakelas' => Kelas::all(),
+                'dataspp' => Spp::all()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -81,7 +88,8 @@ class SiswaController extends Controller
     public function show($id)
     {
         return view('admin.datasiswa.detail-siswa', [
-            'datasiswa' => User::where('id', $id)->first()
+            'datasiswa' => User::where('id', $id)->first(),
+            'pembayaranterakhir' => Pembayaran::where('siswa_id', $id)->get()
         ]);
     }
 
@@ -93,11 +101,15 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.datasiswa.edit-siswa', [
-            'datasiswa' => User::where('id', $id)->first(),
-            'datakelas' => Kelas::all(),
-            'dataspp' => Spp::all()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.datasiswa.edit-siswa', [
+                'datasiswa' => User::where('id', $id)->first(),
+                'datakelas' => Kelas::all(),
+                'dataspp' => Spp::all()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -154,4 +166,35 @@ class SiswaController extends Controller
         User::where('id', $id)->delete();
         return redirect(route('datasiswa.index'))->with('informasi', 'Data siswa berhasil dihapus.');
     }
+
+    public function uploadPhoto($id)
+    {
+        if (Gate::allows('admin'))
+        {
+            return view('admin.datasiswa.upload-photo', [
+                'datasiswa' => User::where('id', $id)->first(),
+            ]);
+        }
+        return back();
+    }
+
+    public function sendPhoto(Request $request, $id)
+    {
+        $request->validate([
+            'foto' => 'required'
+        ]);
+
+        $foto = $request->file('foto');
+        $extension = $foto->getClientOriginalExtension();
+            $fileName = 'siswa-pic' . time(). '.' . $extension;
+            $foto->move(public_path('/img/photo-siswa'), $fileName);
+            $pic = public_path('/img/photo-siswa/' . $request->pic);
+            File::delete($pic);
+            User::where('id', $id)->update([
+                'foto' => $fileName
+            ]);
+        
+        return redirect('/datasiswa/' . $request->siswa_id)->with('informasi', 'Foto siswa berhasil diunggah.');
+    }
+
 }

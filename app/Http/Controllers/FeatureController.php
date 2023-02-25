@@ -14,22 +14,14 @@ class FeatureController extends Controller
 {
     public function dashboard()
     {
-        $countDataKelas = Kelas::all()->count();
-        $countDataProdi = Kompetensikeahlian::all()->count();
-        $countDataSpp = Spp::all()->count();
-        $countDataSiswa = User::where('level', 'siswa')->count();
-        $countDataPetugas = User::where('level', 'petugas')->count();
-        $countDataAdmin = User::where('level', 'admin')->count();
-        $countDataPembayaran = Pembayaran::all()->count();
-
         return view('admin.dashboard', [
-            'countKelas' => $countDataKelas,
-            'countProdi' => $countDataProdi,
-            'countSiswa' => $countDataSiswa,
-            'countAdmin' => $countDataAdmin,
-            'countSpp' => $countDataSpp,
-            'countPetugas' => $countDataPetugas,
-            'countPembayaran' => $countDataPembayaran,
+            'countKelas' => Kelas::all()->count(),
+            'countProdi' => Kompetensikeahlian::all()->count(),
+            'countSiswa' => User::where('level', 'siswa')->count(),
+            'countPetugas' => User::where('level', 'petugas')->count(),
+            'countAdmin' => User::where('level', 'admin')->count(),
+            'countSpp' => Spp::all()->count(),
+            'countPembayaran' => Pembayaran::all()->count(),
         ]);
     }
 
@@ -49,14 +41,14 @@ class FeatureController extends Controller
             $request->session()->regenerate();
             $level = auth()->user()->level;
             if ($level == 'admin') {
-                return redirect()->intended('/dashboard');
+                return redirect()->intended('/dashboard')->with('success', 'Hello, selamat datang');
             } elseif ($level == 'petugas') {
-                return redirect()->intended('/datapembayaran');
-            } else {
-                return redirect()->intended('/cek');
+                return redirect()->intended('/dashboard')->with('success', 'Hello, selamat datang');
+            } elseif ($level == 'siswa') {
+                return redirect()->intended('/siswa/' . auth()->user()->id . '/beranda');
             }
         } else {
-            return back()->with('loginError', 'Username atau password salah.');
+            return back()->with('error', 'Username atau password salah.');
         }
     }
 

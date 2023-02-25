@@ -6,6 +6,8 @@ use App\Http\Requests\PetugasRequest;
 use App\Http\Requests\UpPetugasRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
@@ -16,17 +18,20 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $search = User::where('level','admin');
-        if (request('search')) {
-            $search->where('name', 'like', '%' . request('search') . '%')
-            ->orWhere('username', 'like', '%' . request('search') . '%')
-            ->orWhere('email', 'like', '%' . request('search') . '%')
-            ->orWhere('telepon', 'like', '%' . request('search') . '%');
+        if (Gate::allows('admin'))
+        {
+            $search = User::where('level','admin');
+            if (request('search')) {
+                $search->where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('username', 'like', '%' . request('search') . '%')
+                ->orWhere('email', 'like', '%' . request('search') . '%');
+            }
+    
+            return view('admin.dataadmin.index-admin', [
+                'dataadmin' => $search->get()
+            ]);
         }
-
-        return view('admin.dataadmin.index-admin', [
-            'dataadmin' => $search->paginate(10)
-        ]);
+        return back();
     }
 
     /**
@@ -59,9 +64,13 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        return view('admin.dataadmin.detail-admin', [
-            'dataadmin' => User::where('id', $id)->first()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.dataadmin.detail-admin', [
+                'dataadmin' => User::where('id', $id)->first()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -72,9 +81,13 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.dataadmin.edit-admin', [
-            'dataadmin' => User::where('id', $id)->first()
-        ]);
+        if (Gate::allows('admin'))
+        {
+            return view('admin.dataadmin.edit-admin', [
+                'dataadmin' => User::where('id', $id)->first()
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -122,5 +135,35 @@ class AdminController extends Controller
     {
         User::where('id', $id)->delete();
         return redirect(route('dataadmin.index'))->with('informasi', 'Data admin berhasil dihapus.');
+    }
+
+    public function uploadPhoto($id)
+    {
+        if (Gate::allows('admin'))
+        {
+            return view('admin.dataadmin.upload-photo', [
+                'dataadmin' => User::where('id', $id)->first(),
+            ]);
+        }
+        return back();
+    }
+
+    public function sendPhoto(Request $request, $id)
+    {
+        $request->validate([
+            'foto' => 'required'
+        ]);
+
+        $foto = $request->file('foto');
+        $extension = $foto->getClientOriginalExtension();
+            $fileName = 'petugas-pic' . time(). '.' . $extension;
+            $foto->move(public_path('/img/photo-petugas'), $fileName);
+            $pic = public_path('/img/photo-petugas/' . $request->pic);
+            File::delete($pic);
+            User::where('id', $id)->update([
+                'foto' => $fileName
+            ]);
+        
+        return redirect('/dataadmin/' . $request->petugas_id)->with('informasi', 'Foto admin berhasil diunggah.');
     }
 }
