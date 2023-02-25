@@ -20,4 +20,9 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(User::class, 'siswa_id', 'id');
     }
+
+    public function buktiPembayaranSiswa()
+    {
+        return $this->hasMany(Buktipembayaran::class, 'pembayaran_id', 'id');
+    }
 }
