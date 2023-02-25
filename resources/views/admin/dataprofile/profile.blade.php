@@ -1,5 +1,7 @@
-@extends('layouts.admin.kerangka')
-
+@extends('layouts.kerangka')
+@section('titles')
+  <title>SPP - Profile</title>
+@endsection
 @section('content')
   
 <div class="pagetitle d-none d-md-inline d-lg-inline">
@@ -37,17 +39,20 @@
         <div class="row mx-0 mx-md-4 mx-lg-4">
           <div class="col-12 col-md-6 col-lg-6 pe-0">
             <div class="mt-1 mb-4 d-flex flex-column align-items-center">
-          
-              <img src="/img/profile-img.jpg" alt="Profile"  class="profile-img rounded-circle">
-              <h5 class="fw-semibold name mt-3">{{ auth()->user()->name }}</h5>
-              <h6 class="fw-normal name">{{ auth()->user()->level }}</h6>
+              @if (auth()->user()->foto > 1)
+                <img src="/img/photo-petugas/{{ auth()->user()->foto }}" alt="Profile" class="profile-img rounded-circle border">
+              @else
+                <img src="/img/profile-img.jpg" alt="Profile" class="profile-img rounded-circle border">
+              @endif
+              <h5 class="fw-semibold name mt-3 mb-1">{{ auth()->user()->username }}</h5>
+              <h6 class="fw-normal fs-10">{{ auth()->user()->level }}</h6>
             </div>
 
             <div class="col-12 mb-2">
               <div class="row ">
                 <div class="col-8">
                   <small class="title-profile-top">Telepon</small>
-                  <h6 class="mb-0 text-primary">{{ auth()->user()->telepon }}</h6>
+                  <h6 class="mb-0 fs-12">{{ auth()->user()->telepon }}</h6>
                 </div>
                 <div class="col-4 my-auto text-end">
                   <i class="fs-5 bi bi-telephone me-3 text-primary"></i>
@@ -59,7 +64,7 @@
             <div class="col-12 mb-2">
               <div class="row ">
                 <small class="title-profile-top">Email</small>
-                <h6 class="mb-0 fw-normal">{{ auth()->user()->email }}</h6>
+                <h6 class="mb-0 fw-normal fs-12">{{ auth()->user()->email }}</h6>
               </div>
             </div>
 
@@ -73,7 +78,7 @@
                 <div class="row ">
                   <div class="col-9">
                     <small class="title-profile-top">Nama Lengkap</small>
-                    <h6 class="mb-0 text-primary">{{ auth()->user()->name }}</h6>
+                    <h6 class="mb-0 fw-normal fs-12">{{ auth()->user()->name }}</h6>
                   </div>
                   <div class="col-3 my-auto text-end">
                     <h6><i class="fs-4 bi bi-person text-primary me-2 me-md-3 me-lg-3"></i></h6>
@@ -81,19 +86,24 @@
                 </div>
               </div>
 
-              <div class="border-top mb-2 "></div>
+              <div class="border-top mb-1 "></div>
 
               <div class="col-12 mb-2">
                 <div class="row ">
-                  <small class="title-profile-top">Username</small>
-                  <h6 class="mb-0 fw-normal">{{ auth()->user()->username }}</h6>
+                  <div class="col-9">
+                    <small class="title-profile-top">Username</small>
+                    <h6 class="mb-0 fw-normal fs-12">{{ auth()->user()->username }}</h6>
+                  </div>
+                  <div class="col-3 my-auto text-end">
+                    <h6><i class="fs-5 bi bi-unlock text-primary me-2 me-md-3 me-lg-3"></i></h6>
+                  </div>
                 </div>
               </div>
 
-              <div class="col-12 mb-3">
+              <div class="col-12 mb-1">
                 <div class="row ">
                   <small class="title-profile-top">Password</small>
-                  <h6 class="mb-0 fw-normal">Sttt*******</h6>
+                  <h6 class="mb-0 fw-normal fs-12">*******</h6>
                 </div>
               </div>
 
@@ -102,7 +112,7 @@
               <div class="col-12 mb-2">
                 <div class="row ">
                   <small class="title-profile-top">Level</small>
-                  <h6 class="mb-0 fw-normal">{{ auth()->user()->level }}</h6>
+                  <h6 class="mb-0 fw-normal fs-12">{{ auth()->user()->level }}</h6>
                 </div>
               </div>
 
@@ -110,15 +120,13 @@
                 <div class="row ">
                   <div class="col-9">
                     <small class="title-profile-top">Alamat</small>
-                    <h6 class="mb-2 fw-normal">{{ auth()->user()->alamat }}</h6>
+                    <h6 class="mb-2 fw-normal fs-12">{{ auth()->user()->alamat }}</h6>
                   </div>
                   <div class="col-3 my-auto text-end">
                     <i class="fs-5 bi bi-geo-alt me-2 me-md-3 me-lg-3 text-primary"></i>
                   </div>
                 </div>
               </div>
-
-              
 
             </div>
 
