@@ -29,7 +29,7 @@ class EntriRequest extends FormRequest
             'tgl_bayar' => ['required'],
             'bulan_bayar' => ['required'],
             'tahun_bayar' => ['required'],
-            'jumlah_bayar' => ['required', 'numeric']
+            'jumlah_bayar' => ['required', 'numeric'],
         ];
     }
 }

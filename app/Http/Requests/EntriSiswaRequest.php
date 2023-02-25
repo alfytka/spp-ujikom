@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SppRequest extends FormRequest
+class EntriSiswaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,14 @@ class SppRequest extends FormRequest
     public function rules()
     {
         return [
-            'tahun' => ['required', 'string'],
-            'nominal' => ['required', 'numeric']
+            'siswa_id' => ['required'],
+            'tgl_bayar' => ['required'],
+            'bulan_bayar' => ['required'],
+            'tahun_bayar' => ['required'],
+            'jumlah_bayar' => ['required', 'numeric'],
+            'jenis_pembayaran' => ['required'],
+            'metode_pembayaran' => ['required'],
+            'status' => ['required']
         ];
     }
 }

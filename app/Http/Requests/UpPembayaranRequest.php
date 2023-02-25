@@ -24,11 +24,11 @@ class UpPembayaranRequest extends FormRequest
     public function rules()
     {
         return [
-            'siswa_id' => ['required'],
+            // 'siswa_id' => ['required'],
             'tgl_bayar' => ['required'],
             'bulan_bayar' => ['required'],
             'tahun_bayar' => ['required'],
-            'jumlah_bayar' => ['required', 'numeric']
+            'jumlah_bayar' => ['required', 'numeric'],
         ];
     }
 }
