@@ -284,6 +284,35 @@ h6 {
 .detail-form h6 {
   color: #18181b;
 }
+.fs-12 {
+  font-size: 15px;
+}
+.fs-10 {
+  font-size: 14px;
+}
+.fs-sm {
+  font-size: 12px;
+}
+
+.icon-me, .title-me {
+  z-index: 10;
+}
+
+.accordion-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 78%;
+  z-index: 0;
+  font-size: 1rem;
+  color: var(--bs-accordion-btn-color);
+  text-align: right;
+  background-color: var(--bs-accordion-btn-bg);
+  /* border: 0; */
+  /* border-radius: 0; */
+  overflow-anchor: none;
+  transition: var(--bs-accordion-transition);
+}
 
 .card-img-overlay {
   background-color: rgba(255, 255, 255, 0.6);
@@ -354,7 +383,7 @@ h6 {
 
 .accordion-button:not(.collapsed) {
   color: #012970;
-  background-color: #f6f9ff;
+  background-color: #fff;
 }
 
 .accordion-flush .accordion-button {
@@ -402,7 +431,7 @@ h6 {
 
 /* Bordered Tabs */
 .nav-tabs-bordered {
-  border-bottom: 2px solid #ebeef4;
+  border-bottom: 2px solid #fff;
 }
 
 .nav-tabs-bordered .nav-link {
@@ -456,7 +485,6 @@ h6 {
   color: #144272;
   font-family: "Poppins", sans-serif;
 }
-
 .header {
   transition: all 0.5s;
   z-index: 997;
@@ -561,7 +589,9 @@ h6 {
 }
 
 .header-nav .nav-profile img {
-  max-height: 36px;
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
 }
 
 .header-nav .nav-profile span {
@@ -775,35 +805,37 @@ h6 {
 --------------------------------------------------------------*/
 
 /* My Color */
-.blue-card {
-  background-color: #93C5FD;
-}
-.yellow-card {
-  background-color: #FDE047;
-}
-
-
-.violet-card {
-  background-color: #D8B4FE;
-}
-.orange-card {
-  background-color: #fff7ed;
-}
-
 
 .white-card {
   background-color: #fafafa;
 }
-.slate-card {
-  background-color: #f8fafc;
-}
-.danger-card {
-  background-color: #fef2f2;
+.border-only-card {
+  background-color: #fff;
+  border: 1px solid #E5E7EB;
 }
 .green-card {
   background-color: #f0fdf4;
 }
 
+.table-res-me {
+  height: 215px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.table-res-me::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 380px) {
+  .h-me {
+    height: 300px;
+  }
+}
+@media (max-width: 380px) {
+  .h-me {
+    height: 330px;
+  }
+}
 
 /* Filter dropdown */
 .dashboard .filter {
@@ -1344,12 +1376,45 @@ h6 {
   color: white;
   font-weight: 600;
 }
+.border-dash {
+  border: 1px dashed #8B5CF6;
+}
+.border-dash-zinc {
+  border: 1px dashed #ced4da;
+}
 
 .relative-me {
   position: relative;
   bottom: 9px;
 }
 
+.logosmk {
+  position: absolute;
+  left: 20px; 
+}
+.ttd {
+  position: absolute;
+  right: 0;
+}
+.my-table, .identity, .destinasi small, .ttd {
+  font-size: 12px;
+}
+.destinasi h5 {
+  font-size: 16px;
+}
+
+.btn-ol-green {
+  background-color: #fff;
+  color: #479f76;
+  border: 1px solid #479f76;
+  font-weight: 600;
+}
+.btn-ol-red {
+  background-color: #fff;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  font-weight: 600;
+}
 .btn-ol-violet {
   background-color: #fff;
   color: #8B5CF6;
@@ -1655,6 +1720,28 @@ h6 {
 .alert span .fc-blue {
   color: #5C7CFA;
 }
+.fc-black {
+  color: #18181b;
+}
+.fc-black:hover {
+  color: #18181b;
+}
+.kotak {
+    background-color: #F1F1F1;
+    width: 55px;
+    height: 50px;
+    border-radius: 10px;
+}
+.icon-me {
+  /* line-height: 0.1rem;   */
+  margin-bottom: 5px;
+}
+
+
+/* .rwyt-nominal {
+  position: relative;
+  left: 0;
+} */
 
 .input-group button i {
   font-size: 13px;
@@ -1668,6 +1755,9 @@ h6 {
   min-height: calc(1.9em + 0.5rem + 2px);
   padding: 0.25rem 0.9rem;
   font-size: 0.925rem;
+}
+.input-group span .span-for-select {
+  font-size: 0.525rem;
 }
 
 .add {
@@ -1712,6 +1802,9 @@ h6 {
 .text-blue {
   color: #3b82f6;
 }
+.text-violet {
+  color: #8B5CF6;
+}
 .custom-tooltip {
   --bs-tooltip-bg: #f3f4f6;
   --bs-tooltip-color: #6d28d9;
@@ -1720,11 +1813,20 @@ h6 {
 @media (min-width: 600px) {
   .profile-img {
     width: 110px;
+    min-height: 110px;
+    max-height: 110px; 
+    object-fit: cover;
   } 
+  .accordion-btn {
+    width: 87%;
+  }
 }
 @media (max-width: 600px) {
   .profile-img {
     width: 90px;
+    min-height: 90px;
+    max-height: 90px; 
+    object-fit: cover;
   }
   .card-sm-left {
     padding-right: 8px;
@@ -1734,6 +1836,9 @@ h6 {
   }
   .name {
     font-size: 16px;
+  }
+  .accordion-btn {
+    width: 78%;
   }
 }
 .title-profile {

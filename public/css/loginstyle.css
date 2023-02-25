@@ -67,6 +67,11 @@ body {
 .inputs-container p {
     margin: 0;
 }
+.error-alert {
+    padding: 0;
+    border: none;
+}
+
 
 
 @media screen and (max-width: 1000px) {
