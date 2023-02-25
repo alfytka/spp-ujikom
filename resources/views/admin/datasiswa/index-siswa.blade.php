@@ -1,23 +1,18 @@
-@extends('layouts.admin.kerangka')
-
+@extends('layouts.kerangka')
+@section('titles')
+  <title>SPP - Data Siswa</title>
+@endsection
 @section('content')
   
 <div class="pagetitle mb-0">
-  <div class="row">
-    <div class="col-6 d-none d-md-inline d-lg-inline">
-      <h5 class="fw-semibold">Data Siswa</h5>
-    </div>
-    <div class="col-6 col-md-6 col-lg-5 text-start text-md-end">
-      <a href="{{ route('datasiswa.create') }}" type="submit" class="btnn btn-ol-violet roundeds relative-me py-2 px-3 "><i class="bi bi-plus-lg pe-1"></i> Data Siswa</a>
-    </div>
-  </div>
+  <h5 class="fw-semibold">Data Siswa</h5>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
   <div class="row">
 
     <!-- Left side columns -->
-    <div class="col-lg-11">
+    <div class="col-lg-12">
 
       @if (session()->has('informasi'))
       <div class="alert alert-light border-zinc roundeds alert-dismissible fade show" role="alert">
@@ -29,13 +24,20 @@
 
         <div class="cardxy shadow-sm">
             <div class="card-body">
-                <div class="row">
-                  <div class="col-12 col-md-8 col-lg-8 my-auto d-inline d-md-none d-lg-none">
-                    <h6 class="card-title">Data Siswa</h6>
+                <div class="row px-1 my-2">
+                  <div class="col-6 my-auto">
+                    <h6 class="card-title">Daftar Siswa</h6>
+                  </div>
+                  <div class="col-6 my-auto text-end">
+                    @if (auth()->user()->level == 'admin')
+                      <a href="{{ route('datasiswa.create') }}" type="submit" class="btnn btn-ol-violet roundeds py-2 px-3 mt-1"><i class="bi bi-plus-lg pe-1"></i> <span class="d-none d-md-inline d-lg-inline">Data</span> Siswa</a>
+                    @endif
                   </div>
                 </div>
 
-              <div class="table-responsive mt-1 mt-md-3 mt-lg-3">
+                <div class="border-dash-zinc"></div>
+
+              <div class="table-responsive mt-2 mt-md-2 mt-lg-2">
                 <!-- Default Table -->
                 <table class="table table-sm" id="table1">
                   <thead>
@@ -60,15 +62,19 @@
                         <div class="dropdown">
                           <button type="button" class="btnxs btn-view" data-bs-toggle="dropdown"><i class="bi bi-view-list"></i></button>
                           <ul class="dropdown-menu">
-                            <li><a href="/datasiswa/{{ $siswa->id }}/edit" class="dropdown-item">Edit <i class="bi bi-pen float-end"></i></a></li>
+                            @if (auth()->user()->level == 'admin')
+                              <li><a href="/datasiswa/{{ $siswa->id }}/edit" class="dropdown-item">Edit <i class="bi bi-pen float-end"></i></a></li>
+                            @endif
                             <li><a href="/datasiswa/{{ $siswa->id }}" class="dropdown-item">Detail <i class="bi bi-eye float-end"></i></a></li>
-                            <li>
-                              <form action="/datasiswa/{{ $siswa->id }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button onclick="return confirm('Hapus data siswa?')" class="dropdown-item">Hapus <i class="bi bi-x-lg float-end"></i></button>
-                              </form>
-                            </li>
+                            @if (auth()->user()->level == 'admin')
+                              <li>
+                                <form action="/datasiswa/{{ $siswa->id }}" method="POST">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button onclick="return confirm('Hapus data siswa?')" class="dropdown-item">Hapus <i class="bi bi-x-lg float-end"></i></button>
+                                </form>
+                              </li>
+                            @endif
                           </ul>
                         </div>
                       </td>
@@ -92,13 +98,11 @@
 
   </div>
 
-  <div class="row">
-    <div class="col-lg-4">
-
-      
-
-    </div><!-- End Right side columns -->
-  </div>
 </section>
 
+@endsection
+
+@section('my-js')
+  <script src="/vendor/extensions/simple-datatables/umd/simple-datatables.js"></script>
+  <script src="/vendor/extensions/simple-datatables.js"></script>
 @endsection

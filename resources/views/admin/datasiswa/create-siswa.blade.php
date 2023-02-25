@@ -1,9 +1,11 @@
-@extends('layouts.admin.kerangka')
-
+@extends('layouts.kerangka')
+@section('titles')
+  <title>SPP - Tambah Data Siswa</title>
+@endsection
 @section('content')
   
 <div class="pagetitle">
-  <h5 class="fw-semibold"><a href="{{ route('datasiswa.index') }}" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Data Siswa</span></h5>
+  <h5 class="fw-semibold"><a type="button" onclick="history.back()" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Data Siswa</span></h5>
 </div><!-- End Page Title -->
 
 <section class="section dashboard mb-5">
@@ -131,7 +133,7 @@
               </div>
               
               <div class="text-end ">
-                <button type="submit" class="btnn btn-violet py-2 px-4 mt-1 mb-3">Simpan <i class="bi bi-chevron-right ps-1"></i></button>
+                <button type="submit" class="btnn btn-violet py-2 ps-4 mt-1 mb-3">Simpan <i class="bi bi-chevron-right px-1"></i></button>
               </div>
             </div>
             
@@ -149,6 +151,4 @@
 
   </div>
 </section>
-
 @endsection
-
