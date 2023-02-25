@@ -1,5 +1,7 @@
-@extends('layouts.admin.kerangka')
-
+@extends('layouts.kerangka')
+@section('titles')
+  <title>SPP - Edit Data Admin</title>
+@endsection
 @section('content')
   
 <div class="pagetitle">
@@ -23,8 +25,8 @@
             <div class="col-12 col-md-6 col-lg-6 pe-2 pe-md-3 pe-lg-3">
 
               <div class="form-group mb-3">
-                <label for="name" class="form-label mb-1">Nama Petugas</label>
-                <input type="text" name="name" class="form-control form-control-smx roundedx @error('name') is-invalid @enderror" value="{{ $dataadmin->name, old('name') }}" placeholder="Masukkan nama petugas" id="name" autocomplete="off">
+                <label for="name" class="form-label mb-1">Nama Admin</label>
+                <input type="text" name="name" class="form-control form-control-smx roundedx @error('name') is-invalid @enderror" value="{{ $dataadmin->name, old('name') }}" placeholder="Masukkan nama admin" id="name" autocomplete="off">
                 @error('name')
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -89,7 +91,7 @@
               </div>
               
               <div class="text-end ">
-                <button type="submit" class="btnn btn-violet py-2 px-4 mt-1 mb-3">Ubah <i class="bi bi-chevron-right ps-1"></i></button>
+                <button type="submit" class="btnn btn-violet py-2 ps-4 mt-1 mb-3">Simpan <i class="bi bi-chevron-right px-1"></i></button>
               </div>
             </div>
             
