@@ -1,5 +1,7 @@
-@extends('layouts.admin.kerangka')
-
+@extends('layouts.kerangka')
+@section('titles')
+  <title>SPP - Edit Data Petugas</title>
+@endsection
 @section('content')
   
 <div class="pagetitle">
@@ -89,7 +91,7 @@
               </div>
               
               <div class="text-end ">
-                <button type="submit" class="btnn btn-violet py-2 px-4 mt-1 mb-3">Ubah <i class="bi bi-chevron-right ps-1"></i></button>
+                <button type="submit" class="btnn btn-violet py-2 ps-4 mt-1 mb-3">Simpan <i class="bi bi-chevron-right px-1"></i></button>
               </div>
             </div>
             
@@ -109,7 +111,3 @@
 </section>
 
 @endsection
-
-
-
-
