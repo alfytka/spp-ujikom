@@ -1,5 +1,7 @@
-@extends('layouts.admin.kerangka')
-
+@extends('layouts.kerangka')
+@section('titles')
+  <title>SPP - Data Kelas</title>
+@endsection
 @section('content')
   
 <div class="pagetitle">
@@ -113,5 +115,9 @@
   </div>
 </section>
 
+@endsection
 
+@section('my-js')
+  <script src="/vendor/extensions/simple-datatables/umd/simple-datatables.js"></script>
+  <script src="/vendor/extensions/simple-datatables.js"></script>
 @endsection
