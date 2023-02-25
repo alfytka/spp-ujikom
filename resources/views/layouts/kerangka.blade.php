@@ -26,11 +26,11 @@
 <body>
 
   <header id="header" class="header fixed-top d-flex align-items-center">
-    @include('partials.admin.navbar')
+    @include('partials.navbar')
   </header>
 
   <aside id="sidebar" class="sidebar">
-    @include('partials.admin.sidebar')
+    @include('partials.sidebar')
   </aside>
 
   <main id="main" class="main">
