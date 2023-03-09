@@ -5,20 +5,16 @@
 @section('content')
   
 <div class="pagetitle">
-  <h5 class="fw-semibold"><a type="button" onclick="history.back()" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Data Kompetensi Keahlian</span></h5>
-</div><!-- End Page Title -->
+  <h5 class="fw-semibold"><a type="button" onclick="history.back()" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Data <span class="d-none d-md-inline">Kompetensi Keahlian</span><span class="d-inline d-md-none">Prodi</span></span></h5>
+</div>
 
 <section class="section dashboard">
   <div class="row">
 
-    <!-- Right side columns -->
     <div class="col-lg-5">
-
-      <div class="cardxy shadow-sm">
-        <div class="card-body">
-          <h6 class="card-title"><i class="bi bi-cursor-text"></i> Ubah Data Prodi</h6>
-
-          <!-- Vertical Form -->
+      <div class="cardxy shadow-sm mb-4">
+        <div class="card-body mx-1">
+          <h6 class="card-title">Edit Data Prodi</h6>
           <form class="row g-3" action="/dataprodi/{{ $dataprodi->id }}" method="POST">
             @csrf
             @method('PUT')
@@ -37,56 +33,45 @@
               @enderror
             </div>
             <div class="text-end">
-              <button type="submit" class="btnn btn-violet py-2 px-4 mt-1 mb-3">Simpan</button>
+              <button type="submit" class="btnn btn-violet py-2 ps-4 mb-3">Simpan <i class="bi bi-chevron-right ps-1"></i></button>
             </div>
-          </form><!-- Vertical Form -->
-
+          </form>
         </div>
       </div>
+    </div>
 
-    </div><!-- End Right side columns -->
-
-    <!-- Left side columns -->
     <div class="col-lg-7">
-        <div class="cardxy shadow-sm">
-            <div class="card-body">
-                <div class="row">
-                  <div class="col-12 col-md-8 col-lg-8">
-                    <h5 class="card-title">Preview Kompetensi Keahlian</h5>
-                  </div>
-                </div>
-
-              <!-- Default Table -->
-              <div class="table-responsive">
-                <table class="table table-sm">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Nama Jurusan</th>
-                      <th scope="col">Keterangan</th>
-                    </tr>
-                  </thead>
-                  <tbody class="align-middle">
-                    @foreach ($prodidata as $prodi)
-                      <tr class="{{ $prodi->id == $dataprodi->id ? 'table-blue' : '' }}">
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $prodi->name }}</td>
-                        <td>{{ $prodi->keterangan }}</td>
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-              <!-- End Default Table Example -->
+      <div class="cardxy shadow-sm">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-8 col-lg-8">
+              <h5 class="card-title">Preview Kompetensi Keahlian</h5>
             </div>
           </div>
-
-      <!-- <div class="row">
-
-      </div> -->
-    </div><!-- End Left side columns -->
+          <div class="table-responsive" style="max-height: 220px;">
+            <table class="table table-sm">
+              <thead>
+                <tr class="table-me">
+                  <th scope="col">#</th>
+                  <th scope="col">Nama Jurusan</th>
+                  <th scope="col">Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($prodidata as $prodi)
+                  <tr class="{{ $prodi->id == $dataprodi->id ? 'table-blue' : '' }}">
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $prodi->name }}</td>
+                    <td>{{ $prodi->keterangan }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </section>
-
 @endsection
