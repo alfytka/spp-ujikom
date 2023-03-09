@@ -66,7 +66,7 @@
 
     <div class="row mx-0 mt-2 identity">
       <div class="col-12" style="font-size: 12px;">
-        <span class="fs-sm">Status Pembayaran <span class="ms-3">: <b>Status</b></span></span><br>
+        <span class="fs-sm">Status Pembayaran <span class="ms-3">: <b>Sukses</b></span></span><br>
         <span class="fw-normal fs-sm pt-0">Uang Sejumlah <span class="ms-4" style="padding-left: 12px;">: </span></span><br>
       </div>
     </div>
