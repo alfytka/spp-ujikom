@@ -21,8 +21,8 @@ class Pembayaran extends Model
         return $this->belongsTo(User::class, 'siswa_id', 'id');
     }
 
-    public function buktiPembayaranSiswa()
+    public function logActivity()
     {
-        return $this->hasMany(Buktipembayaran::class, 'pembayaran_id', 'id');
+        return $this->hasMany(Logactivities::class, 'pembayaran_id', 'id');
     }
 }
