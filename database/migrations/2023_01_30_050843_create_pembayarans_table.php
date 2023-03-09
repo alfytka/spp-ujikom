@@ -24,6 +24,7 @@ class CreatePembayaransTable extends Migration
             $table->enum('jenis_pembayaran',['siswa','petugas'])->default('petugas');
             $table->string('metode_pembayaran')->nullable();
             $table->enum('status', ['diproses','sukses','gagal'])->default('sukses');
+            $table->text('foto_bukti')->nullable();
             $table->timestamps();
         });
     }

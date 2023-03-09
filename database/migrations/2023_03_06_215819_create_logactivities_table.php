@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBuktipembayaransTable extends Migration
+class CreateLogactivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateBuktipembayaransTable extends Migration
      */
     public function up()
     {
-        Schema::create('buktipembayarans', function (Blueprint $table) {
+        Schema::create('logactivities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pembayaran_id')->nullable();
-            $table->text('foto_bukti')->nullable();
+            $table->foreignId('pembayaran_id');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateBuktipembayaransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buktipembayarans');
+        Schema::dropIfExists('logactivities');
     }
 }

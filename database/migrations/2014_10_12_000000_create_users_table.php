@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name');                     // all user
             $table->foreignId('kelas_id')->nullable(); // siswa
             $table->foreignId('spp_id')->nullable();  // siswa
+            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
             $table->string('email')->unique();       // all user
             $table->string('username');             // all user
             $table->text('password');              // all user
