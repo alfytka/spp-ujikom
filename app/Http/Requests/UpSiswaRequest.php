@@ -24,14 +24,14 @@ class UpSiswaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nisn' => ['required', 'string'],
-            'nis' => ['required', 'string'],
-            'name' => ['required', 'string'],
+            'nisn' => ['required', 'string', 'max:20'],
+            'nis' => ['required', 'string', 'max:20'],
+            'name' => ['required', 'string', 'max:100'],
             'kelas_id' => ['required'],
             'spp_id' => ['required'],
-            'email' => ['required', 'string'],
-            'username' => ['required', 'string'],
-            'telepon' => ['string'],
+            'email' => ['required', 'string', 'max:50'],
+            'username' => ['required', 'string', 'max:20'],
+            'telepon' => ['required', 'numeric'],
             'alamat' => ['string'],
         ];
     }

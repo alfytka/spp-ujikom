@@ -24,7 +24,7 @@ class UpStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            'petugas_id' => ['required'],
+            // 'petugas_id' => ['required'],
             'tgl_bayar' => ['required'],
             'bulan_bayar' => ['required'],
             'tahun_bayar' => ['required'],

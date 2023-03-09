@@ -25,7 +25,7 @@ class PetugasRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'email' => ['required', 'string'],
+            'email' => ['required', 'string', 'unique:users'],
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
             'telepon' => ['required', 'numeric'],

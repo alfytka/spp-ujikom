@@ -24,8 +24,8 @@ class KompetensiKeahlianRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'keterangan' => ['required', 'string']
+            'name' => ['required', 'string', 'unique:kompetensikeahlians', 'max:100'],
+            'keterangan' => ['required', 'string', 'unique:kompetensikeahlians', 'max:50']
         ];
     }
 }

@@ -31,7 +31,8 @@ class EntriSiswaRequest extends FormRequest
             'jumlah_bayar' => ['required', 'numeric'],
             'jenis_pembayaran' => ['required'],
             'metode_pembayaran' => ['required'],
-            'status' => ['required']
+            'status' => ['required'],
+            'foto_bukti' => ['required']
         ];
     }
 }

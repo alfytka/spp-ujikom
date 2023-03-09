@@ -24,7 +24,7 @@ class SppRequest extends FormRequest
     public function rules()
     {
         return [
-            'tahun' => ['required', 'string'],
+            'tahun' => ['required', 'numeric', 'min:4', 'max:4'],
             'nominal' => ['required', 'numeric']
         ];
     }

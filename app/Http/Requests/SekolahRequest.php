@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class KelasRequest extends FormRequest
+class SekolahRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,11 @@ class KelasRequest extends FormRequest
     public function rules()
     {
         return [
-            'kelas' => ['required', 'string', 'unique:kelas', 'max:10'],
-            'kompetensikeahlian_id' => ['required', 'string']
+            'kepala_sekolah' => ['required'],
+            'nip' => ['required'],
+            'nama_sekolah' => ['required'],
+            'telepon' => ['required'],
+            'alamat' => ['required']
         ];
     }
 }

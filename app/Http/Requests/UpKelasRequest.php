@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class KelasRequest extends FormRequest
+class UpKelasRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +24,10 @@ class KelasRequest extends FormRequest
      */
     public function rules()
     {
+        // $unique = Rule::unique('kelas')->ignore($this->request->kelas);
+
         return [
-            'kelas' => ['required', 'string', 'unique:kelas', 'max:10'],
+            'kelas' => ['required', 'string', 'max:10'],
             'kompetensikeahlian_id' => ['required', 'string']
         ];
     }

@@ -24,15 +24,15 @@ class SiswaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nisn' => ['required', 'string'],
-            'nis' => ['required', 'string'],
-            'name' => ['required', 'string'],
+            'nisn' => ['required', 'string', 'unique:users', 'max:20'],
+            'nis' => ['required', 'string', 'unique:users', 'max:20'],
+            'name' => ['required', 'string', 'max:100'],
             'kelas_id' => ['required'],
             'spp_id' => ['required'],
-            'email' => ['required', 'string'],
-            'username' => ['required', 'string'],
-            'password' => ['required', 'string'],
-            'telepon' => ['string'],
+            'email' => ['required', 'string', 'unique:users', 'max:50'],
+            'username' => ['required', 'string', 'max:20'],
+            'password' => ['required', 'string', 'min:5'],
+            'telepon' => ['required', 'numeric'],
             'alamat' => ['string'],
         ];
     }
