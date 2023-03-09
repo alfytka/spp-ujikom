@@ -46,15 +46,21 @@ Route::middleware(['admin'])->group(function() {
     Route::put('/dataadmin/{id}/upload-photo', [AdminController::class, 'sendPhoto']);
     
     Route::resource('/datapembayaran', PembayaranController::class);
-    Route::get('/datapembayaran/{id}/detail-siswa', [PembayaranController::class, 'idSiswa']);
+    Route::get('/entri-pembayaran', [PembayaranController::class, 'create']);
+    Route::get('/entri-pembayaran/{id}/detail-siswa', [PembayaranController::class, 'idSiswa']);
     Route::get('/datapembayaran/{id}/proses', [PembayaranController::class, 'prosesPembayaran']);
+    Route::get('/datapembayaran/{id}/paybysiswa', [PembayaranController::class, 'editPembayaranBySiswa']);
     Route::put('/datapembayaran/{id}/proses', [PembayaranController::class, 'updateProses']);
     Route::get('/datapembayaran/{id}/{idsiswa}', [PembayaranController::class, 'show']);
+    Route::get('/datapembayaran/{id}/{idsiswa}/print-pembayaran', [PembayaranController::class, 'printPembayaran']);
     
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
-    Route::get('/history/{id}', [HistoryController::class, 'show'])->name('history.show');
+    Route::get('/history/{id}/{idsiswa}', [HistoryController::class, 'show'])->name('history.show');
     
     Route::resource('/laporan', LaporanController::class);
+
+    Route::get('/pengaturan', [FeatureController::class, 'pengaturan']);
+    Route::put('/pengaturan/{id}', [FeatureController::class, 'update'])->name('updateSekolah');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class, 'editProfile']);
@@ -76,3 +82,4 @@ Route::post('/siswa/{id}/entri-pembayaran', [ManageSiswaController::class, 'post
 Route::get('/siswa/{id}/riwayat-pembayaran', [ManageSiswaController::class, 'indexHistory'])->name('riwayat');
 Route::get('/siswa/{id}/fyi', [ManageSiswaController::class, 'fyi']);
 
+Route::view('cek', 'admin.datapembayaran.print-pembayaran');
