@@ -4,20 +4,13 @@
 @endsection
 @section('content')
 
-<div class="row">
-  <div class="col-lg-8">
-    @if (session()->has('success'))
-    <div class="alert alert-light border-zinc roundeds alert-dismissible fade show" role="alert">
-      <i class="bi bi-info-circle-fill ms-1 py-0 my-0 me-2"></i>
-      <span class="fw-bold fst-italic">{{ session('success') }} {{ auth()->user()->username }}.</span>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-  </div>
-</div>
-
 <div class="pagetitle">
-  <h5 class="fw-semibold">Hello, Alfitka <span class="d-block fw-normal fs-12">Aplikasi Pembayaran SPP disini...</span></h5>
+  <h5 class="fw-semibold mb-0">Hello, {{ auth()->user()->username }}</h5>
+  @if (session()->has('success'))
+    <p class="fs-12">Selamat pagi dan selamat datang di Aplikasi Pembayaran SPP </p>
+  @else
+    <p class="fs-12">Aplikasi Pembayaran SPP - {{ $datasekolah->nama_sekolah }}</p>
+  @endif
 </div>
 
 <section class="section dashboard mb-5">
@@ -28,7 +21,7 @@
       <div class="row">
 
         <div class="col-xxl-3 card-sm-left col-md-3 col-12">
-          <div class="card green-card info-card revenue2-card" style="height: 300px;">
+          <div class="card green-card info-card revenue2-card" style="height: 300px; border: 1px dashed #86efac;">
 
             <div class="card-body">
 
@@ -80,7 +73,7 @@
         </div>
 
         <div class="col-xxl-5 card-sm-left col-md-5 col-12">
-          <div class="card border-only-card h-me info-card">
+          <div class="cardxy border-only-card h-me info-card">
 
             <div class="card-body">
 
@@ -128,7 +121,7 @@
           </div>
         </div>
         
-        <div class="col-xxl-4 card-sm-left col-md-4 col-12">
+        {{-- <div class="col-xxl-4 card-sm-left col-md-4 col-12">
           <div class="card white-card info-card sales-card" style="height: 300px;">
 
             <div class="card-body">
@@ -156,7 +149,7 @@
             </div>
 
           </div>
-        </div>
+        </div> --}}
 
         <div class="col-xxl-4 card-sm-left col-md-4 col-12">
           <div class="card white-card info-card sales-card" style="height: 300px;">

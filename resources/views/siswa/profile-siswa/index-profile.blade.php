@@ -10,7 +10,6 @@
 
 <section class="section profile">
   <div class="row">
-    
     <div class="col-12 col-md-12 col-lg-12">
       @if (session()->has('informasi'))
       <div class="col-12 col-md-6 col-lg-6">
@@ -27,8 +26,8 @@
             <h6>Detail Profile</h6>
           </div>
           <div class="col-7 d-flex flex-row-reverse">
-            <h6 class="text-end d-none d-md-flex d-lg-flex"><a class="fc-black" href="/profile-siswa/password">Edit Password</a><i class="bi bi-chevron-right ms-0 ms-md-2"></i></h6>
-            <h6 class="text-end me-0 me-md-3 me-lg-3"><a class="fc-black" href="/profile-siswa/edit">Edit <span class="d-none d-md-inline d-lg-inline">Profile</span></a><i class="bi bi-chevron-right ms-0 ms-md-2"></i></h6>
+            <h6 class="text-end d-none d-md-flex d-lg-flex"><a href="/profile-siswa/password">Edit Password</a><i class="bi bi-chevron-right ms-0 ms-md-2"></i></h6>
+            <h6 class="text-end me-0 me-md-3 me-lg-3"><a href="/profile-siswa/edit">Edit <span class="d-none d-md-inline d-lg-inline">Profile</span></a><i class="bi bi-chevron-right ms-0 ms-md-2"></i></h6>
           </div>
         </div>
 
@@ -62,15 +61,11 @@
                 <small class="title-profile">NIS</small>
               </div>
             </div>
-
             <div class="border-top mb-1 d-block d-md-none d-lg-none"></div>
-
           </div>
 
           <div class="col-12 col-md-6 col-lg-6 pe-0 pe-md-3 pe-lg-3 mt-0 mt-md-3 mt-lg-3">
-
             <div class="col-12 col-md-12 col-lg-12 detail-form">
-
               <div class="col-12 mb-2">
                 <div class="row ">
                   <div class="col-9">
@@ -144,15 +139,19 @@
                   </div>
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
+@endsection
 
+@section('footer-me')
+<footer id="footer" class="footer mt-5">
+  <div class="copyright">
+    &copy; Copyright 2023 - <strong><span>@Alfitka</span></strong>
+  </div>
+</footer> 
 @endsection

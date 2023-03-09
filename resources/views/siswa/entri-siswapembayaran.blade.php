@@ -21,7 +21,16 @@
             @csrf
             <div class="col-12 col-md-6 col-lg-6 pe-2 pe-md-3 pe-lg-3">
 
-              <div class="form-group mb-3">
+
+              <div class="card-body py-2" style="background-color: #eff6ff; border: 1px dashed #5163f2; border-radius: 10px 0 0 0;">
+                <span class="fs-10 fw-semibold text-bluebook">{{ auth()->user()->name }} - {{ auth()->user()->kelas->kelas }}</span>
+                {{-- <span class="fs-10 fw-semibold text-bluebook">Tahun spp{{ auth()->user()->spp->tahun }} - {{ auth()->user()->spp->nominal }}</span> --}}
+              </div>
+              <div class="card-body py-2 mt-1 mb-3" style="background-color: #dcfce7; border: 1px dashed #16a34a; border-radius: 0 0 10px 10px;">
+                <span class="fs-10 fw-semibold text-success">Tahun SPP {{ auth()->user()->spp->tahun }} - Rp{{ number_format(auth()->user()->spp->nominal, 0, '.', '.') }}/bulan</span>
+              </div>
+
+              {{-- <div class="form-group mb-3">
                 <label for="kelas_id" class="form-label mb-1">Kelas</label>
                 <select name="kelas_id" class="form-select form-select-smx roundedx @error('kelas_id') is-invalid @enderror" id="kelas_id">
                   <option disabled value>- Pilih kelas -</option>
@@ -41,27 +50,24 @@
                 @error('name')
                   <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
+              </div> --}}
+
+              <input type="hidden" name="siswa_id" value="{{ auth()->user()->id }}">
+
+              <div class="form-group mb-3">
+                <label for="tgl_bayar" class="form-label mb-1">Tanggal Bayar</label>
+                <input type="date" name="tgl_bayar" value="{{ old('tgl_bayar') }}" class="form-control form-control-smx roundedx @error('tgl_bayar') is-invalid @enderror" id="tgl_bayar">
               </div>
 
-              <div class="row">
-                <div class="col-6 pe-2">
-                  <div class="form-group mb-3">
-                    <label for="tgl_bayar" class="form-label mb-1">Tanggal Bayar</label>
-                    <input type="date" name="tgl_bayar" value="{{ old('tgl_bayar') }}" class="form-control form-control-smx roundedx @error('tgl_bayar') is-invalid @enderror" id="tgl_bayar">
-                  </div>
-                </div>
-                <div class="col-6 ps-2  ">
-                  <div class="form-group mb-3">
-                    <label for="bulan_bayar" class="form-label mb-1">Bulan Bayar</label>
-                    <select name="bulan_bayar" id="bulan_bayar" class="form-select form-select-smx roundedx @error('bulan_bayar') is-invalid @enderror">
-                      <option disabled value>- Pilih bulan bayar -</option>
-                        <option disabled selected hidden>- Pilih bulan bayar -</option>
-                        @foreach ($bulans as $bulan)
-                          <option value="{{ $bulan }}" {{ old('bulan_bayar') == $bulan ? 'selected' : '' }}>{{ $bulan }}</option>
-                        @endforeach
-                    </select>
-                  </div>
-                </div>
+              <div class="form-group mb-3">
+                <label for="bulan_bayar" class="form-label mb-1">Bulan Bayar</label>
+                <select name="bulan_bayar" id="bulan_bayar" class="form-select form-select-smx roundedx @error('bulan_bayar') is-invalid @enderror">
+                  <option disabled value>- Pilih bulan bayar -</option>
+                  <option disabled selected hidden>- Pilih bulan bayar -</option>
+                  @foreach ($bulans as $bulan)
+                    <option value="{{ $bulan }}" {{ old('bulan_bayar') == $bulan ? 'selected' : '' }}>{{ $bulan }}</option>
+                  @endforeach
+                </select>
               </div>
 
               <div class="row">
@@ -71,11 +77,11 @@
                     <input type="text" value="{{ old('tahun_bayar') }}" class="form-control form-control-smx roundedx @error('tahun_bayar') is-invalid @enderror" name="tahun_bayar" placeholder="ex: 2020" autocomplete="off" id="tahun_bayar">
                   </div>
                 </div>
-                <div class="col-6 ps-2  ">
+                <div class="col-6 ps-2">
                   <div class="form-group mb-3">
-                    <label for="jumlah_bayar" class="form-label mb-1">Jumlah Bayar</label>
+                    <label for="jumlah_bayar" class="form-label mb-1">Nominal</label>
                     <div class="input-group">
-                      <span class="input-group-text">Rp</span>
+                      <span class="input-group-text text-blue fw-bold">Rp</span>
                       <input type="text" name="jumlah_bayar" class="form-control form-control-smx rounded-r @error('jumlah_bayar') is-invalid @enderror" value="{{ number_format(auth()->user()->spp->nominal, 0, '', '') }}" placeholder="100.000" id="jumlah_bayar" autocomplete="off" readonly>
                       @error('jumlah_bayar')
                         <span class="invalid-feedback">{{ $message }}</span>
@@ -85,17 +91,7 @@
                 </div>
               </div>
 
-              <div class="form-group mb-3">
-                <label for="jenis_pembayaran" class="form-label mb-1">Jenis Pembayaran</label>
-                <select name="jenis_pembayaran" class="form-select form-select-smx roundedx @error('jenis_pembayaran') is-invalid @enderror" id="jenis_pembayaran">
-                  <option disabled value>- Pilih jenis pembayaran -</option>
-                  <option value="siswa">Mandiri - oleh siswa</option>
-                  {{-- @foreach ($datakelas as $kelas)
-                    <option disabled selected hidden>- Pilih kelas -</option>
-                    <option value="{{ $kelas->id }}">{{ $kelas->kelas }}</option>
-                  @endforeach --}}
-                </select>
-              </div>
+              <input type="hidden" name="jenis_pembayaran" value="siswa">
 
             </div>
 
@@ -104,9 +100,11 @@
               <div class="form-group mb-3">
                 <label for="metode_pembayaran" class="form-label mb-1">Metode Pembayaran</label>
                 <select name="metode_pembayaran" class="form-select form-select-smx roundedx @error('metode_pembayaran') is-invalid @enderror" id="metode_pembayaran">
-                  <option disabled value>- Pilih metode pembayaran -</option>
+                  <option disabled value>- Metode pembayaran -</option>
                   <option disabled selected hidden>- Pilih metode pembayaran -</option>
-                  <option value="Transfer Bank" {{ old('metode_pembayaran') }}>Transfre Bank</option>
+                  @foreach ($metode_pembayaran as $metode)
+                  <option value="{{ $metode }}" {{ old('metode_pembayaran') }}>{{ $metode }}</option>
+                  @endforeach
                 </select>
                 @error('metode_pembayaran')
                   <span class="invalid-feedback">{{ $message }}</span>
@@ -128,7 +126,7 @@
               </div>
                   
               <div class="text-end ">
-                <button type="submit" class="btnn btn-violet py-2 ps-4 mt-1 mb-3">Ajukan Pembayaran <i class="bi bi-chevron-right px-1"></i></button>
+                <button type="submit" style="width: 120px;" class="button-9 py-2 ps- mt-1 mb-3">Kirim <i class="bi bi-cursor ps-1 pe-0"></i></button>
               </div>
             </div>
             
