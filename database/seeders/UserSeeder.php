@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
                 'name' => 'Alfitka Haerul Kurniawan',
                 'kelas_id' => '1',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'alfitka@gmail.com',
                 'username' => 'Alfitka',
                 'password' => bcrypt('siswa'),
@@ -36,6 +37,7 @@ class UserSeeder extends Seeder
                 'name' => 'Andre Daniswara Putra',
                 'kelas_id' => '1',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'andre@gmail.com',
                 'username' => 'Andre',
                 'password' => bcrypt('siswa'),
@@ -50,6 +52,7 @@ class UserSeeder extends Seeder
                 'name' => 'Amelia',
                 'kelas_id' => '3',
                 'spp_id' => '3',
+                'jenis_kelamin' => 'Perempuan',
                 'email' => 'amel@gmail.com',
                 'username' => 'Amel',
                 'password' => bcrypt('siswa'),
@@ -64,6 +67,7 @@ class UserSeeder extends Seeder
                 'name' => 'Atyla Azfa Al Harits',
                 'kelas_id' => '1',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'atyle@gmail.com',
                 'username' => 'Atyla',
                 'password' => bcrypt('siswa'),
@@ -78,6 +82,7 @@ class UserSeeder extends Seeder
                 'name' => 'Dimas Adirawijaya',
                 'kelas_id' => '2',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'dimas@gmail.com',
                 'username' => 'Dimas',
                 'password' => bcrypt('siswa'),
@@ -92,6 +97,7 @@ class UserSeeder extends Seeder
                 'name' => 'Dwi Utami',
                 'kelas_id' => '2',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Perempuan',
                 'email' => 'dwi@gmail.com',
                 'username' => 'Tami',
                 'password' => bcrypt('siswa'),
@@ -106,6 +112,7 @@ class UserSeeder extends Seeder
                 'name' => 'Sasika',
                 'kelas_id' => '2',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Perempuan',
                 'email' => 'sasika@gmail.com',
                 'username' => 'Sasika',
                 'password' => bcrypt('siswa'),
@@ -120,6 +127,7 @@ class UserSeeder extends Seeder
                 'name' => 'Elfan Hari Saputra',
                 'kelas_id' => '2',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Perempuan',
                 'email' => 'elfan@gmail.com',
                 'username' => 'Elfan',
                 'password' => bcrypt('siswa'),
@@ -134,6 +142,7 @@ class UserSeeder extends Seeder
                 'name' => 'Irfan Maulana',
                 'kelas_id' => '2',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'irfan@gmail.com',
                 'username' => 'Irfan',
                 'password' => bcrypt('siswa'),
@@ -148,6 +157,7 @@ class UserSeeder extends Seeder
                 'name' => 'Khikmal Kurniawan',
                 'kelas_id' => '2',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'khikmal@gmail.com',
                 'username' => 'Khikmal',
                 'password' => bcrypt('siswa'),
@@ -162,6 +172,7 @@ class UserSeeder extends Seeder
                 'name' => 'Rafli Al-Musyafa',
                 'kelas_id' => '2',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'rafli@gmail.com',
                 'username' => 'Rafli',
                 'password' => bcrypt('siswa'),
@@ -176,6 +187,7 @@ class UserSeeder extends Seeder
                 'name' => 'Renal Ajrun Adhim Ramadhan',
                 'kelas_id' => '2',
                 'spp_id' => '1',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'renal@gmail.com',
                 'username' => 'Renal',
                 'password' => bcrypt('siswa'),
@@ -190,6 +202,7 @@ class UserSeeder extends Seeder
                 'name' => 'Teguh Afriansyah',
                 'kelas_id' => '3',
                 'spp_id' => '2',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'teguh@gmail.com',
                 'username' => 'Teguh',
                 'password' => bcrypt('siswa'),
@@ -204,6 +217,7 @@ class UserSeeder extends Seeder
                 'name' => 'Trio Adi Permana',
                 'kelas_id' => '3',
                 'spp_id' => '2',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'trio@gmail.com',
                 'username' => 'Trio',
                 'password' => bcrypt('siswa'),
@@ -214,6 +228,7 @@ class UserSeeder extends Seeder
             [
                 // petugas
                 'name' => 'Maman Suparman',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'maman@gmail.com',
                 'username' => 'Maman',
                 'password' => bcrypt('petugas'),
@@ -224,6 +239,7 @@ class UserSeeder extends Seeder
             [
                 // petugas
                 'name' => 'Hermes',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'hermes@gmail.com',
                 'username' => 'Hermes',
                 'password' => bcrypt('petugas'),
@@ -234,6 +250,7 @@ class UserSeeder extends Seeder
             [
                 // petugas
                 'name' => 'Ahmad Dahlan',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'ahmad@gmail.com',
                 'username' => 'Ahmad',
                 'password' => bcrypt('petugas'),
@@ -244,6 +261,7 @@ class UserSeeder extends Seeder
             [
                 // petugas
                 'name' => 'Muhammad Nasirudin',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'nasir@gmail.com',
                 'username' => 'Nasirudin',
                 'password' => bcrypt('petugas'),
@@ -254,6 +272,7 @@ class UserSeeder extends Seeder
             [
                 // admin
                 'name' => 'Indra Sihombing',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'indra@gmail.com',
                 'username' => 'Indra',
                 'password' => bcrypt('admin'),
@@ -264,6 +283,7 @@ class UserSeeder extends Seeder
             [
                 // admin
                 'name' => 'Wahyu Nurdiansyah',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'wahyu@gmail.com',
                 'username' => 'Waeng',
                 'password' => bcrypt('admin'),
@@ -274,6 +294,7 @@ class UserSeeder extends Seeder
             [
                 // admin
                 'name' => 'Farhan',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'farhan@gmail.com',
                 'username' => 'Farhan',
                 'password' => bcrypt('admin'),
@@ -284,6 +305,7 @@ class UserSeeder extends Seeder
             [
                 // admin
                 'name' => 'Agus Fahmi',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'agus@gmail.com',
                 'username' => 'Agus',
                 'password' => bcrypt('admin'),
@@ -294,6 +316,7 @@ class UserSeeder extends Seeder
             [
                 // admin
                 'name' => 'Kemal',
+                'jenis_kelamin' => 'Laki-laki',
                 'email' => 'kemal@gmail.com',
                 'username' => 'Kemal',
                 'password' => bcrypt('admin'),
