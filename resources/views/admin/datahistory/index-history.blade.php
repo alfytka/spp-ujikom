@@ -1,142 +1,74 @@
 @extends('layouts.kerangka')
 @section('titles')
-  <title>SPP - Riwayat Pembayaran</title>
+  <title>SPP - History Pembayaran</title>
 @endsection
 @section('content')
   
 <div class="pagetitle mb-0">
   <h5 class="fw-semibold">History Pembayaran</h5> 
-</div><!-- End Page Title -->
+</div>
 
 <section class="section dashboard">
   <div class="row">
-
-    <!-- Left side columns -->
     <div class="col-lg-12">
+      <div class="cardxy shadow-sm">
+        <div class="card-body">
 
-        <div class="cardxy shadow-sm">
-            <div class="card-body">
-                <div class="row">
-                  {{-- <div class="col-12 col-md-8 col-lg-9 text-end my-auto d-none d-md-inline d-lg-inline">
-                    <p class="mt-4 me-2 mb-3 fst-italic">Info history<i class="bi bi-clock-history ms-2" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Data diurutkan dari transaksi pembayaran terbaru ke terlama."></i></p>
-                  </div> --}}
-                  <div class="col-12 col-md-8 col-lg-8">
-                    <ul class="nav nav-tabs nav-tabs-bordered mt-3 float-center float-md-start">
-
-                      <li class="nav-item">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#riwayat_saya">History saya</button>
-                      </li>
-      
-                      <li class="nav-item">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#semua">Semua</button>
-                      </li>
-      
-                    </ul>
-                  </div>
-                  <div class="col-12 mt-2 mb- mx-auto border-bottom"></div>
-                </div>
-
-                <div class="tab-content">
-
-                  <div class="tab-pane fade show active" id="riwayat_saya">
-                    <div class="table-responsive mt-4 mt-md-3 mt-lg-3">
-                      <!-- Default Table -->
-                      <table class="table table-sm" id="table1">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Waktu Transaksi</th>
-                            <th scope="col">Nama Petugas</th>
-                            <th scope="col">Nama Siswa</th>
-                            <th scope="col">Kelas</th>
-                            <th scope="col">Tanggal Bayar</th>
-                            <th scope="col">Nominal</th>
-                            <th scope="col">Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody class="align-middle">
-                          @foreach ($historypetugas as $pembayaran)
-                          <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $pembayaran->created_at }}</td>
-                            <td>
-                              {{ $pembayaran->jenis_pembayaran == 'petugas' ? $pembayaran->userPetugas->name : '' }}
-                            </td>
-                            <td>{{ $pembayaran->userSiswa->name }}</td>
-                            <td>{{ $pembayaran->userSiswa->kelas->kelas }}</td>
-                            <td>{{ $pembayaran->tgl_bayar }}</td>
-                            <td>Rp{{ number_format($pembayaran->jumlah_bayar, 0, '.', '.') }}</td>
-                            <td>
-                              <a href="/history/{{ $pembayaran->id }}" class="btnxs btn-view"><i class="bi bi-view-list me-1"></i>Detail</a>
-                            </td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                      </table>
-                      
-                      <!-- End Default Table Example -->
-                    </div>
-                  </div>
-
-                  <div class="tab-pane fade" id="semua">
-                    <div class="table-responsive mt-4 mt-md-3 mt-lg-3">
-                      <!-- Default Table -->
-                      <table class="table table-sm" id="table1">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Waktu Transaksi</th>
-                            <th scope="col">Nama Petugas</th>
-                            <th scope="col">Nama Siswa</th>
-                            <th scope="col">Kelas</th>
-                            <th scope="col">Tanggal Bayar</th>
-                            <th scope="col">Nominal</th>
-                            <th scope="col">Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody class="align-middle">
-                          @foreach ($datapembayaran as $pembayaran)
-                          <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $pembayaran->created_at }}</td>
-                            <td>
-                              {{ $pembayaran->jenis_pembayaran == 'petugas' ? $pembayaran->userPetugas->name : '' }}
-                            </td>
-                            <td>{{ $pembayaran->userSiswa->name }}</td>
-                            <td>{{ $pembayaran->userSiswa->kelas->kelas }}</td>
-                            <td>{{ $pembayaran->tgl_bayar }}</td>
-                            <td>Rp{{ number_format($pembayaran->jumlah_bayar, 0, '.', '.') }}</td>
-                            <td>
-                              <a href="/history/{{ $pembayaran->id }}" class="btnxs btn-view"><i class="bi bi-view-list me-1"></i>Detail</a>
-                            </td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                      </table>
-                      
-                      <!-- End Default Table Example -->
-                    </div>
-                  </div>
-                </div> 
-
+          <div class="row px-1 my-2">
+            <div class="col-12 my-auto">
+              <h6 class="card-title fs-10"><i class="bi bi-info-circle-fill me-1 text-blue"></i> Riwayat pembayaran siswa.</h6>
             </div>
           </div>
 
-      <!-- <div class="row">
+          <div class="border-dash-zinc"></div>
+          
+          <div class="table-responsive mt-2 mt-md-2 mt-lg-2">
+            <table class="table table-sm" id="table1">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col"><i class="bi bi-clock me-1"></i> Transaksi</th>
+                  <th scope="col">Petugas</th>
+                  <th scope="col"><span class="d-none d-md-inline">Nama</span> Siswa</th>
+                  <th scope="col">Kelas</th>
+                  <th scope="col">Tanggal <span class="d-none d-md-inline">Bayar</span></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+              @foreach ($datapembayaran as $pembayaran)
+              <tr>
+                <th scope="row">{{ $loop->iteration }}</th>
+                <td style="min-width: 110px;">{{ $pembayaran->created_at }}</td>
+                <td style="min-width: 120px;">
+                  {{ $pembayaran->petugas_id == '' ? '-' : $pembayaran->userPetugas->name }}
+                </td>
+                <td style="min-width: 180px;" class="{{ $pembayaran->jenis_pembayaran == 'siswa' ? 'text-violet' : '' }}">{{ $pembayaran->userSiswa->name }}</td>
+                <td style="min-width: 90px;">{{ $pembayaran->userSiswa->kelas->kelas }}</td>
+                <td>{{ $pembayaran->tgl_bayar }}</td>
+                <td class="align-middle">
+                  <a href="/history/{{ $pembayaran->id }}/{{ $pembayaran->userSiswa->id }}" class="btnxs btn-violet"><i class="bi bi-text-wrap float-end"></i></a>
+                  {{-- <div class="dropdown">
+                    <button type="button" class="btnxs btn-white" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="/history/{{ $pembayaran->id }}/{{ $pembayaran->userSiswa->id }}" class="dropdown-item">Detail <i class="bi bi-eye float-end"></i></a></li>
+                    </ul>
+                  </div> --}}
+                </td>
+              </tr>
+              @endforeach
+              </tbody>
+            </table>
+          </div>
 
-      </div> -->
-    </div><!-- End Left side columns -->
-
-    <!-- Right side columns -->
-
+        </div>
+      </div>
+    </div>
   </div>
-
 </section>
-
 @endsection
 
 @section('my-js')
   <script src="/vendor/extensions/simple-datatables/umd/simple-datatables.js"></script>
   <script src="/vendor/extensions/simple-datatables.js"></script>
 @endsection
-
