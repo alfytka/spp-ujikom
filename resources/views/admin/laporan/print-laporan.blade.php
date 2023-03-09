@@ -9,33 +9,27 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
-    <!-- <link href="assets/img/favicon.png" rel="icon"> -->
-    {{-- <link href="/img/apple-touch-icon.png" rel="apple-touch-icon"> --}}
-
-  <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
   <link href="/css/style.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body id="laporan">
 
     <div class="row mt-2 mx-0">
       <div class="col-12 text-center mb-4">
-        <img src="/img/logosmk.png" class="logosmk" style="max-height: 90px;" alt="">
+        @if ($datasekolah[0]->logo > 1)
+          <img src="/img/img-me/{{ $datasekolah[0]->logo }}" class="logosmk" style="max-height: 90px;" alt="logo">
+        @else
+          <img src="/img/logosmk.png" class="logosmk" style="max-height: 90px;" alt="logo">
+        @endif
         <div class="destinasi mt-3">
           <h5 class="mb-0">LAPORAN PEMBAYARAN SPP</h5>
-          <h5 class="mb-0">SMK NEGERI 3 BANJAR</h5>
-          <small>Jl. Julaeni, Kec. Langensari, Kota Banjar, Jawa barat</small>
+          <h5 class="mb-0">{{ $datasekolah[0]->nama_sekolah }}</h5>
+          <small>Telp. {{ $datasekolah[0]->telepon }}, {{ $datasekolah[0]->alamat }}</small>
         </div>
 
       </div>
@@ -81,7 +75,7 @@
             <td>{{ $laporan->userSiswa->kelas->kelas }}</td>
             <td>{{ $laporan->tgl_bayar }}</td>
             <td>{{ $laporan->bulan_bayar }} {{ $laporan->tahun_bayar }}</td>
-            <td>Rp{{ number_format($laporan->jumlah_bayar) }}</td>
+            <td>Rp{{ number_format($laporan->jumlah_bayar, 0, '.', '.') }}</td>
           </tr>
               
           @endforeach
@@ -93,26 +87,18 @@
       <div class="col-12">
         <div class="ttd me-4">
           <span>Mengetahui,</span>
-          <p style="margin: 0 0 75px 0;">Kepala SMK Negeri 3 Banjar</p>
-          <span class="pt-5 fw-bold">Drs. H. Maman Sudirman, M.M</span>
-          <p>NIP. 19651021 199011 1 00</p>
+          <p style="margin: 0 0 75px 0;">Kepala {{ $datasekolah[0]->nama_sekolah }}</p>
+          <span class="pt-5 fw-bold">{{ $datasekolah[0]->kepala_sekolah }}</span>
+          <p>NIP. {{ $datasekolah[0]->nip }}</p>
         </div>
       </div>
     </div>
 
-
-  <!-- Vendor JS Files -->
   <script type="text/javascript">
     addEventListener('load', function myfunction() {
       window.print()
     });
   </script>
-
-  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/vendor/tinymce/tinymce.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="/js/main.js"></script>
 
 </body>
 
