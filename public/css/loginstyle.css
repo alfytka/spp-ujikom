@@ -4,7 +4,7 @@
     --title-bg: #9089cc;
     --button-bg: #674baf;
     --light-pink: #e882e8;
-    --image-bg:  #eadbff ;
+    --image-bg:  #eadbff;
 }
 
 body {
@@ -45,6 +45,29 @@ body {
     background-color: var(--image-bg);
     box-sizing: border-box;
 }
+
+.img-sm {
+    width: 80px;
+    display: none;
+}
+.img-sm-title {
+    display: none;
+}
+@media (max-width: 850px) {
+    .img-sm {
+        display: block;
+    }
+    .img-sm-title {
+        display: block;
+    }
+    .login-info-container {
+        border: none;
+    }
+    .login-container {
+        height: 45rem;
+    }
+}
+
 
 .inputs-container {
     /* height: 55%; */
@@ -119,21 +142,25 @@ body {
 
 @media screen and (max-width: 500px) {
     .login-container {
-        height: 90%;
+        height: 42rem;
     }
     .login-info-container {
         border: none;
     }
 }
 
+.text-black {
+    color: #000;
+}
+
 .input-label {
-    font: 500 1rem/1.5rem Poppins, sans-serif;
-    /* color: #39465b; */
+    font: 500 15px Poppins, sans-serif;
+    color: #000;
   }
 
   .div-input {
     font: 300 1rem/1.5rem Poppins, sans-serif;
-    padding: 0.55rem 1.25rem;
+    padding: 0.55rem 1.10rem;
     margin-top: 0.5rem;
     border-radius: 0.75rem;
     border: 1px solid #7F8487;
@@ -166,7 +193,7 @@ body {
   }
 
   .input-field {
-    font: 400 1rem/1.5rem Poppins, sans-serif;
+    font: 400 14px Poppins, sans-serif;
     width: 100%;
     /* background-color: #fcfdff; */
     transition: 0.3s;
@@ -177,9 +204,9 @@ body {
     transition: 0.3s;
   }
   .btn-fill {
-    font: 400 1rem/1.5rem Poppins, sans-serif;
+    font: 400 15px Poppins, sans-serif;
     background-color: #8B5CF6;
-    padding: 0.70rem 1rem;
+    padding: 0.69rem 1rem;
     margin-top: 2.4rem;
     border-radius: 0.75rem;
     transition: 0.5s;
@@ -187,7 +214,10 @@ body {
 
   .btn-fill:hover {
     background-color: #9974f0;
-  }
+}
+.btn-fill:focus {
+    background-color: #9974f0;
+}
 
 
 

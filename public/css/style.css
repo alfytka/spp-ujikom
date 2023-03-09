@@ -22,6 +22,9 @@ a {
   color: #4154f1;
   text-decoration: none;
 }
+.fc-blues {
+  color: #4154f1;
+}
 
 a:hover {
   color: #717ff5;
@@ -589,8 +592,8 @@ h6 {
 }
 
 .header-nav .nav-profile img {
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
 }
 
@@ -673,7 +676,7 @@ h6 {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: #aab7cf;
+  background-color: #fff;
 }
 
 @media (min-width: 1200px) {
@@ -733,6 +736,8 @@ h6 {
   color: #4154f1;
   transition: 0.3;
   padding: 8px 15px;
+  background-color: #eef2ff;
+  border-radius: 10px;
 }
 
 .sidebar-nav .nav-link i {
@@ -755,6 +760,9 @@ h6 {
 } */
 
 .sidebar-nav .nav-link:hover i {
+  color: #4154f1;
+}
+.sidebar-nav .nav-link:hover {
   color: #4154f1;
 }
 
@@ -808,6 +816,9 @@ h6 {
 
 .white-card {
   background-color: #fafafa;
+}
+.blue-card {
+  background-color: #eff6ff;
 }
 .border-only-card {
   background-color: #fff;
@@ -1388,6 +1399,19 @@ h6 {
   bottom: 9px;
 }
 
+@media (max-width: 767px){
+  #pengaturan-card #border-me {
+    border: 1px solid transparent !important;
+  }
+  #pengaturan-card .shadow-sm {
+    box-shadow: none !important;
+  }
+}
+
+#laporan {
+  font-family: 'Calibri';
+}
+
 .logosmk {
   position: absolute;
   left: 20px; 
@@ -1399,8 +1423,15 @@ h6 {
 .my-table, .identity, .destinasi small, .ttd {
   font-size: 12px;
 }
+/* @media (max-width: 500px){
+  .table-fs-12 {
+    font-size: 15px;
+  }
+} */
 .destinasi h5 {
   font-size: 16px;
+  font-family: 'Calibri';
+  font-weight: 600;
 }
 
 .btn-ol-green {
@@ -1430,6 +1461,36 @@ h6 {
   background-color: #f5f3ff;
   color: #8B5CF6;
   font-weight: 600;
+}
+.badge-ol-violet {
+  background-color: #fbfafc;
+  color: #8B5CF6;
+  border: 1px solid #8B5CF6;
+  font-weight: 600;
+}
+.badge-ol-violet:hover {
+  background-color: #f5f3ff;
+  border: 1px solid #8B5CF6;
+  color: #8B5CF6;
+}
+.badge-blue {
+  background-color: #e0f2fe;
+  color: #4154f1;
+  border: none;
+  font-weight: 600;
+}
+.badge-grey {
+  background-color: #f3f4f6;
+  color: #3f3f46;
+  border: none;
+  font-weight: 600;
+}
+
+/* Table Latest Payment (tr)*/
+.table-me {
+  position: sticky; 
+  top: 0; 
+  background-color: #fff;
 }
 
 .btn-outline-navy {
@@ -1497,6 +1558,16 @@ h6 {
 .btn-view:hover {
   color: #000000;
   background-color: #e0f2fe;
+}
+.btn-white {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid transparent;
+}
+.btn-white:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid transparent;
 }
 .btn-red {
   background-color: #fca5a5;
@@ -1802,6 +1873,9 @@ h6 {
 .text-blue {
   color: #3b82f6;
 }
+.text-bluebook {
+  color: #4154f1;
+}
 .text-violet {
   color: #8B5CF6;
 }
@@ -1812,9 +1886,9 @@ h6 {
 }
 @media (min-width: 600px) {
   .profile-img {
-    width: 110px;
-    min-height: 110px;
-    max-height: 110px; 
+    width: 100px;
+    min-height: 100px;
+    max-height: 100px; 
     object-fit: cover;
   } 
   .accordion-btn {
