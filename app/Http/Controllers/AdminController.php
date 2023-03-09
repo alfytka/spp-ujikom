@@ -20,15 +20,10 @@ class AdminController extends Controller
     {
         if (Gate::allows('admin'))
         {
-            $search = User::where('level','admin');
-            if (request('search')) {
-                $search->where('name', 'like', '%' . request('search') . '%')
-                ->orWhere('username', 'like', '%' . request('search') . '%')
-                ->orWhere('email', 'like', '%' . request('search') . '%');
-            }
+            $admin = User::where('level','admin')->get();
     
             return view('admin.dataadmin.index-admin', [
-                'dataadmin' => $search->get()
+                'dataadmin' => $admin
             ]);
         }
         return back();
@@ -52,7 +47,17 @@ class AdminController extends Controller
      */
     public function store(PetugasRequest $request)
     {
-        User::create($request->all());
+        $add = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+            'level' => $request->level
+        ];
+        
+        User::create($add);
         return redirect(route('dataadmin.index'))->with('informasi', 'Data admin berhasil ditambahkan.');
     }
 
@@ -99,7 +104,8 @@ class AdminController extends Controller
      */
     public function update(UpPetugasRequest $request, $id)
     {
-        if (!$request->password) {
+        if (!$request->password) 
+        {
             $upAdmin = [
                 'name' => $request->name,
                 'email' => $request->email,

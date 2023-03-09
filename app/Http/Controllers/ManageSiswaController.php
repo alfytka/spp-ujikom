@@ -8,22 +8,32 @@ use App\Http\Requests\SiswaProfileRequest;
 use App\Models\Bukti_pembayaran;
 use App\Models\Buktipembayaran;
 use App\Models\Pembayaran;
+use App\Models\Sekolah;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class ManageSiswaController extends Controller
 {
     public function profile()
     {
-        return view('siswa.profile-siswa.index-profile');
+        if (Gate::allows('siswa'))
+        {
+            return view('siswa.profile-siswa.index-profile');
+        }
+        return back();
     }
 
     public function edit()
     {
-        return view('siswa.profile-siswa.edit-profile');
+        if (Gate::allows('siswa'))
+        {
+            return view('siswa.profile-siswa.edit-profile');
+        }
+        return back();
     }
 
     public function update(SiswaProfileRequest $request)
@@ -82,67 +92,76 @@ class ManageSiswaController extends Controller
 
     public function beranda($id)
     {
-        return view('siswa.beranda', [
-            'berandasiswa' => Pembayaran::where('siswa_id', $id)->get(),
-            'datasiswa' => User::where('id', $id)->first(),
-            'pembayaransiswa' => Pembayaran::where('siswa_id', $id)->count()
-        ]);
+        if (Gate::allows('siswa'))
+        {
+            return view('siswa.beranda', [
+                'berandasiswa' => Pembayaran::where('siswa_id', $id)->where('status', 'sukses')->orderBy('id','desc')->get(),
+                'datasiswa' => User::where('id', $id)->first(),
+                'pembayaransiswa' => Pembayaran::where('siswa_id', $id)->count(),
+                'datasekolah' => Sekolah::get()->first()
+            ]);
+        }
+        return back();
     }
 
     public function fyi($id)
     {
-        return view('siswa.fyi', [
-            'datasiswa' => User::where('id', $id)->first()
-        ]);
+        if (Gate::allows('siswa'))
+        {
+            return view('siswa.fyi', [
+                'datasiswa' => User::where('id', $id)->first()
+            ]);
+        }
+        return back();
     }
 
     public function entriPembayaranSiswa()
     {
-        $bulan = [
-            'Januari',
-            'Februari',
-            'Maret',
-            'April',
-            'Mei',
-            'Juni',
-            'Juli',
-            'Agustus',
-            'September',
-            'Oktober',
-            'November',
-            'Desember'
-        ];
-
-        return view('siswa.entri-siswapembayaran', [
-            'bulans' => $bulan
-        ]);
+        if (Gate::allows('siswa'))
+        {
+            $bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+            $metode_pembayaran = ['Transfer Bank - BRI','Transfer Bank - MANDIRI','Transfer Bank - BCA','Transfer Bank - BJB','GOPAY','OVO','DANA','Lainnya'];
+    
+            return view('siswa.entri-siswapembayaran', [
+                'bulans' => $bulan,
+                'metode_pembayaran' => $metode_pembayaran
+            ]);
+        }
+        return back();
     }
 
-    public function postEntriPembayaran(EntriSiswaRequest $request, BuktiPembayaranRequest $buktiPembayaran)
+    public function postEntriPembayaran(EntriSiswaRequest $request)
     {
-        Pembayaran::create($request->all());
-        $pembayaran = Pembayaran::latest()->first();
-
         $foto = $request->file('foto_bukti');
         $extension = $foto->getClientOriginalExtension();
-            $fileName = 'bukti-pic' . time(). '.' . $extension;
-            $foto->move(public_path('/img/photo-siswa'), $fileName);
-
-        $req = [
-            'pembayaran_id' => $pembayaran->id,
-            'foto_bukti' => $fileName,
-        ];
+        $fileName = 'bukti-pic' . time(). '.' . $extension;
+        $foto->move(public_path('/img/photo-siswa'), $fileName);
         
-        Buktipembayaran::create($req);
+        Pembayaran::create([
+            'siswa_id' => $request->siswa_id,
+            'tgl_bayar' => $request->tgl_bayar,
+            'bulan_bayar' => $request->bulan_bayar,
+            'tahun_bayar' => $request->tahun_bayar,
+            'jumlah_bayar' => $request->jumlah_bayar,
+            'jenis_pembayaran' => $request->jenis_pembayaran,
+            'metode_pembayaran' => $request->metode_pembayaran,
+            'status' => $request->status,
+            'foto_bukti' => $fileName
+        ]);
         
-        return redirect('/siswa/' . auth()->user()->id . '/riwayat-pembayaran');
+        return redirect('/siswa/' . auth()->user()->id . '/riwayat-pembayaran')->with('info', 'Tunggu hingga Petugas memproses pembayaran Anda.');
     }
 
     public function indexHistory($id)
     {
-        return view('siswa.datahistory.index-history', [
-            'riwayat' => Pembayaran::where('siswa_id', $id)->orderBy('id', 'desc')->get(),
-            // 'buktipembayaran' => Buktipembayaran::where('pembayaran_id', auth()->user()->pembayaranSiswa->id)->get()
-        ]);
+        if (Gate::allows('siswa'))
+        {
+            return view('siswa.datahistory.index-history', [
+                'riwayat' => Pembayaran::where('siswa_id', $id)->orderBy('id', 'desc')->get(),
+                // 'buktipembayaran' => Buktipembayaran::where('pembayaran_id', auth()->user()->pembayaranSiswa->id)->get()
+            ]);
+        }
+        return back();
+        session()->flash('berhasil', 'Pembayaran berhasil, status: sukses');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
+use App\Models\Sekolah;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class LaporanController extends Controller
         $tanggal_akhir = $request->tanggal_akhir;
         $petugas_id = $request->petugas_id;
 
-        $pembayaran = Pembayaran::with(['userSiswa', 'userPetugas'])->latest();
+        $pembayaran = Pembayaran::with(['userSiswa', 'userPetugas'])->where('status', 'sukses')->latest();
 
         if (request('petugas_id')) 
         {
@@ -35,6 +36,7 @@ class LaporanController extends Controller
 
         return view('admin.laporan.index-laporan', [
             'datapetugas' => User::where('level', 'petugas')->orWhere('level', 'admin')->get(),
+            'petugasonly' => User::where('level', 'petugas')->get(),
             'datalaporan' => $pembayaran->get()
         ]);
     }
@@ -50,7 +52,7 @@ class LaporanController extends Controller
         $tanggal_akhir = $request->tanggal_akhir;
         $petugas_id = $request->petugas_id;
 
-        $pembayaran = Pembayaran::with(['userSiswa', 'userPetugas'])->latest();
+        $pembayaran = Pembayaran::with(['userSiswa', 'userPetugas'])->where('status', 'sukses')->latest();
 
         if (request('petugas_id')) {
             $pembayaran = Pembayaran::with(['userSiswa', 'userPetugas'])->where('petugas_id', $petugas_id);
@@ -63,22 +65,9 @@ class LaporanController extends Controller
         return view('admin.laporan.print-laporan', [
             'datapetugas' => User::where('level', 'petugas')->orWhere('level', 'admin')->first(),
             'datalaporan' => $pembayaran->get(),
-            'petugas_id' => $petugas_id
+            'petugas_id' => $petugas_id,
+            'datasekolah' => Sekolah::all()
         ]);
-        
-
-        // // $try = Pembayaran::where('petugas_id', $request->petugas_id)->orWhere('tgl_bayar', '=>', $tanggal_awal)->orWhere('tgl_bayar', '<=', $tanggal_akhir)->get();
-
-        // $data = Pembayaran::where('petugas_id', $petugas)->where(function($query)use($tanggal_awal, $tanggal_akhir) {
-        //     $query->where('tgl_bayar', '>=', $tanggal_awal)->here('tgl_bayar', '<=', $tanggal_akhir);
-        // })->get();
-
-        // return view('admin.laporan.index-laporan', [
-        //     'datalaporan' => $data,
-        //     'datapetugas' => User::where('level', 'petugas')->orWhere('level', 'admin')->get(),
-        //     'old_tgl_awal' => $tanggal_awal,
-        //     'old_tgl_akhir' => $tanggal_akhir
-        // ]);
     }
 
     /**

@@ -3,27 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
     public function index()
     {
-        $search = Pembayaran::latest();
-        if (request('search')) {
-            $search->where('jumlah_bayar', 'like', '%' . request('search') . '%');
-        }
+        $history = Pembayaran::where('status', 'sukses')->latest()->get();
 
         return view('admin.datahistory.index-history', [
-            'datapembayaran' => $search->get(),
-            'historypetugas' => Pembayaran::where('petugas_id', auth()->user()->id)->get()
+            'datapembayaran' => $history,
         ]);
     }
 
-    public function show($id)
+    public function show($id, $idsiswa)
     {
         return view('admin.datahistory.detail-history', [
-            'datahistory' => Pembayaran::where('id', $id)->first()
+            'datahistory' => Pembayaran::where('id', $id)->first(),
+            'datasiswa' => User::where('id', $id)->first(),
+            'pembayarans' => Pembayaran::where('siswa_id', $idsiswa)->where('status', 'sukses')->orderBy('id', 'desc')->get(),
         ]);
     }
 }

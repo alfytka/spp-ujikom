@@ -20,16 +20,10 @@ class PetugasController extends Controller
     {
         if (Gate::allows('admin'))
         {
-            $search = User::where('level', 'petugas');
-            if (request('search')) {
-                $search->where('name', 'like', '%' . request('search') . '%')
-                ->orWhere('username', 'like', '%' . request('search') . '%')
-                ->orWhere('email', 'like', '%' . request('search') . '%')
-                ->orWhere('telepon', 'like', '%' . request('search') . '%');
-            }
+            $petugas = User::where('level', 'petugas')->get();
     
             return view('admin.datapetugas.index-petugas', [
-                'datapetugas' => $search->get()
+                'datapetugas' => $petugas
             ]);
         }
         return back();
@@ -53,7 +47,17 @@ class PetugasController extends Controller
      */
     public function store(PetugasRequest $request)
     {
-        User::create($request->all());
+        $add = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+            'level' => $request->level
+        ];
+
+        User::create($add);
         return redirect(route('datapetugas.index'))->with('informasi', 'Data petugas berhasil ditambahkan.');
     }
 

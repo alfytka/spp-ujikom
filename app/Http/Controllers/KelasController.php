@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\KelasRequest;
+use App\Http\Requests\UpKelasRequest;
 use App\Models\Kelas;
 use App\Models\Kompetensikeahlian;
 use Illuminate\Http\Request;
@@ -19,12 +20,10 @@ class KelasController extends Controller
     {
         if (Gate::allows('admin'))
         {
-            $search = Kelas::orderBy('created_at')->latest();
-            if (request('search')) {
-                $search->where('kelas', 'like', '%' . request('search') . '%');
-            } 
+            $kelas = Kelas::all();
+            
             return view('admin.datakelas.index-kelas', [
-                'datakelas' => $search->get(),
+                'datakelas' => $kelas,
                 'dataprodi' => Kompetensikeahlian::all()
             ]);
         }
@@ -90,7 +89,7 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(KelasRequest $request, $id)
+    public function update(UpKelasRequest $request, $id)
     {
         Kelas::find($id)->update($request->all());
         return redirect(route('datakelas.index'))->with('informasi', 'Data kelas berhasil diubah.');

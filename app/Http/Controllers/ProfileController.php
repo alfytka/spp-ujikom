@@ -38,7 +38,7 @@ class ProfileController extends Controller
         {
             if ($request->new_password != $request->konfirmasi_password)
             {
-                return redirect('/profile/ubahpassword')->with('informasi', 'Sesuaikan antara Password Baru dengan Konfirmasi Password.');
+                return redirect('/profile/ubahpassword')->with('informasi', 'Sesuaikan antara password baru dengan konfirmasi password.');
             } else {
                 auth()->user()->update(['password' => bcrypt($request->new_password)]);
                 return redirect('/profile')->with('informasi', 'Password Anda berhasil diperbarui.');

@@ -8,6 +8,7 @@ use App\Models\Kelas;
 use App\Models\Pembayaran;
 use App\Models\Spp;
 use App\Models\User;
+use App\Notifications\PembayaranNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
@@ -21,17 +22,10 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $search = User::where('level','siswa');
-        if (request('search')) {
-            $search->where('nisn', 'like', '%' . request('search') . '%')
-            ->orWhere('nis', 'like', '%' . request('search') . '%')
-            ->orWhere('name', 'like', '%' . request('search') . '%')
-            ->orWhere('username', 'like', '%' . request('search') . '%')
-            ->orWhere('email', 'like', '%' . request('search') . '%');
-        }
+        $siswa = User::where('level','siswa')->get();
 
         return view('admin.datasiswa.index-siswa', [
-            'datasiswa' => $search->get(),
+            'datasiswa' => $siswa,
             'datakelas' => Kelas::all()
         ]);
     }
@@ -87,9 +81,13 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
+        $siswa = User::where('id', $id)->first();
+
+        $siswa->notify(new PembayaranNotification);
+
         return view('admin.datasiswa.detail-siswa', [
             'datasiswa' => User::where('id', $id)->first(),
-            'pembayaranterakhir' => Pembayaran::where('siswa_id', $id)->get()
+            'pembayaranterakhir' => Pembayaran::where('siswa_id', $id)->where('status', 'sukses')->orderBy('id', 'desc')->get()
         ]);
     }
 
@@ -121,7 +119,8 @@ class SiswaController extends Controller
      */
     public function update(UpSiswaRequest $request, $id)
     {
-        if (!$request->password) {
+        if (!$request->password) 
+        {
             $upSiswa = [
                 'nisn' => $request->nisn,
                 'nis' => $request->nis,

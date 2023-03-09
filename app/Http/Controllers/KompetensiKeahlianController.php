@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\KompetensiKeahlianRequest;
+use App\Http\Requests\UpProdiRequest;
 use App\Models\Kompetensikeahlian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -18,12 +19,10 @@ class KompetensiKeahlianController extends Controller
     {
         if (Gate::allows('admin'))
         {
-            $search = Kompetensikeahlian::orderBy('created_at')->latest();
-            if(request('search')) {
-                $search->where('name', 'like', '%' . request('search') . '%')->orWhere('keterangan', 'like', '%' . request('search') . '%');
-            };
+            $prodi = Kompetensikeahlian::all();
+            
             return view('admin.dataprodi.index-prodi', [
-                'dataprodi' => $search->get()
+                'dataprodi' => $prodi
             ]);
         }
         return back();
@@ -87,7 +86,7 @@ class KompetensiKeahlianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(KompetensiKeahlianRequest $request, $id)
+    public function update(UpProdiRequest $request, $id)
     {
         Kompetensikeahlian::find($id)->update($request->all());
         return redirect(route('dataprodi.index'))->with('informasi', 'Data kompetensi keahlian berhasil diubah.');
