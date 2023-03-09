@@ -9,6 +9,8 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <link href="/img/favicon.png" rel="icon">
+
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -60,13 +62,7 @@
 
   </main>
 
-  {{-- ======= Footer =======  
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright 2023 - <strong><span>@Alfitka</span></strong>
-    </div>
-  </footer> 
-   End Footer --> --}}
+  @yield('footer-me')
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -74,8 +70,6 @@
 
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/vendor/tinymce/tinymce.min.js"></script>
-  {{-- <script src="/vendor/extensions/simple-datatables/umd/simple-datatables.js"></script>
-  <script src="/vendor/extensions/simple-datatables.js"></script> --}}
 
   <script src="/js/main.js"></script>
 

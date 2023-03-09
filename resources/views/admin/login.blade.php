@@ -8,16 +8,15 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
   
-    <!-- Google Fonts -->
+    <link href="/img/favicon.png" rel="icon">
+
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   
-    <!-- Vendor CSS Files -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   
-    <!-- Template Main CSS File -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/loginstyle.css" rel="stylesheet">
 
@@ -25,14 +24,23 @@
 <body>
 
   <div class="login-container">
-    <img class="image-container" src="/img/login.svg" alt="">
+    <img class="image-container" src="/img/login-img.png" style="object-fit: cover;" alt="">
     <div class="login-info-container">
+      
+      <div class="img-sm">
+        <img src="/img/mySPP.png" class="img-sm" style="border-radius: 16px;" alt="">
+      </div>
+      <div class="img-sm-title text-center mt-4">
+        <h6 class="fw-semibold mb-1 fs-10">Aplikasi Pembayaran SPP</h6>
+        <h6 class="fw-semibold fs-10 mb-0">SMK TI Nusadua</h6>
+      </div>
+
       
       <form class="inputs-container" action="/login" method="POST">
         @csrf
         <div style="margin-bottom: 1.3rem" class="mt-5">
-          <h4 class="fw-semibold">Login Pengguna</h4>
-          <label class="mb-3 fw-light">Isi data pribadi Anda</label>
+          <h5 class="fw-semibold text-black">Login Pengguna</h5>
+          <label class="mb-3 fw-normal input-label text-black">Isi data pribadi Anda</label>
           @if (session()->has('error'))
           <div class="alert error-alert alert-light border-zinc roundeds alert-dismissible fade show" role="alert">
             <i class="bi bi-info-circle-fill fs-6 ms-1 py-0 text-danger my-0 me-2"></i>
@@ -66,14 +74,13 @@
           <a href="#" class="forgot-password fst-italic">Lupa password?</a>
         </div> -->
         <button class="btn btn-fill text-white d-block w-100" type="submit">
-          Masuk <i class="bi bi-arrow-right ms-1"></i>
+          Login <i class="bi bi-arrow-right ms-1"></i>
         </button>
       </form>
     </div>
       
   </div>
 
-  <!-- Vendor JS Files -->
   <script>
     function togglePassword() {
       var x = document.getElementById("password");
@@ -93,7 +100,6 @@
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/vendor/tinymce/tinymce.min.js"></script>
 
-  <!-- Template Main JS File -->
   <script src="/js/main.js"></script>
 </body>
 </html>
