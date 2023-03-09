@@ -1,6 +1,6 @@
 @extends('layouts.kerangka')
 @section('titles')
-  <title>SPP - Status Pembayaran</title>
+  <title>SPP - Edit Pembayaran</title>
 @endsection
 @section('content')
   
@@ -13,34 +13,14 @@
     <div class="col-lg-6">
       <div class="cardxy shadow-sm mb-4">
         <div class="card-body">
-          <h5 class="card-title ms-1"> Status Pembayaran Siswa</h5>
+          <h5 class="card-title ms-1"> Edit Pembayaran Siswa</h5>
           <div class="border-dash-zinc mx-2 mb-2"></div>
-          <form class="row g-3 mx-0 mx-md-1 mx-lg-1" action="/datapembayaran/create" method="GET" id="formSearch">
-            {{-- @csrf --}}
-            <div class="col-12 col-md-12 col-lg-12 ">
-              {{-- <div class="form-group mb-3">
-                <label for="kelas" class="form-label mb-1">Kelas</label>
-                <select name="kelas" id="kelas" onchange="document.getElementById('formSearch').submit()" class="form-select form-select-smx roundedx @error('kelas') is-invalid @enderror" disabled>
-                  <option disabled value>- Pilih kelas siswa -</option>
-                  <option disabled selected hidden>- Pilih kelas siswa -</option>
-                  <option value="">Semua kelas</option>
-                  @foreach ($datakelas as $kelas)
-                    <option value="{{ $kelas->id }}" {{ $kelas->id == $datapembayaran->userSiswa->kelas_id ? 'selected' : '' }}>{{ $kelas->kelas }}</option>
-                  @endforeach
-                </select>
-                @error('kelas')
-                  <span class="invalid-feedback">{{ $message }}</span>
-                @enderror
-              </div> --}}
-            </div>
-          </form>
-
-          <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="/datapembayaran" method="POST" id="getsiswa">
+          <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="" method="POST">
             @csrf
             <div class="col-12 col-md-12 col-lg-12 ">
               <div class="form-group mb-0">
                 <label for="name" class="form-label mb-1">Nama Siswa</label>
-                <select name="name" id="name" onchange="document.location.href=this.options[this.selectedIndex].value;" class="form-select form-select-smx roundedx @error('name') is-invalid @enderror" disabled>
+                <select name="name" id="name" class="form-select form-select-smx roundedx @error('name') is-invalid @enderror" disabled>
                   <option disabled value>- Pilih siswa dari kelas yang dipilih -</option>
                   <option disabled selected hidden>- Pilih siswa dari kelas yang dipilih -</option>
                   @foreach ($siswas as $siswa)
@@ -58,7 +38,6 @@
             @csrf
             @method('PUT')
             <div class="col-12 col-md-12 col-lg-12 ">
-              <input type="hidden" name="petugas_id" value="{{ auth()->user()->id }}">
               <div class="row">
                 <div class="col-6 pe-2">
                   <div class="form-group mb-3">
@@ -74,10 +53,10 @@
                     <label for="bulan_bayar" class="form-label mb-1">Bulan Bayar</label>
                     <select name="bulan_bayar" id="bulan_bayar" class="form-select form-select-smx roundedx @error('bulan_bayar') is-invalid @enderror">
                       <option disabled value>- Pilih bulan bayar -</option>
-                        <option disabled selected hidden>- Pilih bulan bayar -</option>
-                        @foreach ($bulans as $bulan)
-                          <option value="{{ $bulan }}" {{ $bulan == $datapembayaran->bulan_bayar ? 'selected' : '' }}>{{ $bulan }}</option>
-                        @endforeach
+                      <option disabled selected hidden>- Pilih bulan bayar -</option>
+                      @foreach ($bulans as $bulan)
+                        <option value="{{ $bulan }}" {{ $bulan == $datapembayaran->bulan_bayar ? 'selected' : '' }}>{{ $bulan }}</option>
+                      @endforeach
                     </select>
                     @error('bulan_bayar')
                       <span class="invalid-feedback">{{ $message }}</span>
@@ -165,7 +144,7 @@
               <h5 class="card-title ms-1">Detail Siswa </h5>
             </div>
             <div class="col-6 text-end">
-              <h5 class="card-title"><a href="#">Lihat detail <i class="bi bi-chevron-right"></i></a></h5>
+              <h5 class="card-title"><a href="/datasiswa/{{ $datapembayaran->userSiswa->id }}">Lihat detail <i class="bi bi-chevron-right"></i></a></h5>
             </div>
           </div>
 
@@ -180,7 +159,6 @@
                 <h6 class="fw-semibold name mt-3 mb-1 text-center">{{ $datapembayaran->userSiswa->name }}</h6>
                 <h6 class="fw-normal fs-10 pt-0">Siswa</h6>
               </div>
-
               <div class="col-12 mb-1">
                 <div class="row">
                   <div class="col-8">

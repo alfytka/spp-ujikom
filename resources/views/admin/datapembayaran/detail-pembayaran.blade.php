@@ -5,27 +5,19 @@
 @section('content')
   
 <div class="pagetitle mb-0">
-    <h5 class="fw-semibold"><a href="{{ route('datapembayaran.index') }}" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Detail Pembayaran</span></h5> 
+  <h5 class="fw-semibold"><a href="{{ route('datapembayaran.index') }}" class="back-icon"><i class="bi bi-chevron-left back-icon"></i></a> <span class="ps-1">Detail Pembayaran</span></h5> 
 </div>
 
 <section class="section dashboard mb-5">
   <div class="row">
-
-    <!-- Right side columns -->
     <div class="col-lg-6">
-
-      <div class="cardxy shadow-sm">
+      <div class="cardxy shadow-sm mb-4">
         <div class="card-body">
-          <h5 class="card-title ms-1">Data Pembayaran <span class="float-end"><a href="#">Edit <i class="bi bi-chevron-right"></i></a></span></h5>
-
-          <!-- Vertical Form -->
-        
-            <form class="row g-3 mx-0 mb-1" action="{{ route('datapembayaran.store') }}" method="POST">
-              @csrf
-              <div class="col-12 col-md-12 col-lg-12 ">
-
+          <h5 class="card-title ms-1"><span><a href="/datapembayaran/{{ $pembayaran->id }}/{{ $pembayaran->userSiswa->id }}/print-pembayaran" class="fw-semibold">Print pembayaran <i class="bi bi-clipboard-check ms-1"></i></a></span> <span class="float-end"><a href="/datapembayaran/{{ $pembayaran->id }}/{{ $pembayaran->jenis_pembayaran == 'siswa' ? 'paybysiswa' : 'edit' }}">Edit <i class="bi bi-chevron-right"></i></a></span></h5>
+          <form class="row g-3 mx-0 mb-1" action="{{ route('datapembayaran.store') }}" method="POST">
+            @csrf
+            <div class="col-12 col-md-12 col-lg-12">
               <div class="border-dash-zinc mt-1 mb-2"></div>
-
               <div class="col-12 mb-2">
                 <div class="row">
                   <div class="col-9">
@@ -43,8 +35,8 @@
               <div class="col-12 mb-2">
                 <div class="row">
                   <div class="col-6 {{ $pembayaran->jenis_pembayaran == 'siswa' ? 'me-1 me-md-0' : '' }} col-md-4">
-                    <small class="title-profile-top">Status</small>
-                    <h6 class="mb-0 fw-normal fs-10 {{ $pembayaran->status == 'diproses' ? 'text-success' : '' }}{{ $pembayaran->status == 'sukses' ? 'text-blue' : '' }}">{{ $pembayaran->status }}<i class="px-2 {{ $pembayaran->status == 'diproses' ? 'bi bi-shuffle text-success' : '' }}{{ $pembayaran->status == 'sukses' ? 'bi bi-check-circle-fill text-blue' : '' }}"></i></h6>
+                    <small class="title-profile-top">Status</small> <br>
+                    <h6 class="mb-0 fw-normal fs-10 {{ $pembayaran->status == 'diproses' ? 'text-success' : '' }}{{ $pembayaran->status == 'sukses' ? 'text-violet' : '' }}">{{ $pembayaran->status }}<i class="px-2 {{ $pembayaran->status == 'diproses' ? 'bi bi-shuffle text-success' : '' }}{{ $pembayaran->status == 'sukses' ? 'bi bi-check-circle-fill text-violet' : '' }}"></i></h6>
                   </div>
                   <div class="col-6 {{ $pembayaran->jenis_pembayaran == 'petugas' ? 'col-md-6' : 'col-md-4' }}">
                     <small class="title-profile-top">Jenis Pembayaran</small>
@@ -54,7 +46,6 @@
                     @if ($pembayaran->jenis_pembayaran == 'siswa')
                     <small class="title-profile-top">Metode Pembayaran</small>
                     <h6 class="mb-0 fw-normal fs-10">{{ $pembayaran->metode_pembayaran }}</h6>
-                      
                     @endif
                   </div>
                 </div>
@@ -64,7 +55,7 @@
                       <h6 class="fw-normal fst-italic fs-sm"><a href="#buktipembayaran" data-bs-toggle="collapse">Lihat bukti pembayaran siswa <i class="bi bi-chevron-down"></i></a></h6>
                       <div class="collapse" id="buktipembayaran">
                         <div class="card card-body mb-0">
-                          <img src="/img/photo-siswa/{{ $pembayaran->buktiPembayaranSiswa[0]->foto_bukti }}" class="roundedx mx-auto" style="max-width: 250px; max-height: 250px; object-fit: contain;" alt="buktipembayaran">
+                          <img src="/img/photo-siswa/{{ $pembayaran->foto_bukti }}" class="roundedx mx-auto" style="max-width: 250px; max-height: 250px; object-fit: contain;" alt="buktipembayaran">
                         </div>
                       </div>
                     </div>
@@ -95,11 +86,10 @@
                     <h6 class="mb-0 fw-normal fs-10">{{ $pembayaran->userSiswa->name }}</h6>
                   </div>
                   <div class="col-3 my-auto text-end">
-                    <i class="fs-5 bi bi-person text-blue me-3"></i>
+                    {{-- <i class="fs-5 bi bi-person text-blue me-3"></i> --}}
                   </div>
                 </div>
               </div>
-
               <div class="col-12 mb-2">
                 <div class="row">
                   <div class="col-4">
@@ -145,19 +135,13 @@
                   </div>
                 </div>
               </div>
-
             </div>
-
-          </form><!-- Vertical Form -->
-
+          </form>
         </div>
       </div>
+    </div>
 
-    </div><!-- End Right side columns -->
-
-    <!-- Left side columns -->
     <div class="col-lg-6">
-
       <div class="cardxy border-none mb-4 shadow-sm">
         <div class="card-body">
           <div class="row">
@@ -165,13 +149,12 @@
               <h5 class="card-title ms-1 pb-2">Pembayaran Terakhir <u>{{ $pembayaran->userSiswa->username }}</u></h5>
             </div>
           </div>
-
           <div class="col-12 col-md-12 col-lg-12 detail-form table-responsive">
             <table class="table table-sm table-borderless">
-              <tr class="fs-10">
-                <td>Waktu Transaksi</td>
-                <td>Bulan</td>
-                <td>Tahun</td>
+              <tr class="fs-10 table-me">
+                <td><i class="bi bi-clock"></i> Transaksi</td>
+                <td>Bulan<span class="d-inline d-md-none">, Tahun</span></td>
+                <td class="d-none d-md-block">Tahun</td>
                 <td>Nominal</td>
                 <td></td>
               </tr>
@@ -179,25 +162,25 @@
               <tr>
                 <td>
                   <a href="/datapembayaran/{{ $latestpembayaran->id }}/{{ $latestpembayaran->userSiswa->id }}">
-                    <span class="badge {{ $latestpembayaran->bulan_bayar == $pembayaran->bulan_bayar ? 'btn-violet' : 'btn-ol-violet' }}">{{ $latestpembayaran->created_at }}</span>
+                    <span class="badge {{ $latestpembayaran->bulan_bayar == $pembayaran->bulan_bayar ? 'btn-violet' : 'btn-ol-violet' }}">{{ $latestpembayaran->tgl_bayar }}</span>
                   </a>
                 </td>
                 <td>
                   <a href="/datapembayaran/{{ $latestpembayaran->id }}/{{ $latestpembayaran->userSiswa->id }}">
-                    <span class="badge {{ $latestpembayaran->bulan_bayar == $pembayaran->bulan_bayar ? 'btn-violet' : 'btn-ol-violet' }}">{{ $latestpembayaran->bulan_bayar }}</span>
+                    <span class="badge {{ $latestpembayaran->bulan_bayar == $pembayaran->bulan_bayar ? 'btn-violet' : 'btn-ol-violet' }}">{{ $latestpembayaran->bulan_bayar }} <span class="d-inline d-md-none">- {{ $latestpembayaran->tahun_bayar }}</span></span>
                   </a>
                 </td>
-                <td>
+                <td class="d-none d-md-block">
                   <a href="/datapembayaran/{{ $latestpembayaran->id }}/{{ $latestpembayaran->userSiswa->id }}">
                     <span class="badge {{ $latestpembayaran->bulan_bayar == $pembayaran->bulan_bayar ? 'btn-violet' : 'btn-ol-violet' }}">{{ $latestpembayaran->tahun_bayar }}</span>
                   </a>
                 </td>
                 <td>
                   <a href="/datapembayaran/{{ $latestpembayaran->id }}/{{ $latestpembayaran->userSiswa->id }}">
-                    <span class="badge {{ $latestpembayaran->bulan_bayar == $pembayaran->bulan_bayar ? 'btn-violet' : 'btn-ol-violet' }}">Rp{{ number_format($latestpembayaran->jumlah_bayar, 0, '.', '.')  }}</span>
+                    <span class="badge {{ $latestpembayaran->bulan_bayar == $pembayaran->bulan_bayar ? 'btn-violet' : 'btn-ol-violet' }}"><span class="d-none d-md-inline">Rp</span>{{ number_format($latestpembayaran->jumlah_bayar, 0, '.', '.')  }}</span>
                   </a>
                 </td>
-                <td>
+                <td class="d-none d-md-inline">
                   <a href="/datapembayaran/{{ $latestpembayaran->id }}/{{ $latestpembayaran->userSiswa->id }}">
                     <i class="bi bi-chevron-right"></i>
                   </a>
@@ -220,10 +203,8 @@
             </div>
           </div>
 
-          <!-- Vertical Form -->
           <form class="row g-3 mx-0 mx-md-1 mx-lg-1 mb-3" action="#">
             <div class="col-12 col-md-12 col-lg-12 detail-form">
-
               <div class="card-body profile-card pt-3 d-flex flex-column align-items-center">
                 @if ($pembayaran->userSiswa->foto > 1)
                   <img src="/img/photo-siswa/{{ $pembayaran->userSiswa->foto }}" alt="Profile" class="profile-img rounded-circle border">
@@ -234,66 +215,60 @@
                 <h6 class="fw-normal fs-10 pt-0">Siswa</h6>
               </div>
   
-                {{-- <div class="border-top  mb-3"></div> --}}
-                <div class="col-12 mb-1">
-                  <div class="row">
-                    <div class="col-8">
-                      <h6 class="mb-0 fw-normal fs-12">{{ $pembayaran->userSiswa->nisn }}</h6>
-                      <small class="title-profile">NISN</small>
-                    </div>
-                    <div class="col-4 my-auto text-end">
-                      <i class="fs-6 text-blue me-3">ID</i>
-                    </div>
+              <div class="col-12 mb-1">
+                <div class="row">
+                  <div class="col-8">
+                    <h6 class="mb-0 fw-normal fs-12">{{ $pembayaran->userSiswa->nisn }}</h6>
+                    <small class="title-profile">NISN</small>
+                  </div>
+                  <div class="col-4 my-auto text-end">
+                    <i class="fs-6 text-blue me-3">ID</i>
                   </div>
                 </div>
-  
-                <div class="col-12 mb-1">
-                  <h6 class="mb-0 fw-normal fs-12">{{ $pembayaran->userSiswa->nis }}</h6>
-                  <small class="title-profile">NIS</small>
-                </div>
-  
-                <div class="border-top mb-1"></div>
-  
-                <div class="col-12 mb-1">
-                  <div class="row">
-                    <div class="col-9">
-                      <small class="title-profile-top">Nama Siswa</small>
-                      <h6 class="mb-0 fs-12 fw-normal">{{ $pembayaran->userSiswa->name }}</h6>
-                    </div>
-                    <div class="col-3 my-auto text-end">
-                      <i class="fs-5 bi bi-universal-access text-blue me-3"></i>
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="col-12 mb-2">
-                  <small class="title-profile-top">Kelas</small>
-                  <h6 class="mb-0 fw-normal fs-12">{{ $pembayaran->userSiswa->kelas->kelas }}</h6>
-                </div>
-  
-                <div class="border-top mb-1"></div>
-  
-                <div class="col-12 mb-1">
-                  <div class="row">
-                    <div class="col-6">
-                      <small class="title-profile-top">Tahun SPP</small>
-                      <h6 class="mb-0 fs-12 fw-normal">{{ $pembayaran->userSiswa->spp->tahun }}</h6>
-                    </div>
-                    <div class="col-6 my-auto text-end">
-                      <i class="fs-6 text-blue me-3">spp</i>
-                    </div>
-                  </div>
-                </div>
+              </div>
 
+              <div class="col-12 mb-1">
+                <h6 class="mb-0 fw-normal fs-12">{{ $pembayaran->userSiswa->nis }}</h6>
+                <small class="title-profile">NIS</small>
+              </div>
+
+              <div class="border-top mb-1"></div>
+
+              <div class="col-12 mb-1">
+                <div class="row">
+                  <div class="col-9">
+                    <small class="title-profile-top">Nama Siswa</small>
+                    <h6 class="mb-0 fs-12 fw-normal">{{ $pembayaran->userSiswa->name }}</h6>
+                  </div>
+                  <div class="col-3 my-auto text-end">
+                    <i class="fs-5 bi bi-universal-access text-blue me-3"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 mb-2">
+                <small class="title-profile-top">Kelas</small>
+                <h6 class="mb-0 fw-normal fs-12">{{ $pembayaran->userSiswa->kelas->kelas }}</h6>
+              </div>
+
+              <div class="border-top mb-1"></div>
+
+              <div class="col-12 mb-1">
+                <div class="row">
+                  <div class="col-6">
+                    <small class="title-profile-top">Tahun SPP</small>
+                    <h6 class="mb-0 fs-12 fw-normal">{{ $pembayaran->userSiswa->spp->tahun }}</h6>
+                  </div>
+                  <div class="col-6 my-auto text-end">
+                    <i class="fs-6 text-blue me-3">spp</i>
+                  </div>
+                </div>
+              </div>
             </div>
-
-          </form><!-- Vertical Form -->
-
+          </form>
         </div>
       </div>
-    </div><!-- End Left side columns -->
-
+    </div>
   </div>
 </section>
-
 @endsection
